@@ -1,4 +1,4 @@
-<!DOCTYPE html><!-- v20260402-012832 -->
+<!DOCTYPE html><!-- v20260402-172842 -->
 
 <html lang="en">
 <head>
@@ -628,10 +628,6 @@ const IC = {
         React.createElement("rect", { x: "3", y: "4", width: "4", height: "16", rx: "1" }),
         React.createElement("rect", { x: "10", y: "4", width: "4", height: "16", rx: "1" }),
         React.createElement("path", { d: "M17 4l4 2-4 14-4-2z" })),
-    Coach: (c, s = 22) => React.createElement("svg", { width: s, height: s, viewBox: "0 0 24 24", fill: "none", stroke: c, strokeWidth: "1.5", strokeLinecap: "round", strokeLinejoin: "round" },
-        React.createElement("path", { d: "M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" }),
-        React.createElement("line", { x1: "9", y1: "10", x2: "15", y2: "10" }),
-        React.createElement("line", { x1: "12", y1: "7", x2: "12", y2: "13" })),
     Hunter: (c, s = 22) => React.createElement("svg", { width: s, height: s, viewBox: "0 0 24 24", fill: "none", stroke: c, strokeWidth: "1.5", strokeLinecap: "round", strokeLinejoin: "round" },
         React.createElement("path", { d: "M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z" })),
     Push: (c, s = 22) => React.createElement("svg", { width: s, height: s, viewBox: "0 0 28 28", fill: "none", stroke: c, strokeWidth: "1.5", strokeLinecap: "round", strokeLinejoin: "round" },
@@ -1243,7 +1239,7 @@ const FORM_GUIDES = {
 // coreOptions: 3 core exercises rotated by ISO week number (auto-changes weekly)
 // accessoryOptions: alternate accessory picks so workouts don't feel identical
 const WORKOUT_PLANS = {
-    Push: { icon: "↑", color: "#FF6B35",
+    Push: { icon: "PSH", color: "#FF6B35",
         exercises: [
             { name: "Bench Press", sets: 4, reps: "6-8", muscle: "Chest", note: "Primary compound — control the descent" },
             { name: "Incline Dumbbell Press", sets: 3, reps: "8-10", muscle: "Upper Chest", note: "30-45° incline hits upper chest" },
@@ -1271,7 +1267,7 @@ const WORKOUT_PLANS = {
             { name: "Side Plank", sets: 3, reps: "30 sec ea", muscle: "Obliques", note: "Stack feet or stagger for stability" },
         ],
     },
-    Pull: { icon: "↓", color: "#4ECDC4",
+    Pull: { icon: "PUL", color: "#4ECDC4",
         exercises: [
             { name: "Deadlift", sets: 4, reps: "4-6", muscle: "Back/Glutes", note: "Big breath and brace before every rep" },
             { name: "Barbell Row", sets: 4, reps: "6-8", muscle: "Back", note: "Pull to lower chest — squeeze at top" },
@@ -1298,7 +1294,7 @@ const WORKOUT_PLANS = {
             { name: "Cable Crunch", sets: 3, reps: "12-15", muscle: "Abs", note: "Crunch from the abs — not the hip flexors" },
         ],
     },
-    Legs: { icon: "⊕", color: "#A78BFA",
+    Legs: { icon: "LEG", color: "#A78BFA",
         exercises: [
             { name: "Squat", sets: 4, reps: "6-8", muscle: "Quads/Glutes", note: "Hip crease below parallel — drive knees out" },
             { name: "Romanian Deadlift", sets: 3, reps: "8-10", muscle: "Hamstrings", note: "Push hips back — feel the hamstring stretch" },
@@ -1313,7 +1309,7 @@ const WORKOUT_PLANS = {
             { name: "Russian Twists", sets: 3, reps: "20", muscle: "Obliques", note: "Rotate from the torso — not just the arms" },
         ],
     },
-    "Full Body": { icon: "★", color: "#52E3A0",
+    "Full Body": { icon: "FB", color: "#52E3A0",
         exercises: [
             { name: "Squat", sets: 4, reps: "6-8", muscle: "Quads/Glutes", note: "Priority compound — go heavy" },
             { name: "Bench Press", sets: 3, reps: "8-10", muscle: "Chest", note: "Controlled descent — 2 seconds down" },
@@ -1341,7 +1337,7 @@ const WORKOUT_PLANS = {
             { name: "Side Plank", sets: 3, reps: "30 sec ea", muscle: "Obliques", note: "Don't let the hip sag" },
         ],
     },
-    "Full Body Burnout": { icon: "⚡", color: "#F7DC6F",
+    "Full Body Burnout": { icon: "BB", color: "#F7DC6F",
         exercises: [
             { name: "Deadlift", sets: 3, reps: "5", muscle: "Full Body", note: "Max effort — full reset each rep" },
             { name: "Squat", sets: 3, reps: "8-10", muscle: "Quads/Glutes", note: "Stay tight — don't relax at the bottom" },
@@ -1356,7 +1352,7 @@ const WORKOUT_PLANS = {
             { name: "Russian Twists", sets: 3, reps: "20", muscle: "Obliques", note: "Add a plate when bodyweight is easy" },
         ],
     },
-    "Bodyweight Push": { icon: "↑", color: "#FF6B35", badge: "BW",
+    "Bodyweight Push": { icon: "PSH", color: "#FF6B35", badge: "BW",
         exercises: [
             { name: "Push-Ups", sets: 4, reps: "12-15", muscle: "Chest/Triceps", note: "Full range — chest to floor" },
             { name: "Pike Push-Ups", sets: 3, reps: "10-12", muscle: "Shoulders", note: "Hips high — nearly vertical torso" },
@@ -1383,7 +1379,7 @@ const WORKOUT_PLANS = {
             { name: "Hollow Body Hold", sets: 3, reps: "30 sec", muscle: "Core", note: "Lower back pressed into floor" },
         ],
     },
-    "Bodyweight Pull": { icon: "↓", color: "#4ECDC4", badge: "BW",
+    "Bodyweight Pull": { icon: "PUL", color: "#4ECDC4", badge: "BW",
         exercises: [
             { name: "Pull-Ups", sets: 4, reps: "6-10", muscle: "Lats/Biceps", note: "Dead hang start — full range" },
             { name: "Chin-Ups", sets: 3, reps: "8-10", muscle: "Biceps/Lats", note: "Underhand grip — more bicep" },
@@ -1410,7 +1406,7 @@ const WORKOUT_PLANS = {
             { name: "Hollow Body Hold", sets: 3, reps: "30 sec", muscle: "Core", note: "Arms and legs low — back stays flat" },
         ],
     },
-    "Bodyweight Legs": { icon: "⊕", color: "#A78BFA", badge: "BW",
+    "Bodyweight Legs": { icon: "LEG", color: "#A78BFA", badge: "BW",
         exercises: [
             { name: "Bodyweight Squat", sets: 4, reps: "15-20", muscle: "Quads/Glutes", note: "Hip crease below parallel" },
             { name: "Bulgarian Split Squat", sets: 3, reps: "10 ea", muscle: "Quads/Glutes", note: "Drop straight down — front shin vertical" },
@@ -1424,7 +1420,7 @@ const WORKOUT_PLANS = {
             { name: "Russian Twists", sets: 3, reps: "20", muscle: "Obliques", note: "Feet raised makes it harder" },
         ],
     },
-    "Bodyweight Full Body": { icon: "★", color: "#52E3A0", badge: "BW",
+    "Bodyweight Full Body": { icon: "FB", color: "#52E3A0", badge: "BW",
         exercises: [
             { name: "Bodyweight Squat", sets: 3, reps: "15-20", muscle: "Quads/Glutes", note: "Full depth — controlled pace" },
             { name: "Push-Ups", sets: 3, reps: "12-15", muscle: "Chest/Triceps", note: "Chest to floor — don't half rep" },
@@ -1932,7 +1928,7 @@ function ExerciseCard({ ex, workoutColor, completedSets, toggleSet, intensity, s
                                 background: prData.isNew ? workoutColor + "33" : C.btnBg,
                                 color: prData.isNew ? workoutColor : "#555",
                                 border: `1px solid ${prData.isNew ? workoutColor + "55" : C.btnBorder}`,
-                                fontWeight: 600 } }, prData.isNew ? "★ NEW PR" : `PR ${prData.weight}lb × ${prData.reps}`))),
+                                fontWeight: 600 } }, prData.isNew ? "NEW PR" : `PR ${prData.weight}lb × ${prData.reps}`))),
                     React.createElement("div", { style: { fontSize: 11, color: C.muted, marginTop: 2, display: "flex", alignItems: "center", gap: 6, flexWrap: "wrap" } },
                         React.createElement("span", null, ex.muscle),
                         React.createElement("span", null, "\u00B7"),
@@ -4250,9 +4246,6 @@ function WorkoutApp() {
     const [planOverrides, setPlanOverrides] = useState({});
     const [activeGuidedWorkout, setActiveGuidedWorkout] = useState(null);
     // Coach
-    const [messages, setMessages] = useState([{ role: "assistant", content: "Hey — I'm your AI coach. Ask me anything about workouts, form, intensity, or how to structure your week." }]);
-    const [input, setInput] = useState("");
-    const [loading, setLoading] = useState(false);
     // UI-only (not persisted)
     const [showXPToast, setShowXPToast] = useState(null);
     const [weeklyCheckinDone, setWeeklyCheckinDone] = useState(false);
@@ -4274,9 +4267,6 @@ function WorkoutApp() {
         setTimeout(() => setShowXPToast(null), 2500);
     };
     const timerRef = useRef(null);
-    const chatEndRef = useRef(null);
-    const inputRef = useRef(null);
-    useEffect(() => { setTimeout(() => { var _a; return (_a = chatEndRef.current) === null || _a === void 0 ? void 0 : _a.scrollIntoView({ behavior: "smooth" }); }, 80); }, [messages]);
     const workoutStartRef = useRef(null);
     const workoutBaseRef = useRef(0);
     useEffect(() => {
@@ -4414,28 +4404,6 @@ function WorkoutApp() {
             setShowSharePrompt(true);
             setShowXPToast(null); // dismiss XP toast when share prompt appears
         }
-    };
-    const sendMessage = async () => {
-        if (!input.trim() || loading)
-            return;
-        const userMsg = { role: "user", content: input.trim() };
-        const msgs = [...messages, userMsg];
-        setMessages(msgs);
-        setInput("");
-        setLoading(true);
-        const sysPrompt = `You are a personal fitness AI coach for ${profile.name || "the user"}.\n- Goal: ${profile.goal || "Build muscle"}\n- Equipment: Full gym + bodyweight\n- Frequency: ${daysPerWeek} days/week\n- Current intensity: ${intensity}\n- Experience: Intermediate\nKeep responses concise. Format exercises as: **Name** — sets x reps — note. Be direct and motivating.`;
-        try {
-            const res = await fetch("https://api.anthropic.com/v1/messages", {
-                method: "POST", headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ model: "claude-sonnet-4-20250514", max_tokens: 1000, system: sysPrompt, messages: msgs.map(m => ({ role: m.role, content: m.content })) })
-            });
-            const data = await res.json();
-            setMessages(prev => { var _a, _b; return [...prev, { role: "assistant", content: ((_b = (_a = data.content) === null || _a === void 0 ? void 0 : _a[0]) === null || _b === void 0 ? void 0 : _b.text) || "Something went wrong." }]; });
-        }
-        catch (_a) {
-            setMessages(prev => [...prev, { role: "assistant", content: "Connection error. Try again." }]);
-        }
-        setLoading(false);
     };
     const [editingDay, setEditingDay] = useState(null);
     const [shiftNotice, setShiftNotice] = useState(null);
@@ -5119,42 +5087,6 @@ function WorkoutApp() {
                                 React.createElement("polygon", { points: "3,1 13,7 3,13" })),
                             "Start Custom Workout")),
                         React.createElement("button", { onClick: () => setChecked({}), style: { padding: "13px 16px", borderRadius: 12, background: C.card, border: "1.5px solid #1f1f1f", color: C.muted, fontSize: 13, cursor: "pointer" } }, "Clear")))))))),
-        activeTab === "coach" && (React.createElement("div", { style: { flex: 1, display: "flex", flexDirection: "column", overflow: "hidden", position: "relative", zIndex: 1 } },
-            React.createElement("div", { style: { flexShrink: 0, padding: "52px 24px 14px", borderBottom: `1px solid ${C.border}` } },
-                React.createElement("div", { style: { fontSize: 10, color: C.muted, letterSpacing: "0.1em", textTransform: "uppercase" } }, "AI Coach"),
-                React.createElement("div", { style: { fontSize: 24, fontWeight: 700, marginTop: 3 } }, "Ask Anything")),
-            React.createElement("div", { style: { flex: 1, overflowY: "auto", padding: "14px 20px", display: "flex", flexDirection: "column", gap: 10 } },
-                messages.map((m, i) => (React.createElement("div", { key: i, style: { display: "flex", justifyContent: m.role === "user" ? "flex-end" : "flex-start" } },
-                    React.createElement("div", { style: { maxWidth: "84%", padding: "11px 14px", borderRadius: m.role === "user" ? "16px 16px 4px 16px" : "16px 16px 16px 4px", background: m.role === "user" ? "#FF6B35" : C.input, border: m.role === "assistant" ? "1px solid #1f1f1f" : "none", color: m.role === "user" ? "#000" : "#D8D5D0", fontSize: 14, lineHeight: 1.55, fontWeight: m.role === "user" ? 500 : 400 } }, m.role === "assistant" ? formatMessage(m.content) : m.content)))),
-                loading && (React.createElement("div", { style: { display: "flex" } },
-                    React.createElement("div", { style: { padding: "11px 16px", borderRadius: "16px 16px 16px 4px", background: C.input, border: "1px solid #1f1f1f" } },
-                        React.createElement("div", { style: { display: "flex", gap: 5 } }, [0, 1, 2].map(i => React.createElement("div", { key: i, style: { width: 6, height: 6, borderRadius: "50%", background: "#FF6B35", animation: `bounce 1.2s ease-in-out ${i * 0.2}s infinite` } })))))),
-                React.createElement("div", { ref: chatEndRef })),
-            React.createElement("div", { style: { flexShrink: 0, padding: "8px 20px 6px", display: "flex", gap: 8, overflowX: "auto" } }, ["What to train today?", "Best stretches for legs", "How do I progress?", "Bodyweight alternatives"].map(q => (React.createElement("button", { key: q, onClick: () => { var _a; setInput(q); (_a = inputRef.current) === null || _a === void 0 ? void 0 : _a.focus(); }, style: { whiteSpace: "nowrap", padding: "6px 13px", borderRadius: 20, background: C.card, border: "1px solid #1f1f1f", color: C.muted, fontSize: 12, cursor: "pointer", flexShrink: 0 } }, q)))),
-            React.createElement("div", { style: { flexShrink: 0, padding: "8px 16px 12px", background: TH.bg, borderTop: `1px solid ${TH.border}` } },
-                React.createElement("div", { style: { display: "flex", gap: 10, alignItems: "center" } },
-                    React.createElement("input", { ref: inputRef, value: input, onChange: e => setInput(e.target.value), onKeyDown: e => { if (e.key === "Enter" && !e.shiftKey) {
-                            e.preventDefault();
-                            sendMessage();
-                        } }, placeholder: "Ask your coach...", style: { flex: 1, minWidth: 0, padding: "12px 15px", borderRadius: 12, background: C.input, border: `1.5px solid ${C.inputBorder}`, color: C.text, fontSize: 14, outline: "none", fontFamily: "inherit" } }),
-                    React.createElement("button", { onClick: sendMessage, disabled: loading || !input.trim(), style: { width: 44, height: 44, borderRadius: 12, flexShrink: 0, background: (input.trim() && !loading) ? "#FF6B35" : C.btnBg, border: "none", color: (input.trim() && !loading) ? "#000" : "#333", fontSize: 20, cursor: input.trim() ? "pointer" : "default", transition: "background 0.15s", display: "flex", alignItems: "center", justifyContent: "center" } }, "\u2191"))))),
-        showXPToast && (React.createElement("div", { style: { position: "fixed", top: 60, left: "50%", transform: "translateX(-50%)", zIndex: 999, background: C.card, border: `1.5px solid ${rankInfo.current.color}`, borderRadius: 14, padding: "12px 20px", display: "flex", alignItems: "center", gap: 12, boxShadow: `0 0 30px ${rankInfo.current.color}44`, animation: "slideDown 0.3s ease" } },
-            React.createElement("div", { style: { fontSize: 18, color: rankInfo.current.color } }, "\u2726"),
-            React.createElement("div", null,
-                React.createElement("div", { style: { fontSize: 13, fontWeight: 700, color: rankInfo.current.color } },
-                    "+",
-                    showXPToast.xp,
-                    " XP"),
-                React.createElement("div", { style: { fontSize: 11, color: C.muted, marginTop: 2 } }, showXPToast.label)))),
-        activeTab === "profile" && (React.createElement(HunterProfile, { rankInfo: rankInfo, totalXP: totalXP, profile: profile, setProfile: setProfile, checkIns: checkIns, setCheckIns: setCheckIns, weeklyCheckinDone: weeklyCheckinDone, xpEvents: xpEvents, awardXP: awardXP, intensity: intensity, cardioHistory: cardioHistory, exercisePRs: exercisePRs, workoutHistory: workoutHistory, setShowCardioLog: setShowCardioLog, setShowWorkoutLog: setShowWorkoutLog, onResetStats: () => {
-                setTotalXP(0);
-                setProfile({ name: profile.name, goal: profile.goal, weight: "", height: "", age: "", chest: "", waist: "", arms: "", shoulders: "" });
-                setCheckIns([]);
-                setXpEvents([]);
-                setCardioHistory([]);
-                setExercisePRs({});
-                setWorkoutHistory([]);
-            }, themeId: themeId, setThemeId: setThemeId })),
         React.createElement("div", { style: { flexShrink: 0, position: "relative", zIndex: 100, background: ((_b = TH.bg) === null || _b === void 0 ? void 0 : _b.startsWith("#F")) ? "rgba(255,255,255,0.97)" : `rgba(10,10,10,0.98)`, backdropFilter: "blur(20px)", borderTop: `1px solid ${TH.border}`, display: "flex", justifyContent: "space-around", paddingTop: "10px", paddingBottom: "calc(16px + env(safe-area-inset-bottom))" } }, [
             { id: "home", key: "Home", label: "Home" },
             { id: "active", key: "Active", label: "Active" },
