@@ -1,4 +1,4 @@
-<!DOCTYPE html><!-- v20260331-233958 -->
+<!DOCTYPE html><!-- v20260402-012832 -->
 
 <html lang="en">
 <head>
@@ -4765,41 +4765,48 @@ function WorkoutApp() {
                     React.createElement("div", { style: { display: "flex", justifyContent: "center" } }, IC.Rest("#444", 28)),
                     React.createElement("div", { style: { color: C.muted, marginTop: 8, fontSize: 14 } }, "Rest day. Recover well.")))),
             (() => {
+                // Filter to current week
                 const now = new Date();
                 const weekStart = new Date(now);
                 weekStart.setDate(now.getDate() - ((now.getDay() + 6) % 7));
                 weekStart.setHours(0, 0, 0, 0);
-                const thisWeekWorkouts = workoutHistory.filter(s => new Date(s.date) >= weekStart);
-                // Workout count this week
-                const workoutCount = thisWeekWorkouts.length;
-                const workoutTarget = daysPerWeek;
-                // Push / Pull / Legs distribution
-                const dist = { Push: 0, Pull: 0, Legs: 0, Other: 0 };
-                thisWeekWorkouts.forEach(s => {
-                    const w = s.workout || "";
-                    if (w.includes("Push"))
-                        dist.Push++;
-                    else if (w.includes("Pull"))
-                        dist.Pull++;
-                    else if (w.includes("Leg"))
-                        dist.Legs++;
-                    else
-                        dist.Other++;
+                const weekStartStr = weekStart.toLocaleDateString();
+                const thisWeekWorkouts = workoutHistory.filter(s => {
+                    const d = new Date(s.date);
+                    return d >= weekStart;
                 });
-                const distTotal = workoutCount || 1;
-                // Most neglected muscle — find muscles in plan exercises not hit this week
-                const hitMuscles = new Set();
+                const thisWeekCardio = cardioHistory.filter(c => {
+                    const d = new Date(c.date);
+                    return d >= weekStart;
+                });
+                const thisWeekXP = xpEvents.filter(e => {
+                    const d = new Date(e.date || e.timestamp || 0);
+                    return d >= weekStart;
+                }).reduce((a, e) => a + (e.amount || 0), 0);
+                const totalSets = thisWeekWorkouts.reduce((a, s) => a + (s.setsCompleted || 0), 0);
+                const totalMiles = thisWeekCardio.reduce((a, c) => a + (parseFloat(c.distance) || 0), 0);
+                const cardioSessions = thisWeekCardio.length;
+                // Top exercise — most sets across all sessions this week
+                const exCounts = {};
                 thisWeekWorkouts.forEach(s => {
                     Object.keys(s.exercises || {}).forEach(name => {
-                        const lib = LIBRARY.find(e => e.name === name);
-                        if (lib === null || lib === void 0 ? void 0 : lib.group)
-                            hitMuscles.add(lib.group);
+                        var _a;
+                        exCounts[name] = (exCounts[name] || 0) + (((_a = s.exercises[name]) === null || _a === void 0 ? void 0 : _a.length) || 0);
                     });
                 });
-                const allMuscleGroups = ["Chest", "Back", "Shoulders", "Biceps", "Triceps", "Quads", "Hamstrings", "Glutes", "Core"];
-                const neglected = allMuscleGroups.find(m => !hitMuscles.has(m));
-                // Week intensity label (internal, shown subtly)
-                const weekProfile = getWeekIntensityProfile();
+                const topEx = Object.entries(exCounts).sort((a, b) => b[1] - a[1])[0];
+                // Progress bars — targets based on days/week setting
+                const setTarget = daysPerWeek * 20;
+                const xpTarget = daysPerWeek * (getXP("WORKOUT_COMPLETE", intensity) + 15 * getXP("SET_COMPLETE", intensity));
+                const cardioTarget = Math.max(1, Math.round(daysPerWeek * 0.5));
+                const StatCard = ({ label, value, sub, progress, color, icon }) => (React.createElement("div", { style: { background: C.card, borderRadius: 14, padding: "14px 16px", border: `1.5px solid ${C.cardBorder}`, flex: 1 } },
+                    React.createElement("div", { style: { display: "flex", alignItems: "center", gap: 8, marginBottom: 8 } },
+                        React.createElement("div", { style: { width: 28, height: 28, borderRadius: 8, background: color + "22", border: `1px solid ${color}33`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 } }, icon),
+                        React.createElement("div", { style: { fontSize: 9, color: C.muted, textTransform: "uppercase", letterSpacing: "0.08em", fontWeight: 600 } }, label)),
+                    React.createElement("div", { style: { fontSize: 22, fontWeight: 900, color: C.text, letterSpacing: "-0.02em", lineHeight: 1, marginBottom: 4 } }, value),
+                    sub && React.createElement("div", { style: { fontSize: 10, color: C.muted, marginBottom: 8 } }, sub),
+                    progress !== undefined && (React.createElement("div", { style: { height: 3, borderRadius: 2, background: C.btnBg, overflow: "hidden", marginTop: sub ? 0 : 8 } },
+                        React.createElement("div", { style: { height: "100%", borderRadius: 2, width: `${Math.min(100, progress * 100)}%`, background: `linear-gradient(90deg, ${color}, ${color}88)`, transition: "width 0.5s ease" } })))));
                 return (React.createElement("div", { style: { padding: "0 24px 32px" } },
                     React.createElement("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 } },
                         React.createElement("div", { style: { fontSize: 10, color: C.muted, letterSpacing: "0.1em", textTransform: "uppercase" } }, "This Week"),
@@ -4807,45 +4814,27 @@ function WorkoutApp() {
                             weekStart.toLocaleDateString([], { month: "short", day: "numeric" }),
                             " \u2013 ",
                             now.toLocaleDateString([], { month: "short", day: "numeric" }))),
-                    React.createElement("div", { style: { background: C.card, borderRadius: 14, padding: "14px 16px", border: `1.5px solid ${C.cardBorder}`, marginBottom: 10 } },
-                        React.createElement("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 10 } },
-                            React.createElement("div", null,
-                                React.createElement("div", { style: { fontSize: 9, color: C.muted, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 4 } }, "Workouts"),
-                                React.createElement("div", { style: { fontSize: 28, fontWeight: 900, color: C.text, letterSpacing: "-0.02em", lineHeight: 1 } },
-                                    workoutCount,
-                                    React.createElement("span", { style: { fontSize: 14, color: C.muted, fontWeight: 500 } },
-                                        "/",
-                                        workoutTarget))),
-                            React.createElement("div", { style: { textAlign: "right" } },
-                                React.createElement("div", { style: { fontSize: 9, color: C.muted, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 4 } }, "Focus"),
-                                React.createElement("div", { style: { fontSize: 11, color: TH.accent, fontWeight: 600 } },
-                                    weekProfile.label,
-                                    " Week"))),
-                        React.createElement("div", { style: { height: 4, borderRadius: 2, background: C.btnBg, overflow: "hidden", marginBottom: 12 } },
-                            React.createElement("div", { style: { height: "100%", borderRadius: 2, width: `${Math.min(100, (workoutCount / workoutTarget) * 100)}%`, background: `linear-gradient(90deg, ${TH.accent}, ${TH.accent}88)`, transition: "width 0.5s ease" } })),
-                        React.createElement("div", { style: { fontSize: 9, color: C.muted, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 6 } }, "Session Split"),
-                        workoutCount > 0 ? (React.createElement("div", { style: { display: "flex", gap: 2, height: 6, borderRadius: 3, overflow: "hidden" } },
-                            dist.Push > 0 && React.createElement("div", { style: { flex: dist.Push, background: "#FF6B35", borderRadius: "3px 0 0 3px" } }),
-                            dist.Pull > 0 && React.createElement("div", { style: { flex: dist.Pull, background: "#4ECDC4" } }),
-                            dist.Legs > 0 && React.createElement("div", { style: { flex: dist.Legs, background: "#A78BFA" } }),
-                            dist.Other > 0 && React.createElement("div", { style: { flex: dist.Other, background: "#52E3A0", borderRadius: "0 3px 3px 0" } }))) : (React.createElement("div", { style: { height: 6, borderRadius: 3, background: C.btnBg } })),
-                        React.createElement("div", { style: { display: "flex", gap: 12, marginTop: 6 } }, [["Push", "#FF6B35"], ["Pull", "#4ECDC4"], ["Legs", "#A78BFA"], ["Other", "#52E3A0"]].map(([label, color]) => (dist[label] > 0 && (React.createElement("div", { key: label, style: { display: "flex", alignItems: "center", gap: 4 } },
-                            React.createElement("div", { style: { width: 6, height: 6, borderRadius: "50%", background: color } }),
-                            React.createElement("div", { style: { fontSize: 9, color: C.muted } },
-                                label,
-                                " ",
-                                dist[label]))))))),
-                    React.createElement("div", { style: { background: C.card, borderRadius: 14, padding: "13px 16px", border: `1.5px solid ${neglected ? "#F7DC6F33" : C.cardBorder}`, display: "flex", alignItems: "center", gap: 12 } },
-                        React.createElement("div", { style: { width: 32, height: 32, borderRadius: 9, background: neglected ? "#F7DC6F22" : C.btnBg, border: `1px solid ${neglected ? "#F7DC6F44" : C.btnBorder}`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 } },
-                            React.createElement("svg", { width: "15", height: "15", viewBox: "0 0 24 24", fill: "none", stroke: neglected ? "#F7DC6F" : C.muted, strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" },
-                                React.createElement("circle", { cx: "12", cy: "12", r: "10" }),
-                                React.createElement("line", { x1: "12", y1: "8", x2: "12", y2: "12" }),
-                                React.createElement("line", { x1: "12", y1: "16", x2: "12.01", y2: "16" }))),
-                        React.createElement("div", { style: { flex: 1 } },
-                            React.createElement("div", { style: { fontSize: 9, color: C.muted, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 2 } }, "Neglected Muscle"),
-                            neglected ? (React.createElement("div", { style: { fontSize: 13, fontWeight: 700, color: "#F7DC6F" } },
-                                neglected,
-                                " hasn't been hit this week")) : workoutCount === 0 ? (React.createElement("div", { style: { fontSize: 12, color: C.muted } }, "Log a workout to see gaps")) : (React.createElement("div", { style: { fontSize: 12, color: "#52E3A0", fontWeight: 600 } }, "All major groups covered"))))));
+                    React.createElement("div", { style: { display: "flex", gap: 10, marginBottom: 10 } },
+                        React.createElement(StatCard, { label: "Sets", value: totalSets, sub: `of ~${setTarget} target`, progress: setTarget > 0 ? totalSets / setTarget : 0, color: TH.accent, icon: React.createElement("svg", { width: "14", height: "14", viewBox: "0 0 24 24", fill: "none", stroke: TH.accent, strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" },
+                                React.createElement("rect", { x: "4", y: "12", width: "16", height: "4", rx: "2" }),
+                                React.createElement("rect", { x: "2", y: "10", width: "4", height: "8", rx: "1" }),
+                                React.createElement("rect", { x: "18", y: "10", width: "4", height: "8", rx: "1" })) }),
+                        React.createElement(StatCard, { label: "XP Earned", value: `+${thisWeekXP}`, sub: `of ~${xpTarget} target`, progress: xpTarget > 0 ? thisWeekXP / xpTarget : 0, color: "#F7DC6F", icon: React.createElement("svg", { width: "14", height: "14", viewBox: "0 0 24 24", fill: "none", stroke: "#F7DC6F", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" },
+                                React.createElement("polygon", { points: "12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" })) })),
+                    React.createElement("div", { style: { display: "flex", gap: 10 } },
+                        React.createElement(StatCard, { label: "Cardio", value: cardioSessions, sub: totalMiles > 0 ? `${totalMiles.toFixed(1)} mi logged` : "sessions this week", progress: cardioTarget > 0 ? cardioSessions / cardioTarget : 0, color: "#52E3A0", icon: React.createElement("svg", { width: "14", height: "14", viewBox: "0 0 24 24", fill: "none", stroke: "#52E3A0", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" },
+                                React.createElement("polyline", { points: "2 14 6 8 10 18 14 10 18 16 22 12" })) }),
+                        React.createElement("div", { style: { background: C.card, borderRadius: 14, padding: "14px 16px", border: `1.5px solid ${C.cardBorder}`, flex: 1 } },
+                            React.createElement("div", { style: { display: "flex", alignItems: "center", gap: 8, marginBottom: 8 } },
+                                React.createElement("div", { style: { width: 28, height: 28, borderRadius: 8, background: TH.accent + "22", border: `1px solid ${TH.accent}33`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 } },
+                                    React.createElement("svg", { width: "14", height: "14", viewBox: "0 0 24 24", fill: "none", stroke: TH.accent, strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" },
+                                        React.createElement("path", { d: "M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z" }))),
+                                React.createElement("div", { style: { fontSize: 9, color: C.muted, textTransform: "uppercase", letterSpacing: "0.08em", fontWeight: 600 } }, "Top Exercise")),
+                            topEx ? (React.createElement(React.Fragment, null,
+                                React.createElement("div", { style: { fontSize: 13, fontWeight: 800, color: C.text, lineHeight: 1.2, marginBottom: 4 } }, topEx[0]),
+                                React.createElement("div", { style: { fontSize: 10, color: C.muted } },
+                                    topEx[1],
+                                    " sets this week"))) : (React.createElement("div", { style: { fontSize: 12, color: C.muted, lineHeight: 1.4 } }, "No workouts logged yet this week"))))));
             })())),
         activeTab === "active" && !selectedWorkout && (React.createElement("div", { style: { flex: 1, display: "flex", flexDirection: "column", position: "relative", zIndex: 1, overflow: "hidden" } }, !cardioMode ? (React.createElement("div", { style: { flex: 1, overflowY: "auto", padding: "52px 24px 24px" } },
             React.createElement("div", { style: { fontSize: 12, color: C.muted, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 4 } }, "Active Session"),
