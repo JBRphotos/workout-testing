@@ -1283,10 +1283,27 @@ const WORKOUT_PLANS = {
             { name: "Barbell Row", sets: 3, reps: "8-10", muscle: "Back" },
             { name: "Overhead Press", sets: 3, reps: "8-10", muscle: "Shoulders" },
             { name: "Romanian Deadlift", sets: 3, reps: "10-12", muscle: "Hamstrings" },
-            { name: "Hammer Curls", sets: 2, reps: "12-15", muscle: "Biceps" },
-            { name: "Tricep Pushdowns", sets: 2, reps: "12-15", muscle: "Triceps" },
+        ],
+        accessoryOptions: [
+            [
+                { name: "Hammer Curls", sets: 2, reps: "12-15", muscle: "Biceps" },
+                { name: "Tricep Pushdowns", sets: 2, reps: "12-15", muscle: "Triceps" },
+            ],
+            [
+                { name: "Cable Curl", sets: 2, reps: "12-15", muscle: "Biceps" },
+                { name: "Skull Crushers", sets: 2, reps: "10-12", muscle: "Triceps" },
+            ],
+            [
+                { name: "Preacher Curl", sets: 2, reps: "10-12", muscle: "Biceps" },
+                { name: "Overhead Tricep Ext", sets: 2, reps: "12-15", muscle: "Triceps" },
+            ],
+        ],
+        coreOptions: [
             { name: "Plank", sets: 3, reps: "45 sec", muscle: "Core" },
-        ] },
+            { name: "Dead Bug", sets: 3, reps: "10 ea", muscle: "Core" },
+            { name: "Ab Wheel Rollout", sets: 3, reps: "10-12", muscle: "Core" },
+        ],
+    },
     "Bodyweight Full Body": { icon: "FB", color: "#52E3A0", badge: "BW", exercises: [
             { name: "Bodyweight Squat", sets: 3, reps: "15-20", muscle: "Quads/Glutes" },
             { name: "Push-Ups", sets: 3, reps: "12-15", muscle: "Chest/Triceps" },
@@ -1294,9 +1311,27 @@ const WORKOUT_PLANS = {
             { name: "Jump Squat", sets: 3, reps: "10-12", muscle: "Power/Legs" },
             { name: "Pike Push-Ups", sets: 3, reps: "10-12", muscle: "Shoulders" },
             { name: "Glute Bridge", sets: 3, reps: "15-20", muscle: "Glutes/Hams" },
+        ],
+        accessoryOptions: [
+            [
+                { name: "Diamond Push-Ups", sets: 2, reps: "10-12", muscle: "Triceps" },
+                { name: "Chin-Ups", sets: 2, reps: "8-10", muscle: "Biceps/Back" },
+            ],
+            [
+                { name: "Dips", sets: 2, reps: "10-12", muscle: "Chest/Triceps" },
+                { name: "Hammer Curls", sets: 2, reps: "12-15", muscle: "Biceps" },
+            ],
+            [
+                { name: "Archer Push-Ups", sets: 2, reps: "6-8 ea", muscle: "Chest" },
+                { name: "Wide-Grip Pull-Ups", sets: 2, reps: "6-8", muscle: "Lats" },
+            ],
+        ],
+        coreOptions: [
             { name: "Mountain Climbers", sets: 3, reps: "30 sec", muscle: "Core/Cardio" },
             { name: "Plank", sets: 3, reps: "45 sec", muscle: "Core" },
-        ] },
+            { name: "Dead Bug", sets: 3, reps: "10 ea", muscle: "Core" },
+        ],
+    },
 };
 // ── LIBRARY ──────────────────────────────────────────────────────────────────
 const LIBRARY = [
@@ -4244,7 +4279,21 @@ const activePlan = selectedWorkout === "Custom"
     : WORKOUT_PLANS[selectedWorkout];
 const activeColor = (activePlan === null || activePlan === void 0 ? void 0 : activePlan.color) || "#FF6B35";
 // Helper — get effective exercises for a plan (respecting user overrides)
-const getPlanExercises = (planName) => { var _a; return ((_a = WORKOUT_PLANS[planName]) === null || _a === void 0 ? void 0 : _a.exercises) || []; };
+const getPlanExercises = (planName) => {
+    const plan = WORKOUT_PLANS[planName];
+    if (!plan) return [];
+    const base = plan.exercises || [];
+    if (!plan.accessoryOptions && !plan.coreOptions) return base;
+    // Use ISO week number for rotation — changes weekly, same all week
+    const isoWeek = parseInt((getISOWeek(new Date()).split("-W")[1] || "1"));
+    const accessories = plan.accessoryOptions
+        ? plan.accessoryOptions[isoWeek % plan.accessoryOptions.length]
+        : [];
+    const core = plan.coreOptions
+        ? [plan.coreOptions[isoWeek % plan.coreOptions.length]]
+        : [];
+    return [...base, ...accessories, ...core];
+};
 // For plan sessions, merge plan exercises with any appended library exercises
 const activeExercises = selectedWorkout === "Custom"
     ? customExercises
