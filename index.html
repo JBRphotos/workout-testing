@@ -49,6 +49,10 @@
   </div>
   <script>
     window.addEventListener('load', function() {
+      // Lock to portrait in PWA mode
+      if (screen.orientation && screen.orientation.lock) {
+        screen.orientation.lock('portrait').catch(function() {});
+      }
       setTimeout(function() {
         if (typeof React === 'undefined' || typeof ReactDOM === 'undefined') {
           document.getElementById('fallback').style.display = 'flex';
