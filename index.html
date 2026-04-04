@@ -4293,19 +4293,22 @@ const activePlan = selectedWorkout === "Custom"
 const activeColor = (activePlan === null || activePlan === void 0 ? void 0 : activePlan.color) || "#FF6B35";
 // Helper — get effective exercises for a plan (respecting user overrides)
 const getPlanExercises = (planName) => {
-    const plan = WORKOUT_PLANS[planName];
-    if (!plan) return [];
-    const base = plan.exercises || [];
-    if (!plan.accessoryOptions && !plan.coreOptions) return base;
-    // Use ISO week number for rotation — changes weekly, same all week
-    const isoWeek = parseInt((getISOWeek(new Date()).split("-W")[1] || "1"));
-    const accessories = plan.accessoryOptions
-        ? plan.accessoryOptions[isoWeek % plan.accessoryOptions.length]
-        : [];
-    const core = plan.coreOptions
-        ? [plan.coreOptions[isoWeek % plan.coreOptions.length]]
-        : [];
-    return [...base, ...accessories, ...core];
+    try {
+        const plan = WORKOUT_PLANS[planName];
+        if (!plan) return [];
+        const base = plan.exercises || [];
+        if (!plan.accessoryOptions && !plan.coreOptions) return base;
+        const isoWeek = parseInt((getISOWeek(new Date()).split("-W")[1] || "1"));
+        const accessories = plan.accessoryOptions
+            ? plan.accessoryOptions[isoWeek % plan.accessoryOptions.length]
+            : [];
+        const core = plan.coreOptions
+            ? [plan.coreOptions[isoWeek % plan.coreOptions.length]]
+            : [];
+        return [...base, ...accessories, ...core];
+    } catch(e) {
+        return (WORKOUT_PLANS[planName] && WORKOUT_PLANS[planName].exercises) || [];
+    }
 };
 // For plan sessions, merge plan exercises with any appended library exercises
 const activeExercises = selectedWorkout === "Custom"
@@ -4406,7 +4409,7 @@ return (React.createElement("div", { style: { height: "100vh", background: TH.bg
                 React.createElement("button", { onClick: () => setShowSharePrompt(false), style: { width: "100%", padding: "15px", borderRadius: 14, background: C.card, border: `1.5px solid ${C.cardBorder}`, color: C.muted, fontSize: 15, fontWeight: 600, cursor: "pointer" } }, "Skip"))))),
     showShareScreen && lastWorkoutSummary && (React.createElement(WorkoutShareScreen, { summary: lastWorkoutSummary, profile: profile, onClose: () => setShowShareScreen(false) })),
     showSplash && React.createElement(QuoteSplash, { onDone: () => setShowSplash(false) }),
-    editingPlan && (React.createElement(PlanEditor, { planName: editingPlan, exercises: getPlanExercises(editingPlan), onSave: (newList) => setPlanOverrides(prev => (Object.assign(Object.assign({}, prev), { [editingPlan]: newList }))), onClose: () => setEditingPlan(null) })),
+    editingPlan && (React.createElement(PlanEditor, { planName: editingPlan, exercises: getPlanExercises(editingPlan), onSave: (newList) => { }, onClose: () => setEditingPlan(null) })),
     activeGuidedWorkout && (React.createElement(GuidedWorkout, { template: activeGuidedWorkout.template, format: activeGuidedWorkout.format, onClose: () => setActiveGuidedWorkout(null), onComplete: (xp, name, type) => {
             awardXP(xp, `${type}: ${name}`);
             const session = {
