@@ -3434,641 +3434,684 @@ function getBrowserInfo() {
     return { isIOS, isAndroid, isSafari, isChrome, isStandalone };
 }
 function BrowserBanner() {
-    const [dismissed, setDismissed] = React.useState(false);
-    const ua = navigator.userAgent;
-    const isIOS = /iphone|ipad|ipod/i.test(ua);
-    const isSafari = /safari/i.test(ua) && !/chrome|crios|fxios|opios/i.test(ua);
-    const isStandalone = window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
-    if (dismissed || isStandalone) return null;
-    const canInstall = isIOS && isSafari;
-    const msg = canInstall
-        ? { color: "#52E3A0", bg: "#0D1F14", border: "#52E3A0", title: "Install to home screen",
-            body: React.createElement("span", null, "Tap ", React.createElement("strong", { style: { color: "#ccc" } }, "Share ↑"), " then ", React.createElement("strong", { style: { color: "#ccc" } }, "Add to Home Screen"), " for the full app experience.") }
-        : { color: "#FF6B35", bg: "#1a0a00", border: "#FF6B35", title: "Open in Safari to install",
-            body: React.createElement("span", null, "Open this page in ", React.createElement("strong", { style: { color: "#ccc" } }, "Safari"), " on your iPhone, then tap ", React.createElement("strong", { style: { color: "#ccc" } }, "Share → Add to Home Screen"), ".") };
-    return React.createElement("div", { style: { position: "fixed", bottom: 0, left: 0, right: 0, zIndex: 9999, background: msg.bg, borderTop: "2px solid " + msg.border, padding: "16px 20px", fontFamily: "'DM Sans',sans-serif", maxWidth: 420, margin: "0 auto" } },
-        React.createElement("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12 } },
-            React.createElement("div", { style: { flex: 1 } },
-                React.createElement("div", { style: { fontSize: 13, fontWeight: 700, color: msg.color, marginBottom: 4 } }, msg.title),
-                React.createElement("div", { style: { fontSize: 12, color: "#888", lineHeight: 1.5 } }, msg.body)),
-            React.createElement("button", { onClick: () => setDismissed(true), style: { background: "none", border: "none", color: "#555", fontSize: 20, cursor: "pointer", flexShrink: 0, padding: "0 4px", lineHeight: 1 } }, "✕")));
+    const [dismissed, setDismissed] = useState(false);
+    const { isIOS, isAndroid, isSafari, isChrome, isStandalone } = getBrowserInfo();
+    if (dismissed || isStandalone)
+        return null;
+    // iOS but not Safari — must switch
+    if (isIOS && !isSafari) {
+        return (React.createElement("div", { style: { position: "fixed", bottom: 0, left: 0, right: 0, zIndex: 9999, background: "#1a0a00", borderTop: "2px solid #FF6B35", padding: "16px 20px", fontFamily: "'DM Sans',sans-serif", maxWidth: 420, margin: "0 auto" } },
+            React.createElement("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12 } },
+                React.createElement("div", { style: { flex: 1 } },
+                    React.createElement("div", { style: { fontSize: 13, fontWeight: 700, color: "#FF6B35", marginBottom: 4 } }, "Open in Safari to install"),
+                    React.createElement("div", { style: { fontSize: 12, color: "#888", lineHeight: 1.5 } },
+                        "JBR Fitness works best installed to your home screen. Copy this URL, open ",
+                        React.createElement("strong", { style: { color: "#ccc" } }, "Safari"),
+                        ", paste it, then tap ",
+                        React.createElement("strong", { style: { color: "#ccc" } }, "Share \u2192 Add to Home Screen"),
+                        ".")),
+                React.createElement("button", { onClick: () => setDismissed(true), style: { background: "none", border: "none", color: "#555", fontSize: 20, cursor: "pointer", flexShrink: 0, padding: "0 4px", lineHeight: 1 } }, "\u2715"))));
+    }
+    // iOS Safari — not yet installed
+    if (isIOS && isSafari) {
+        return (React.createElement("div", { style: { position: "fixed", bottom: 0, left: 0, right: 0, zIndex: 9999, background: "#0D1F14", borderTop: "2px solid #52E3A0", padding: "16px 20px", fontFamily: "'DM Sans',sans-serif", maxWidth: 420, margin: "0 auto" } },
+            React.createElement("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12 } },
+                React.createElement("div", { style: { flex: 1 } },
+                    React.createElement("div", { style: { fontSize: 13, fontWeight: 700, color: "#52E3A0", marginBottom: 4 } }, "Install to home screen"),
+                    React.createElement("div", { style: { fontSize: 12, color: "#888", lineHeight: 1.5 } },
+                        "Tap ",
+                        React.createElement("strong", { style: { color: "#ccc" } }, "Share \u2191"),
+                        " then ",
+                        React.createElement("strong", { style: { color: "#ccc" } }, "Add to Home Screen"),
+                        " for the full app experience \u2014 no browser bar.")),
+                React.createElement("button", { onClick: () => setDismissed(true), style: { background: "none", border: "none", color: "#555", fontSize: 20, cursor: "pointer", flexShrink: 0, padding: "0 4px", lineHeight: 1 } }, "\u2715"))));
+    }
+    // Android Chrome — can install directly
+    if (isAndroid && isChrome) {
+        return (React.createElement("div", { style: { position: "fixed", bottom: 0, left: 0, right: 0, zIndex: 9999, background: "#0D1F14", borderTop: "2px solid #52E3A0", padding: "16px 20px", fontFamily: "'DM Sans',sans-serif", maxWidth: 420, margin: "0 auto" } },
+            React.createElement("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12 } },
+                React.createElement("div", { style: { flex: 1 } },
+                    React.createElement("div", { style: { fontSize: 13, fontWeight: 700, color: "#52E3A0", marginBottom: 4 } }, "Install to home screen"),
+                    React.createElement("div", { style: { fontSize: 12, color: "#888", lineHeight: 1.5 } },
+                        "Tap the ",
+                        React.createElement("strong", { style: { color: "#ccc" } }, "\u22EE menu"),
+                        " then ",
+                        React.createElement("strong", { style: { color: "#ccc" } }, "Add to Home Screen"),
+                        " for the full app experience.")),
+                React.createElement("button", { onClick: () => setDismissed(true), style: { background: "none", border: "none", color: "#555", fontSize: 20, cursor: "pointer", flexShrink: 0, padding: "0 4px", lineHeight: 1 } }, "\u2715"))));
+    }
+    // Android but not Chrome
+    if (isAndroid && !isChrome) {
+        return (React.createElement("div", { style: { position: "fixed", bottom: 0, left: 0, right: 0, zIndex: 9999, background: "#1a0a00", borderTop: "2px solid #FF6B35", padding: "16px 20px", fontFamily: "'DM Sans',sans-serif", maxWidth: 420, margin: "0 auto" } },
+            React.createElement("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12 } },
+                React.createElement("div", { style: { flex: 1 } },
+                    React.createElement("div", { style: { fontSize: 13, fontWeight: 700, color: "#FF6B35", marginBottom: 4 } }, "Open in Chrome for best experience"),
+                    React.createElement("div", { style: { fontSize: 12, color: "#888", lineHeight: 1.5 } },
+                        "Copy this URL, open ",
+                        React.createElement("strong", { style: { color: "#ccc" } }, "Chrome"),
+                        ", and paste it. Then tap ",
+                        React.createElement("strong", { style: { color: "#ccc" } }, "\u22EE \u2192 Add to Home Screen"),
+                        ".")),
+                React.createElement("button", { onClick: () => setDismissed(true), style: { background: "none", border: "none", color: "#555", fontSize: 20, cursor: "pointer", flexShrink: 0, padding: "0 4px", lineHeight: 1 } }, "\u2715"))));
+    }
+    return null;
 }
-
+// ── WORKOUT SHARE SCREEN ──────────────────────────────────────────────────────
 function WorkoutShareScreen({ summary, profile, onClose }) {
-const videoRef = useRef(null);
-const canvasRef = useRef(null);
-const streamRef = useRef(null);
-const overlayRef = useRef(null);
-const [camReady, setCamReady] = useState(false);
-const [camError, setCamError] = useState(false);
-const [camDenied, setCamDenied] = useState(false);
-const [flashAnim, setFlashAnim] = useState(false);
-const [position, setPosition] = useState(“center”);
-const [size, setSize] = useState(“medium”);
-const [showSettings, setShowSettings] = useState(false);
-const [uiVisible, setUiVisible] = useState(true);
-const [facing, setFacing] = useState(“environment”);
-const { workout, duration, xpEarned, rankInfo } = summary;
-const plan = WORKOUT_PLANS[workout];
-const color = (plan === null || plan === void 0 ? void 0 : plan.color) || “#FF6B35”;
-const rank = rankInfo === null || rankInfo === void 0 ? void 0 : rankInfo.current;
-const mins = Math.floor(duration);
-const formatDur = mins >= 60 ? `${Math.floor(mins / 60)}h ${mins % 60}m` : `${mins}m`;
-const startCamera = async (facingMode) => {
-var _a;
-(_a = streamRef.current) === null || _a === void 0 ? void 0 : _a.getTracks().forEach(t => t.stop());
-setCamReady(false);
-setCamError(false);
-try {
-const stream = await navigator.mediaDevices.getUserMedia({
-video: { facingMode, width: { ideal: 1280 }, height: { ideal: 720 } },
-audio: false,
-});
-streamRef.current = stream;
-// Always attach to video element — it’s always mounted
-const vid = videoRef.current;
-if (vid) {
-vid.srcObject = stream;
-vid.setAttribute(“playsinline”, “”);
-vid.setAttribute(“muted”, “”);
-try {
-await vid.play();
-}
-catch (pe) {
-vid.play();
-} // retry without await if needed
-setCamReady(true);
-}
-}
-catch (e) {
-if (e.name === “NotAllowedError” || e.name === “PermissionDeniedError”) {
-setCamDenied(true);
-}
-setCamError(true);
-}
-};
-useEffect(() => {
-startCamera(facing);
-return () => { var _a; (_a = streamRef.current) === null || _a === void 0 ? void 0 : _a.getTracks().forEach(t => t.stop()); };
-}, []);
-const flipCamera = () => {
-const newFacing = facing === “environment” ? “user” : “environment”;
-setFacing(newFacing);
-startCamera(newFacing);
-};
-const toggleUI = () => {
-setUiVisible(v => !v);
-setShowSettings(false);
-};
-const capturePhoto = async () => {
-const vid = videoRef.current;
-const canvas = canvasRef.current;
-if (!vid || !canvas || !camReady)
-return;
-setFlashAnim(true);
-setTimeout(() => setFlashAnim(false), 300);
-const vw = vid.videoWidth || window.innerWidth;
-const vh = vid.videoHeight || window.innerHeight;
-// iOS returns landscape sensor dims for portrait video — detect and rotate
-const screenIsPortrait = window.innerHeight > window.innerWidth;
-const videoIsLandscape = vw > vh;
-const needsRotation = screenIsPortrait && videoIsLandscape;
-// Canvas output matches screen orientation
-const cw = needsRotation ? vh : vw;
-const ch = needsRotation ? vw : vh;
-canvas.width = cw;
-canvas.height = ch;
-const ctx = canvas.getContext(“2d”);
-// Draw video — rotate 90° CCW if needed
-if (needsRotation) {
-ctx.save();
-ctx.translate(0, cw); // cw = original vh
-ctx.rotate(-Math.PI / 2);
-if (facing === “user”) {
-ctx.translate(vh, 0);
-ctx.scale(-1, 1);
-}
-ctx.drawImage(vid, 0, 0, vw, vh);
-ctx.restore();
-}
-else {
-if (facing === “user”) {
-ctx.translate(cw, 0);
-ctx.scale(-1, 1);
-}
-ctx.drawImage(vid, 0, 0, cw, ch);
-if (facing === “user”) {
-ctx.setTransform(1, 0, 0, 1, 0, 0);
-}
-}
-// Scale helpers — always relative to screen dimensions
-const sx = cw / window.innerWidth;
-const sy = ch / window.innerHeight;
-const px = (n) => n * sx;
-const py = (n) => n * sy;
-ctx.textBaseline = “top”;
-// Vignette
-const vig = ctx.createRadialGradient(cw / 2, ch / 2, ch * 0.18, cw / 2, ch / 2, ch * 0.72);
-vig.addColorStop(0, “rgba(0,0,0,0)”);
-vig.addColorStop(1, “rgba(0,0,0,0.45)”);
-ctx.fillStyle = vig;
-ctx.fillRect(0, 0, cw, ch);
-// Stats position
-const posMap = {
-tl: { x: px(20), y: py(110) },
-tr: { x: cw - px(20), y: py(110) },
-bl: { x: px(20), y: ch - py(220) },
-br: { x: cw - px(20), y: ch - py(220) },
-center: { x: cw / 2, y: ch / 2 - py(60) },
-};
-const spos = posMap[position] || posMap.center;
-const isRight = [“tr”, “br”].includes(position);
-const isCenter = position === “center”;
-const dateSz = px(9 * sc);
-const nameSz = px(28 * sc);
-const valSz = px(22 * sc);
-const labelSz = px(8 * sc);
-// Date
-ctx.textAlign = isCenter ? “center” : isRight ? “right” : “left”;
-ctx.font = `600 ${dateSz}px 'Helvetica Neue',Arial,sans-serif`;
-ctx.fillStyle = “rgba(255,255,255,0.65)”;
-ctx.shadowColor = “rgba(0,0,0,0.8)”;
-ctx.shadowBlur = px(6);
-ctx.fillText(new Date().toLocaleDateString([], { weekday: “long”, month: “short”, day: “numeric” }).toUpperCase(), spos.x, spos.y);
-// Workout name
-ctx.font = `900 ${nameSz}px 'Helvetica Neue',Arial,sans-serif`;
-ctx.fillStyle = “#fff”;
-ctx.shadowBlur = px(14);
-ctx.fillText((workout || “”).replace(“Bodyweight “, “BW “), spos.x, spos.y + dateSz + py(5));
-// Stats row — measure widths first, then draw side by side
-const statsY = spos.y + dateSz + py(5) + nameSz + py(12);
-ctx.shadowBlur = px(8);
-const statsData = [{ label: “DURATION”, value: formatDur }, { label: “XP EARNED”, value: `+${xpEarned}` }];
-ctx.font = `900 ${valSz}px 'Helvetica Neue',Arial,sans-serif`;
-const w0 = ctx.measureText(statsData[0].value).width;
-const w1 = ctx.measureText(statsData[1].value).width;
-const gap = px(32 * sc);
-const totalW = w0 + gap + w1;
-const startX = isCenter ? cw / 2 - totalW / 2 : isRight ? spos.x - totalW : spos.x;
-for (let i = 0; i < statsData.length; i++) {
-const s = statsData[i];
-const x = i === 0 ? startX : startX + w0 + gap;
-ctx.textAlign = “left”;
-ctx.font = `900 ${valSz}px 'Helvetica Neue',Arial,sans-serif`;
-ctx.fillStyle = “#fff”;
-ctx.fillText(s.value, x, statsY);
-ctx.font = `600 ${labelSz}px 'Helvetica Neue',Arial,sans-serif`;
-ctx.fillStyle = “rgba(255,255,255,0.6)”;
-ctx.fillText(s.label, x, statsY + valSz + py(3));
-}
-// Rank badge
-const bx = px(20), by = py(56), bw = px(40), bh = py(40);
-ctx.shadowBlur = 0;
-ctx.fillStyle = “rgba(0,0,0,0.55)”;
-roundRect(ctx, bx, by, bw, bh, px(10));
-ctx.strokeStyle = ((rank === null || rank === void 0 ? void 0 : rank.color) || “#888”) + “99”;
-ctx.lineWidth = px(1.5);
-roundRect(ctx, bx, by, bw, bh, px(10), false);
-ctx.textAlign = “center”;
-ctx.font = `700 ${px(7)}px 'Helvetica Neue',Arial,sans-serif`;
-ctx.fillStyle = (rank === null || rank === void 0 ? void 0 : rank.color) || “#888”;
-ctx.fillText(“LVL”, bx + bw / 2, by + py(7));
-ctx.font = `900 ${px(16)}px 'Helvetica Neue',Arial,sans-serif`;
-ctx.fillText(String((rank === null || rank === void 0 ? void 0 : rank.level) || “”), bx + bw / 2, by + py(17));
-// XP bar
-const barY = by + bh + py(4);
-ctx.fillStyle = “rgba(255,255,255,0.15)”;
-ctx.fillRect(bx, barY, bw, py(3));
-const prog = Math.min(1, (rankInfo === null || rankInfo === void 0 ? void 0 : rankInfo.progress) || 0);
-const grad = ctx.createLinearGradient(bx, 0, bx + bw, 0);
-grad.addColorStop(0, (rank === null || rank === void 0 ? void 0 : rank.color) || “#888”);
-grad.addColorStop(1, “#A855F7”);
-ctx.fillStyle = grad;
-ctx.fillRect(bx, barY, bw * prog, py(3));
-// Rank text
-ctx.textAlign = “left”;
-ctx.shadowColor = “rgba(0,0,0,0.9)”;
-ctx.shadowBlur = px(6);
-ctx.font = `700 ${px(12)}px 'Helvetica Neue',Arial,sans-serif`;
-ctx.fillStyle = “#fff”;
-ctx.fillText((rank === null || rank === void 0 ? void 0 : rank.title) || “”, bx + bw + px(10), by + py(8));
-ctx.font = `400 ${px(9)}px 'Helvetica Neue',Arial,sans-serif`;
-ctx.fillStyle = “rgba(255,255,255,0.45)”;
-ctx.fillText(“Rank “ + ((rank === null || rank === void 0 ? void 0 : rank.rank) || “”), bx + bw + px(10), by + py(22));
-// Branding
-ctx.shadowBlur = px(8);
-ctx.font = `900 ${px(14)}px 'Helvetica Neue',Arial,sans-serif`;
-ctx.fillStyle = “#fff”;
-ctx.textAlign = “left”;
-ctx.fillText(“Level Up”, px(20), ch - py(100));
-ctx.font = `400 ${px(9)}px 'Helvetica Neue',Arial,sans-serif`;
-ctx.fillStyle = “rgba(255,255,255,0.4)”;
-ctx.fillText(`WORKOUT TRACKER · ${(profile === null || profile === void 0 ? void 0 : profile.name) || ""}`, px(20), ch - py(86));
-ctx.shadowBlur = 0;
-canvas.toBlob(async (blob) => {
-var _a;
-if (!blob)
-return;
-const file = new File([blob], “levelup-workout.jpg”, { type: “image/jpeg” });
-if (navigator.share && ((_a = navigator.canShare) === null || _a === void 0 ? void 0 : *a.call(navigator, { files: [file] }))) {
-try {
-await navigator.share({ files: [file], title: “Level Up Workout” });
-}
-catch (e) { }
-}
-else {
-const a = document.createElement(“a”);
-a.href = URL.createObjectURL(blob);
-a.download = “levelup-workout.jpg”;
-a.click();
-}
-startCamera(facing);
-}, “image/jpeg”, 0.92);
-};
-// Canvas roundRect helper for older Safari
-function roundRect(ctx, x, y, w, h, r, fill = true) {
-ctx.beginPath();
-ctx.moveTo(x + r, y);
-ctx.lineTo(x + w - r, y);
-ctx.quadraticCurveTo(x + w, y, x + w, y + r);
-ctx.lineTo(x + w, y + h - r);
-ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
-ctx.lineTo(x + r, y + h);
-ctx.quadraticCurveTo(x, y + h, x, y + h - r);
-ctx.lineTo(x, y + r);
-ctx.quadraticCurveTo(x, y, x + r, y);
-ctx.closePath();
-if (fill)
-ctx.fill();
-else
-ctx.stroke();
-}
-// Size scale factor
-const sc = { small: 0.65, medium: 1.0, large: 1.45 }[size];
-// Position styles — safe margins to avoid rank badge (top-left) and branding (bottom-left)
-const posStyle = {
-tl: { top: 110, left: 20, right: “auto”, bottom: “auto”, transform: “none” },
-tr: { top: 110, right: 20, left: “auto”, bottom: “auto”, transform: “none” },
-bl: { bottom: 160, left: 20, right: “auto”, top: “auto”, transform: “none” },
-br: { bottom: 160, right: 20, left: “auto”, top: “auto”, transform: “none” },
-center: { top: “50%”, left: “50%”, right: “auto”, bottom: “auto”, transform: “translate(-50%,-50%)” },
-}[position];
-const textAlign = [“tl”, “bl”].includes(position) ? “left” : [“tr”, “br”].includes(position) ? “right” : “center”;
-const flexJust = textAlign === “center” ? “center” : textAlign === “right” ? “flex-end” : “flex-start”;
-return (React.createElement(“div”, { onClick: toggleUI, style: { position: “fixed”, inset: 0, zIndex: 600, background: “#000”, fontFamily: “‘DM Sans’,sans-serif”, cursor: “pointer” } },
-React.createElement(“video”, { ref: videoRef, playsInline: true, muted: true, autoPlay: true, style: { position: “fixed”, top: 0, left: 0, width: “100vw”, height: “100vh”, objectFit: “cover”, zIndex: 0, opacity: camReady ? 1 : 0, transition: “opacity 0.3s”, transform: facing === “user” ? “scaleX(-1)” : “none” } }),
-camError && React.createElement(“div”, { style: { position: “absolute”, inset: 0, background: “linear-gradient(135deg, #0A0A14 0%, #0d0d20 100%)”, zIndex: 1 } }),
-!camReady && !camError && React.createElement(“div”, { style: { position: “absolute”, inset: 0, background: “#000”, display: “flex”, alignItems: “center”, justifyContent: “center”, zIndex: 1 } },
-React.createElement(“div”, { style: { fontSize: 11, color: “#444”, letterSpacing: “0.12em” } }, “LOADING CAMERA\u2026”)),
-camError && (React.createElement(“div”, { style: { position: “absolute”, inset: 0, display: “flex”, flexDirection: “column”, alignItems: “center”, justifyContent: “center”, gap: 14, zIndex: 4, padding: “0 40px”, textAlign: “center” } }, camDenied ? (React.createElement(React.Fragment, null,
-React.createElement(“div”, { style: { fontSize: 13, color: “rgba(255,255,255,0.5)”, lineHeight: 1.6 } },
-“Camera access denied.”,
-React.createElement(“br”, null),
-“Go to “,
-React.createElement(“strong”, { style: { color: “#fff” } }, “Settings \u2192 Safari \u2192 Camera”),
-“ and allow access, then tap retry.”),
-React.createElement(“button”, { onClick: () => { setCamError(false); setCamDenied(false); startCamera(facing); }, style: { padding: “10px 24px”, borderRadius: 10, background: “rgba(255,255,255,0.15)”, border: “1px solid rgba(255,255,255,0.25)”, color: “#fff”, fontSize: 13, fontWeight: 600, cursor: “pointer” } }, “Retry Camera”))) : (React.createElement(“button”, { onClick: () => { setCamError(false); startCamera(facing); }, style: { padding: “10px 24px”, borderRadius: 10, background: “rgba(255,255,255,0.15)”, border: “1px solid rgba(255,255,255,0.25)”, color: “#fff”, fontSize: 13, fontWeight: 600, cursor: “pointer” } }, “Tap to Enable Camera”)))),
-flashAnim && React.createElement(“div”, { style: { position: “absolute”, inset: 0, background: “white”, opacity: 0.55, zIndex: 20, pointerEvents: “none” } }),
-React.createElement(“div”, { style: { position: “absolute”, inset: 0, background: “radial-gradient(ellipse at center, transparent 35%, rgba(0,0,0,0.45) 100%)”, pointerEvents: “none” } }),
-React.createElement(“div”, { style: Object.assign(Object.assign({ position: “absolute” }, posStyle), { zIndex: 5, maxWidth: 280 }) },
-React.createElement(“div”, { style: { fontSize: 9 * sc, color: “rgba(255,255,255,0.6)”, letterSpacing: “0.14em”, textTransform: “uppercase”, marginBottom: 5 * sc, textShadow: “0 1px 6px rgba(0,0,0,0.8)” } }, new Date().toLocaleDateString([], { weekday: “long”, month: “short”, day: “numeric” })),
-React.createElement(“div”, { style: { fontSize: 28 * sc, fontWeight: 900, color: “#fff”, letterSpacing: “-0.02em”, lineHeight: 1, marginBottom: 12 * sc, textShadow: “0 2px 12px rgba(0,0,0,0.9)” } }, workout === null || workout === void 0 ? void 0 : workout.replace(“Bodyweight “, “BW “)),
-React.createElement(“div”, { style: { display: “flex”, justifyContent: flexJust, gap: 20 * sc } }, [{ label: “Duration”, value: formatDur }, { label: “XP Earned”, value: `+${xpEarned}` }].map(s => (React.createElement(“div”, { key: s.label },
-React.createElement(“div”, { style: { fontSize: 22 * sc, fontWeight: 900, color: “#fff”, lineHeight: 1, textShadow: “0 2px 8px rgba(0,0,0,0.9)” } }, s.value),
-React.createElement(“div”, { style: { fontSize: 8 * sc, color: “rgba(255,255,255,0.6)”, letterSpacing: “0.1em”, textTransform: “uppercase”, marginTop: 3 * sc, textShadow: “0 1px 4px rgba(0,0,0,0.8)” } }, s.label)))))),
-React.createElement(“div”, { style: { position: “absolute”, top: 56, left: 20, display: “flex”, alignItems: “center”, gap: 10, zIndex: 6 } },
-React.createElement(“div”, { style: { display: “flex”, flexDirection: “column”, alignItems: “center”, gap: 4 } },
-React.createElement(“div”, { style: { width: 40, height: 40, borderRadius: 10, background: “rgba(0,0,0,0.55)”, border: `1.5px solid ${rank === null || rank === void 0 ? void 0 : rank.color}99`, backdropFilter: “blur(8px)”, display: “flex”, flexDirection: “column”, alignItems: “center”, justifyContent: “center” } },
-React.createElement(“div”, { style: { fontSize: 7, color: rank === null || rank === void 0 ? void 0 : rank.color, fontWeight: 700, letterSpacing: “0.06em” } }, “LVL”),
-React.createElement(“div”, { style: { fontSize: 16, fontWeight: 900, color: rank === null || rank === void 0 ? void 0 : rank.color, lineHeight: 1 } }, rank === null || rank === void 0 ? void 0 : rank.level)),
-React.createElement(“div”, { style: { width: 40, height: 3, background: “rgba(255,255,255,0.15)”, borderRadius: 2, overflow: “hidden” } },
-React.createElement(“div”, { style: { height: 3, borderRadius: 2, width: `${Math.min(100, ((rankInfo === null || rankInfo === void 0 ? void 0 : rankInfo.progress) || 0) * 100)}%`, background: `linear-gradient(90deg, ${rank === null || rank === void 0 ? void 0 : rank.color}, #A855F7)`, transition: “width 0.5s” } }))),
-React.createElement(“div”, null,
-React.createElement(“div”, { style: { fontSize: 12, fontWeight: 700, color: “#fff”, textShadow: “0 1px 6px rgba(0,0,0,0.9)” } }, rank === null || rank === void 0 ? void 0 : rank.title),
-React.createElement(“div”, { style: { fontSize: 9, color: “rgba(255,255,255,0.45)” } },
-“Rank “, rank === null || rank === void 0 ? void 0 :
-rank.rank))),
-React.createElement(“div”, { style: { position: “absolute”, bottom: 100, left: 20, zIndex: 6 } },
-React.createElement(LevelUpLogo, { accent: “#ffffff”, size: 0.6, showTagline: false }),
-React.createElement(“div”, { style: { fontSize: 9, color: “rgba(255,255,255,0.4)”, letterSpacing: “0.1em”, marginTop: 4 } },
-“WORKOUT TRACKER \u00B7 “, profile === null || profile === void 0 ? void 0 :
-profile.name)),
-uiVisible && (React.createElement(“div”, { style: { position: “absolute”, top: 52, right: 16, display: “flex”, gap: 8, zIndex: 10 } },
-React.createElement(“button”, { onClick: e => { e.stopPropagation(); flipCamera(); }, style: { width: 36, height: 36, borderRadius: 10, background: “rgba(0,0,0,0.5)”, border: “1px solid rgba(255,255,255,0.15)”, color: “rgba(255,255,255,0.85)”, cursor: “pointer”, display: “flex”, alignItems: “center”, justifyContent: “center”, backdropFilter: “blur(8px)” } },
-React.createElement(“svg”, { width: “16”, height: “16”, viewBox: “0 0 24 24”, fill: “none”, stroke: “currentColor”, strokeWidth: “2”, strokeLinecap: “round”, strokeLinejoin: “round” },
-React.createElement(“path”, { d: “M20 7h-3a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z” }),
-React.createElement(“path”, { d: “M8 12a4 4 0 1 1 4.5 3.97” }),
-React.createElement(“polyline”, { points: “8 10 8 12 10 12” }))),
-React.createElement(“button”, { style: { width: 36, height: 36, borderRadius: 10, background: showSettings ? “rgba(255,255,255,0.25)” : “rgba(0,0,0,0.5)”, border: `1px solid ${showSettings ? "rgba(255,255,255,0.4)" : "rgba(255,255,255,0.15)"}`, color: “rgba(255,255,255,0.85)”, cursor: “pointer”, display: “flex”, alignItems: “center”, justifyContent: “center”, backdropFilter: “blur(8px)” }, onClick: e => { e.stopPropagation(); setShowSettings(v => !v); } },
-React.createElement(“svg”, { width: “16”, height: “16”, viewBox: “0 0 24 24”, fill: “none”, stroke: “currentColor”, strokeWidth: “2”, strokeLinecap: “round”, strokeLinejoin: “round” },
-React.createElement(“circle”, { cx: “12”, cy: “12”, r: “3” }),
-React.createElement(“path”, { d: “M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z” }))),
-React.createElement(“button”, { onClick: onClose, style: { width: 36, height: 36, borderRadius: 10, background: “rgba(0,0,0,0.5)”, border: “1px solid rgba(255,255,255,0.15)”, color: “rgba(255,255,255,0.7)”, fontSize: 16, cursor: “pointer”, display: “flex”, alignItems: “center”, justifyContent: “center”, backdropFilter: “blur(8px)” } }, “\u2715”))),
-uiVisible && showSettings && (React.createElement(“div”, { onClick: e => e.stopPropagation(), style: { position: “absolute”, top: 100, right: 16, zIndex: 10, background: “rgba(0,0,0,0.75)”, backdropFilter: “blur(16px)”, borderRadius: 14, padding: “14px 16px”, border: “1px solid rgba(255,255,255,0.15)”, minWidth: 180 } },
-React.createElement(“div”, { style: { fontSize: 9, color: “rgba(255,255,255,0.4)”, textTransform: “uppercase”, letterSpacing: “0.1em”, marginBottom: 8 } }, “Position”),
-React.createElement(“div”, { style: { display: “grid”, gridTemplateColumns: “repeat(3,1fr)”, gap: 5, marginBottom: 14, width: 72 } }, [[“tl”, “”, “tr”], [””, “center”, “”], [“bl”, “”, “br”]].flat().map((pos, i) => (pos === “” ? React.createElement(“div”, { key: i }) : (React.createElement(“div”, { key: pos, onClick: () => setPosition(pos), style: { width: 20, height: 20, borderRadius: 5, cursor: “pointer”,
-background: position === pos ? “#fff” : “rgba(255,255,255,0.18)”,
-border: `1px solid ${position === pos ? "#fff" : "rgba(255,255,255,0.15)"}`,
-transition: “all 0.1s” } }))))),
-React.createElement(“div”, { style: { fontSize: 9, color: “rgba(255,255,255,0.4)”, textTransform: “uppercase”, letterSpacing: “0.1em”, marginBottom: 8 } }, “Size”),
-React.createElement(“div”, { style: { display: “flex”, gap: 6 } }, [[“S”, “small”], [“M”, “medium”], [“L”, “large”]].map(([label, val]) => (React.createElement(“button”, { key: val, onClick: () => setSize(val), style: { width: 32, height: 32, borderRadius: 7, cursor: “pointer”, fontSize: 11, fontWeight: 700,
-background: size === val ? “#fff” : “rgba(255,255,255,0.15)”,
-color: size === val ? “#000” : “rgba(255,255,255,0.6)”,
-border: `1px solid ${size === val ? "#fff" : "rgba(255,255,255,0.15)"}`,
-transition: “all 0.1s” } }, label)))))),
-uiVisible && (React.createElement(“div”, { onClick: e => e.stopPropagation(), style: { position: “absolute”, bottom: “calc(32px + env(safe-area-inset-bottom))”, left: 0, right: 0, zIndex: 10, display: “flex”, flexDirection: “column”, alignItems: “center”, gap: 10 } },
-React.createElement(“button”, { onClick: capturePhoto, style: { width: 72, height: 72, borderRadius: “50%”, background: “#fff”, border: “4px solid rgba(255,255,255,0.4)”, cursor: “pointer”, boxShadow: “0 4px 20px rgba(0,0,0,0.4)”, display: “flex”, alignItems: “center”, justifyContent: “center” } },
-React.createElement(“div”, { style: { width: 56, height: 56, borderRadius: “50%”, background: “#fff”, border: “2px solid #ccc” } })),
-React.createElement(“div”, { style: { fontSize: 10, color: “rgba(255,255,255,0.4)”, letterSpacing: “0.08em” } }, “Tap to capture \u00B7 tap screen to hide UI”),
-camError && !camDenied && React.createElement(“div”, { style: { fontSize: 10, color: “rgba(255,255,255,0.25)” } }, “Tap the camera icon to retry”),
-camError && camDenied && React.createElement(“div”, { style: { fontSize: 10, color: “rgba(255,255,255,0.25)” } }, “Allow camera in Settings \u2192 Safari \u2192 Camera”))),
-React.createElement(“canvas”, { ref: canvasRef, style: { display: “none” } })));
+    const videoRef = useRef(null);
+    const canvasRef = useRef(null);
+    const streamRef = useRef(null);
+    const overlayRef = useRef(null);
+    const [camReady, setCamReady] = useState(false);
+    const [camError, setCamError] = useState(false);
+    const [camDenied, setCamDenied] = useState(false);
+    const [flashAnim, setFlashAnim] = useState(false);
+    const [position, setPosition] = useState("center");
+    const [size, setSize] = useState("medium");
+    const [showSettings, setShowSettings] = useState(false);
+    const [uiVisible, setUiVisible] = useState(true);
+    const [facing, setFacing] = useState("environment");
+    const { workout, duration, xpEarned, rankInfo } = summary;
+    const plan = WORKOUT_PLANS[workout];
+    const color = (plan === null || plan === void 0 ? void 0 : plan.color) || "#FF6B35";
+    const rank = rankInfo === null || rankInfo === void 0 ? void 0 : rankInfo.current;
+    const mins = Math.floor(duration);
+    const formatDur = mins >= 60 ? `${Math.floor(mins / 60)}h ${mins % 60}m` : `${mins}m`;
+    const startCamera = async (facingMode) => {
+        var _a;
+        (_a = streamRef.current) === null || _a === void 0 ? void 0 : _a.getTracks().forEach(t => t.stop());
+        setCamReady(false);
+        setCamError(false);
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({
+                video: { facingMode, width: { ideal: 1280 }, height: { ideal: 720 } },
+                audio: false,
+            });
+            streamRef.current = stream;
+            // Always attach to video element — it's always mounted
+            const vid = videoRef.current;
+            if (vid) {
+                vid.srcObject = stream;
+                vid.setAttribute("playsinline", "");
+                vid.setAttribute("muted", "");
+                try {
+                    await vid.play();
+                }
+                catch (pe) {
+                    vid.play();
+                } // retry without await if needed
+                setCamReady(true);
+            }
+        }
+        catch (e) {
+            if (e.name === "NotAllowedError" || e.name === "PermissionDeniedError") {
+                setCamDenied(true);
+            }
+            setCamError(true);
+        }
+    };
+    useEffect(() => {
+        startCamera(facing);
+        return () => { var _a; (_a = streamRef.current) === null || _a === void 0 ? void 0 : _a.getTracks().forEach(t => t.stop()); };
+    }, []);
+    const flipCamera = () => {
+        const newFacing = facing === "environment" ? "user" : "environment";
+        setFacing(newFacing);
+        startCamera(newFacing);
+    };
+    const toggleUI = () => {
+        setUiVisible(v => !v);
+        setShowSettings(false);
+    };
+    const capturePhoto = async () => {
+        const vid = videoRef.current;
+        const canvas = canvasRef.current;
+        if (!vid || !canvas || !camReady)
+            return;
+        setFlashAnim(true);
+        setTimeout(() => setFlashAnim(false), 300);
+        const vw = vid.videoWidth || window.innerWidth;
+        const vh = vid.videoHeight || window.innerHeight;
+        // iOS returns landscape sensor dims for portrait video — detect and rotate
+        const screenIsPortrait = window.innerHeight > window.innerWidth;
+        const videoIsLandscape = vw > vh;
+        const needsRotation = screenIsPortrait && videoIsLandscape;
+        // Canvas output matches screen orientation
+        const cw = needsRotation ? vh : vw;
+        const ch = needsRotation ? vw : vh;
+        canvas.width = cw;
+        canvas.height = ch;
+        const ctx = canvas.getContext("2d");
+        // Draw video — rotate 90° CCW if needed
+        if (needsRotation) {
+            ctx.save();
+            ctx.translate(0, cw); // cw = original vh
+            ctx.rotate(-Math.PI / 2);
+            if (facing === "user") {
+                ctx.translate(vh, 0);
+                ctx.scale(-1, 1);
+            }
+            ctx.drawImage(vid, 0, 0, vw, vh);
+            ctx.restore();
+        }
+        else {
+            if (facing === "user") {
+                ctx.translate(cw, 0);
+                ctx.scale(-1, 1);
+            }
+            ctx.drawImage(vid, 0, 0, cw, ch);
+            if (facing === "user") {
+                ctx.setTransform(1, 0, 0, 1, 0, 0);
+            }
+        }
+        // Scale helpers — always relative to screen dimensions
+        const sx = cw / window.innerWidth;
+        const sy = ch / window.innerHeight;
+        const px = (n) => n * sx;
+        const py = (n) => n * sy;
+        ctx.textBaseline = "top";
+        // Vignette
+        const vig = ctx.createRadialGradient(cw / 2, ch / 2, ch * 0.18, cw / 2, ch / 2, ch * 0.72);
+        vig.addColorStop(0, "rgba(0,0,0,0)");
+        vig.addColorStop(1, "rgba(0,0,0,0.45)");
+        ctx.fillStyle = vig;
+        ctx.fillRect(0, 0, cw, ch);
+        // Stats position
+        const posMap = {
+            tl: { x: px(20), y: py(110) },
+            tr: { x: cw - px(20), y: py(110) },
+            bl: { x: px(20), y: ch - py(220) },
+            br: { x: cw - px(20), y: ch - py(220) },
+            center: { x: cw / 2, y: ch / 2 - py(60) },
+        };
+        const spos = posMap[position] || posMap.center;
+        const isRight = ["tr", "br"].includes(position);
+        const isCenter = position === "center";
+        const dateSz = px(9 * sc);
+        const nameSz = px(28 * sc);
+        const valSz = px(22 * sc);
+        const labelSz = px(8 * sc);
+        // Date
+        ctx.textAlign = isCenter ? "center" : isRight ? "right" : "left";
+        ctx.font = `600 ${dateSz}px 'Helvetica Neue',Arial,sans-serif`;
+        ctx.fillStyle = "rgba(255,255,255,0.65)";
+        ctx.shadowColor = "rgba(0,0,0,0.8)";
+        ctx.shadowBlur = px(6);
+        ctx.fillText(new Date().toLocaleDateString([], { weekday: "long", month: "short", day: "numeric" }).toUpperCase(), spos.x, spos.y);
+        // Workout name
+        ctx.font = `900 ${nameSz}px 'Helvetica Neue',Arial,sans-serif`;
+        ctx.fillStyle = "#fff";
+        ctx.shadowBlur = px(14);
+        ctx.fillText((workout || "").replace("Bodyweight ", "BW "), spos.x, spos.y + dateSz + py(5));
+        // Stats row — measure widths first, then draw side by side
+        const statsY = spos.y + dateSz + py(5) + nameSz + py(12);
+        ctx.shadowBlur = px(8);
+        const statsData = [{ label: "DURATION", value: formatDur }, { label: "XP EARNED", value: `+${xpEarned}` }];
+        ctx.font = `900 ${valSz}px 'Helvetica Neue',Arial,sans-serif`;
+        const w0 = ctx.measureText(statsData[0].value).width;
+        const w1 = ctx.measureText(statsData[1].value).width;
+        const gap = px(32 * sc);
+        const totalW = w0 + gap + w1;
+        const startX = isCenter ? cw / 2 - totalW / 2 : isRight ? spos.x - totalW : spos.x;
+        for (let i = 0; i < statsData.length; i++) {
+            const s = statsData[i];
+            const x = i === 0 ? startX : startX + w0 + gap;
+            ctx.textAlign = "left";
+            ctx.font = `900 ${valSz}px 'Helvetica Neue',Arial,sans-serif`;
+            ctx.fillStyle = "#fff";
+            ctx.fillText(s.value, x, statsY);
+            ctx.font = `600 ${labelSz}px 'Helvetica Neue',Arial,sans-serif`;
+            ctx.fillStyle = "rgba(255,255,255,0.6)";
+            ctx.fillText(s.label, x, statsY + valSz + py(3));
+        }
+        // Rank badge
+        const bx = px(20), by = py(56), bw = px(40), bh = py(40);
+        ctx.shadowBlur = 0;
+        ctx.fillStyle = "rgba(0,0,0,0.55)";
+        roundRect(ctx, bx, by, bw, bh, px(10));
+        ctx.strokeStyle = ((rank === null || rank === void 0 ? void 0 : rank.color) || "#888") + "99";
+        ctx.lineWidth = px(1.5);
+        roundRect(ctx, bx, by, bw, bh, px(10), false);
+        ctx.textAlign = "center";
+        ctx.font = `700 ${px(7)}px 'Helvetica Neue',Arial,sans-serif`;
+        ctx.fillStyle = (rank === null || rank === void 0 ? void 0 : rank.color) || "#888";
+        ctx.fillText("LVL", bx + bw / 2, by + py(7));
+        ctx.font = `900 ${px(16)}px 'Helvetica Neue',Arial,sans-serif`;
+        ctx.fillText(String((rank === null || rank === void 0 ? void 0 : rank.level) || ""), bx + bw / 2, by + py(17));
+        // XP bar
+        const barY = by + bh + py(4);
+        ctx.fillStyle = "rgba(255,255,255,0.15)";
+        ctx.fillRect(bx, barY, bw, py(3));
+        const prog = Math.min(1, (rankInfo === null || rankInfo === void 0 ? void 0 : rankInfo.progress) || 0);
+        const grad = ctx.createLinearGradient(bx, 0, bx + bw, 0);
+        grad.addColorStop(0, (rank === null || rank === void 0 ? void 0 : rank.color) || "#888");
+        grad.addColorStop(1, "#A855F7");
+        ctx.fillStyle = grad;
+        ctx.fillRect(bx, barY, bw * prog, py(3));
+        // Rank text
+        ctx.textAlign = "left";
+        ctx.shadowColor = "rgba(0,0,0,0.9)";
+        ctx.shadowBlur = px(6);
+        ctx.font = `700 ${px(12)}px 'Helvetica Neue',Arial,sans-serif`;
+        ctx.fillStyle = "#fff";
+        ctx.fillText((rank === null || rank === void 0 ? void 0 : rank.title) || "", bx + bw + px(10), by + py(8));
+        ctx.font = `400 ${px(9)}px 'Helvetica Neue',Arial,sans-serif`;
+        ctx.fillStyle = "rgba(255,255,255,0.45)";
+        ctx.fillText("Rank " + ((rank === null || rank === void 0 ? void 0 : rank.rank) || ""), bx + bw + px(10), by + py(22));
+        // Branding
+        ctx.shadowBlur = px(8);
+        ctx.font = `900 ${px(14)}px 'Helvetica Neue',Arial,sans-serif`;
+        ctx.fillStyle = "#fff";
+        ctx.textAlign = "left";
+        ctx.fillText("Level Up", px(20), ch - py(100));
+        ctx.font = `400 ${px(9)}px 'Helvetica Neue',Arial,sans-serif`;
+        ctx.fillStyle = "rgba(255,255,255,0.4)";
+        ctx.fillText(`WORKOUT TRACKER · ${(profile === null || profile === void 0 ? void 0 : profile.name) || ""}`, px(20), ch - py(86));
+        ctx.shadowBlur = 0;
+        canvas.toBlob(async (blob) => {
+            var _a;
+            if (!blob)
+                return;
+            const file = new File([blob], "levelup-workout.jpg", { type: "image/jpeg" });
+            if (navigator.share && ((_a = navigator.canShare) === null || _a === void 0 ? void 0 : _a.call(navigator, { files: [file] }))) {
+                try {
+                    await navigator.share({ files: [file], title: "Level Up Workout" });
+                }
+                catch (e) { }
+            }
+            else {
+                const a = document.createElement("a");
+                a.href = URL.createObjectURL(blob);
+                a.download = "levelup-workout.jpg";
+                a.click();
+            }
+            startCamera(facing);
+        }, "image/jpeg", 0.92);
+    };
+    // Canvas roundRect helper for older Safari
+    function roundRect(ctx, x, y, w, h, r, fill = true) {
+        ctx.beginPath();
+        ctx.moveTo(x + r, y);
+        ctx.lineTo(x + w - r, y);
+        ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+        ctx.lineTo(x + w, y + h - r);
+        ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+        ctx.lineTo(x + r, y + h);
+        ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+        ctx.lineTo(x, y + r);
+        ctx.quadraticCurveTo(x, y, x + r, y);
+        ctx.closePath();
+        if (fill)
+            ctx.fill();
+        else
+            ctx.stroke();
+    }
+    // Size scale factor
+    const sc = { small: 0.65, medium: 1.0, large: 1.45 }[size];
+    // Position styles — safe margins to avoid rank badge (top-left) and branding (bottom-left)
+    const posStyle = {
+        tl: { top: 110, left: 20, right: "auto", bottom: "auto", transform: "none" },
+        tr: { top: 110, right: 20, left: "auto", bottom: "auto", transform: "none" },
+        bl: { bottom: 160, left: 20, right: "auto", top: "auto", transform: "none" },
+        br: { bottom: 160, right: 20, left: "auto", top: "auto", transform: "none" },
+        center: { top: "50%", left: "50%", right: "auto", bottom: "auto", transform: "translate(-50%,-50%)" },
+    }[position];
+    const textAlign = ["tl", "bl"].includes(position) ? "left" : ["tr", "br"].includes(position) ? "right" : "center";
+    const flexJust = textAlign === "center" ? "center" : textAlign === "right" ? "flex-end" : "flex-start";
+    return (React.createElement("div", { onClick: toggleUI, style: { position: "fixed", inset: 0, zIndex: 600, background: "#000", fontFamily: "'DM Sans',sans-serif", cursor: "pointer" } },
+        React.createElement("video", { ref: videoRef, playsInline: true, muted: true, autoPlay: true, style: { position: "fixed", top: 0, left: 0, width: "100vw", height: "100vh", objectFit: "cover", zIndex: 0, opacity: camReady ? 1 : 0, transition: "opacity 0.3s", transform: facing === "user" ? "scaleX(-1)" : "none" } }),
+        camError && React.createElement("div", { style: { position: "absolute", inset: 0, background: "linear-gradient(135deg, #0A0A14 0%, #0d0d20 100%)", zIndex: 1 } }),
+        !camReady && !camError && React.createElement("div", { style: { position: "absolute", inset: 0, background: "#000", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1 } },
+            React.createElement("div", { style: { fontSize: 11, color: "#444", letterSpacing: "0.12em" } }, "LOADING CAMERA\u2026")),
+        camError && (React.createElement("div", { style: { position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 14, zIndex: 4, padding: "0 40px", textAlign: "center" } }, camDenied ? (React.createElement(React.Fragment, null,
+            React.createElement("div", { style: { fontSize: 13, color: "rgba(255,255,255,0.5)", lineHeight: 1.6 } },
+                "Camera access denied.",
+                React.createElement("br", null),
+                "Go to ",
+                React.createElement("strong", { style: { color: "#fff" } }, "Settings \u2192 Safari \u2192 Camera"),
+                " and allow access, then tap retry."),
+            React.createElement("button", { onClick: () => { setCamError(false); setCamDenied(false); startCamera(facing); }, style: { padding: "10px 24px", borderRadius: 10, background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.25)", color: "#fff", fontSize: 13, fontWeight: 600, cursor: "pointer" } }, "Retry Camera"))) : (React.createElement("button", { onClick: () => { setCamError(false); startCamera(facing); }, style: { padding: "10px 24px", borderRadius: 10, background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.25)", color: "#fff", fontSize: 13, fontWeight: 600, cursor: "pointer" } }, "Tap to Enable Camera")))),
+        flashAnim && React.createElement("div", { style: { position: "absolute", inset: 0, background: "white", opacity: 0.55, zIndex: 20, pointerEvents: "none" } }),
+        React.createElement("div", { style: { position: "absolute", inset: 0, background: "radial-gradient(ellipse at center, transparent 35%, rgba(0,0,0,0.45) 100%)", pointerEvents: "none" } }),
+        React.createElement("div", { style: Object.assign(Object.assign({ position: "absolute" }, posStyle), { zIndex: 5, maxWidth: 280 }) },
+            React.createElement("div", { style: { fontSize: 9 * sc, color: "rgba(255,255,255,0.6)", letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 5 * sc, textShadow: "0 1px 6px rgba(0,0,0,0.8)" } }, new Date().toLocaleDateString([], { weekday: "long", month: "short", day: "numeric" })),
+            React.createElement("div", { style: { fontSize: 28 * sc, fontWeight: 900, color: "#fff", letterSpacing: "-0.02em", lineHeight: 1, marginBottom: 12 * sc, textShadow: "0 2px 12px rgba(0,0,0,0.9)" } }, workout === null || workout === void 0 ? void 0 : workout.replace("Bodyweight ", "BW ")),
+            React.createElement("div", { style: { display: "flex", justifyContent: flexJust, gap: 20 * sc } }, [{ label: "Duration", value: formatDur }, { label: "XP Earned", value: `+${xpEarned}` }].map(s => (React.createElement("div", { key: s.label },
+                React.createElement("div", { style: { fontSize: 22 * sc, fontWeight: 900, color: "#fff", lineHeight: 1, textShadow: "0 2px 8px rgba(0,0,0,0.9)" } }, s.value),
+                React.createElement("div", { style: { fontSize: 8 * sc, color: "rgba(255,255,255,0.6)", letterSpacing: "0.1em", textTransform: "uppercase", marginTop: 3 * sc, textShadow: "0 1px 4px rgba(0,0,0,0.8)" } }, s.label)))))),
+        React.createElement("div", { style: { position: "absolute", top: 56, left: 20, display: "flex", alignItems: "center", gap: 10, zIndex: 6 } },
+            React.createElement("div", { style: { display: "flex", flexDirection: "column", alignItems: "center", gap: 4 } },
+                React.createElement("div", { style: { width: 40, height: 40, borderRadius: 10, background: "rgba(0,0,0,0.55)", border: `1.5px solid ${rank === null || rank === void 0 ? void 0 : rank.color}99`, backdropFilter: "blur(8px)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" } },
+                    React.createElement("div", { style: { fontSize: 7, color: rank === null || rank === void 0 ? void 0 : rank.color, fontWeight: 700, letterSpacing: "0.06em" } }, "LVL"),
+                    React.createElement("div", { style: { fontSize: 16, fontWeight: 900, color: rank === null || rank === void 0 ? void 0 : rank.color, lineHeight: 1 } }, rank === null || rank === void 0 ? void 0 : rank.level)),
+                React.createElement("div", { style: { width: 40, height: 3, background: "rgba(255,255,255,0.15)", borderRadius: 2, overflow: "hidden" } },
+                    React.createElement("div", { style: { height: 3, borderRadius: 2, width: `${Math.min(100, ((rankInfo === null || rankInfo === void 0 ? void 0 : rankInfo.progress) || 0) * 100)}%`, background: `linear-gradient(90deg, ${rank === null || rank === void 0 ? void 0 : rank.color}, #A855F7)`, transition: "width 0.5s" } }))),
+            React.createElement("div", null,
+                React.createElement("div", { style: { fontSize: 12, fontWeight: 700, color: "#fff", textShadow: "0 1px 6px rgba(0,0,0,0.9)" } }, rank === null || rank === void 0 ? void 0 : rank.title),
+                React.createElement("div", { style: { fontSize: 9, color: "rgba(255,255,255,0.45)" } },
+                    "Rank ", rank === null || rank === void 0 ? void 0 :
+                    rank.rank))),
+        React.createElement("div", { style: { position: "absolute", bottom: 100, left: 20, zIndex: 6 } },
+            React.createElement(LevelUpLogo, { accent: "#ffffff", size: 0.6, showTagline: false }),
+            React.createElement("div", { style: { fontSize: 9, color: "rgba(255,255,255,0.4)", letterSpacing: "0.1em", marginTop: 4 } },
+                "WORKOUT TRACKER \u00B7 ", profile === null || profile === void 0 ? void 0 :
+                profile.name)),
+        uiVisible && (React.createElement("div", { style: { position: "absolute", top: 52, right: 16, display: "flex", gap: 8, zIndex: 10 } },
+            React.createElement("button", { onClick: e => { e.stopPropagation(); flipCamera(); }, style: { width: 36, height: 36, borderRadius: 10, background: "rgba(0,0,0,0.5)", border: "1px solid rgba(255,255,255,0.15)", color: "rgba(255,255,255,0.85)", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", backdropFilter: "blur(8px)" } },
+                React.createElement("svg", { width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" },
+                    React.createElement("path", { d: "M20 7h-3a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z" }),
+                    React.createElement("path", { d: "M8 12a4 4 0 1 1 4.5 3.97" }),
+                    React.createElement("polyline", { points: "8 10 8 12 10 12" }))),
+            React.createElement("button", { style: { width: 36, height: 36, borderRadius: 10, background: showSettings ? "rgba(255,255,255,0.25)" : "rgba(0,0,0,0.5)", border: `1px solid ${showSettings ? "rgba(255,255,255,0.4)" : "rgba(255,255,255,0.15)"}`, color: "rgba(255,255,255,0.85)", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", backdropFilter: "blur(8px)" }, onClick: e => { e.stopPropagation(); setShowSettings(v => !v); } },
+                React.createElement("svg", { width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" },
+                    React.createElement("circle", { cx: "12", cy: "12", r: "3" }),
+                    React.createElement("path", { d: "M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" }))),
+            React.createElement("button", { onClick: onClose, style: { width: 36, height: 36, borderRadius: 10, background: "rgba(0,0,0,0.5)", border: "1px solid rgba(255,255,255,0.15)", color: "rgba(255,255,255,0.7)", fontSize: 16, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", backdropFilter: "blur(8px)" } }, "\u2715"))),
+        uiVisible && showSettings && (React.createElement("div", { onClick: e => e.stopPropagation(), style: { position: "absolute", top: 100, right: 16, zIndex: 10, background: "rgba(0,0,0,0.75)", backdropFilter: "blur(16px)", borderRadius: 14, padding: "14px 16px", border: "1px solid rgba(255,255,255,0.15)", minWidth: 180 } },
+            React.createElement("div", { style: { fontSize: 9, color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 8 } }, "Position"),
+            React.createElement("div", { style: { display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 5, marginBottom: 14, width: 72 } }, [["tl", "", "tr"], ["", "center", ""], ["bl", "", "br"]].flat().map((pos, i) => (pos === "" ? React.createElement("div", { key: i }) : (React.createElement("div", { key: pos, onClick: () => setPosition(pos), style: { width: 20, height: 20, borderRadius: 5, cursor: "pointer",
+                    background: position === pos ? "#fff" : "rgba(255,255,255,0.18)",
+                    border: `1px solid ${position === pos ? "#fff" : "rgba(255,255,255,0.15)"}`,
+                    transition: "all 0.1s" } }))))),
+            React.createElement("div", { style: { fontSize: 9, color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 8 } }, "Size"),
+            React.createElement("div", { style: { display: "flex", gap: 6 } }, [["S", "small"], ["M", "medium"], ["L", "large"]].map(([label, val]) => (React.createElement("button", { key: val, onClick: () => setSize(val), style: { width: 32, height: 32, borderRadius: 7, cursor: "pointer", fontSize: 11, fontWeight: 700,
+                    background: size === val ? "#fff" : "rgba(255,255,255,0.15)",
+                    color: size === val ? "#000" : "rgba(255,255,255,0.6)",
+                    border: `1px solid ${size === val ? "#fff" : "rgba(255,255,255,0.15)"}`,
+                    transition: "all 0.1s" } }, label)))))),
+        uiVisible && (React.createElement("div", { onClick: e => e.stopPropagation(), style: { position: "absolute", bottom: "calc(32px + env(safe-area-inset-bottom))", left: 0, right: 0, zIndex: 10, display: "flex", flexDirection: "column", alignItems: "center", gap: 10 } },
+            React.createElement("button", { onClick: capturePhoto, style: { width: 72, height: 72, borderRadius: "50%", background: "#fff", border: "4px solid rgba(255,255,255,0.4)", cursor: "pointer", boxShadow: "0 4px 20px rgba(0,0,0,0.4)", display: "flex", alignItems: "center", justifyContent: "center" } },
+                React.createElement("div", { style: { width: 56, height: 56, borderRadius: "50%", background: "#fff", border: "2px solid #ccc" } })),
+            React.createElement("div", { style: { fontSize: 10, color: "rgba(255,255,255,0.4)", letterSpacing: "0.08em" } }, "Tap to capture \u00B7 tap screen to hide UI"),
+            camError && !camDenied && React.createElement("div", { style: { fontSize: 10, color: "rgba(255,255,255,0.25)" } }, "Tap the camera icon to retry"),
+            camError && camDenied && React.createElement("div", { style: { fontSize: 10, color: "rgba(255,255,255,0.25)" } }, "Allow camera in Settings \u2192 Safari \u2192 Camera"))),
+        React.createElement("canvas", { ref: canvasRef, style: { display: "none" } })));
 }
 // ── PLAN EDITOR ───────────────────────────────────────────────────────────────
 function PlanEditor({ planName, exercises, onSave, onClose }) {
-const C = useC();
-const plan = WORKOUT_PLANS[planName];
-const color = (plan === null || plan === void 0 ? void 0 : plan.color) || “#FF6B35”;
-const [exList, setExList] = useState([…exercises]);
-const [swappingIdx, setSwappingIdx] = useState(null); // index being swapped
-const [search, setSearch] = useState(””);
-const filteredLib = LIBRARY.filter(ex => !exList.some(e => e.name === ex.name) &&
-(search === “” || ex.name.toLowerCase().includes(search.toLowerCase()) || ex.group.toLowerCase().includes(search.toLowerCase())));
-const removeEx = (idx) => setExList(prev => prev.filter((*, i) => i !== idx));
-const swapEx = (idx, newEx) => {
-setExList(prev => prev.map((e, i) => i === idx
-? { name: newEx.name, sets: newEx.sets, reps: newEx.reps, muscle: newEx.group }
-: e));
-setSwappingIdx(null);
-setSearch(””);
-};
-const addEx = (ex) => {
-setExList(prev => […prev, { name: ex.name, sets: ex.sets, reps: ex.reps, muscle: ex.group }]);
-setSearch(””);
-};
-return (React.createElement(“div”, { style: { position: “fixed”, inset: 0, background: C.surface, zIndex: 300, display: “flex”, flexDirection: “column”, maxWidth: 420, margin: “0 auto” } },
-React.createElement(“div”, { style: { padding: “52px 24px 16px”, borderBottom: `1px solid ${C.border}`, flexShrink: 0 } },
-React.createElement(“div”, { style: { display: “flex”, justifyContent: “space-between”, alignItems: “flex-start” } },
-React.createElement(“div”, null,
-React.createElement(“div”, { style: { fontSize: 10, color: C.muted, letterSpacing: “0.12em”, textTransform: “uppercase”, marginBottom: 4 } }, “Edit Plan”),
-React.createElement(“div”, { style: { fontSize: 24, fontWeight: 800, color: color } }, planName)),
-React.createElement(“div”, { style: { display: “flex”, gap: 8 } },
-React.createElement(“button”, { onClick: () => { onSave(exList); onClose(); }, style: { padding: “8px 16px”, borderRadius: 10, background: color, border: “none”, color: “#000”, fontSize: 13, fontWeight: 700, cursor: “pointer” } }, “Save”),
-React.createElement(“button”, { onClick: onClose, style: { width: 36, height: 36, borderRadius: 10, background: C.btnBg, border: `1px solid ${C.btnBorder}`, color: C.muted, fontSize: 18, cursor: “pointer”, display: “flex”, alignItems: “center”, justifyContent: “center” } }, “\u2715”)))),
-React.createElement(“div”, { style: { flex: 1, overflowY: “auto”, padding: “12px 24px 24px” } },
-React.createElement(“div”, { style: { fontSize: 10, color: C.muted, textTransform: “uppercase”, letterSpacing: “0.1em”, marginBottom: 10 } },
-“Exercises (”,
-exList.length,
-“)”),
-React.createElement(“div”, { style: { display: “flex”, flexDirection: “column”, gap: 7, marginBottom: 20 } }, exList.map((ex, idx) => (React.createElement(“div”, { key: idx },
-React.createElement(“div”, { style: { background: C.card, borderRadius: 12, padding: “11px 14px”, border: `1px solid ${swappingIdx === idx ? color + "66" : C.cardBorder}`, display: “flex”, alignItems: “center”, gap: 10 } },
-React.createElement(“div”, { style: { flex: 1 } },
-React.createElement(“div”, { style: { fontSize: 13, fontWeight: 600, color: C.text } }, ex.name),
-React.createElement(“div”, { style: { fontSize: 11, color: C.muted, marginTop: 2 } },
-ex.muscle,
-“ \u00B7 “,
-ex.sets,
-“ sets \u00D7 “,
-ex.reps)),
-React.createElement(“button”, { onClick: () => { setSwappingIdx(swappingIdx === idx ? null : idx); setSearch(””); }, style: { padding: “5px 10px”, borderRadius: 8, background: swappingIdx === idx ? color + “22” : C.btnBg, border: `1px solid ${swappingIdx === idx ? color : C.btnBorder}`, color: swappingIdx === idx ? color : C.muted, fontSize: 11, cursor: “pointer”, fontWeight: 600 } }, “\u21C4 Swap”),
-React.createElement(“button”, { onClick: () => removeEx(idx), style: { width: 28, height: 28, borderRadius: 8, background: “#F8717112”, border: “1px solid #F8717133”, color: “#F87171”, fontSize: 14, cursor: “pointer”, display: “flex”, alignItems: “center”, justifyContent: “center”, flexShrink: 0 } }, “\u2715”)),
-swappingIdx === idx && (React.createElement(“div”, { style: { background: C.deep, borderRadius: 12, padding: “10px 12px”, border: `1px solid ${color}33`, marginTop: 4 } },
-React.createElement(“input”, { value: search, onChange: e => setSearch(e.target.value), placeholder: “Search exercises…”, style: { width: “100%”, padding: “8px 12px”, borderRadius: 8, background: C.input, border: `1px solid ${C.inputBorder}`, color: C.text, fontSize: 13, outline: “none”, fontFamily: “inherit”, marginBottom: 8 } }),
-React.createElement(“div”, { style: { display: “flex”, flexDirection: “column”, gap: 5, maxHeight: 180, overflowY: “auto” } },
-filteredLib.slice(0, 12).map(ex => (React.createElement(“div”, { key: ex.name, onClick: () => swapEx(idx, ex), style: { padding: “8px 10px”, borderRadius: 8, background: C.card, border: `1px solid ${C.cardBorder}`, cursor: “pointer”, display: “flex”, justifyContent: “space-between”, alignItems: “center” } },
-React.createElement(“div”, null,
-React.createElement(“div”, { style: { fontSize: 12, fontWeight: 600, color: C.text } }, ex.name),
-React.createElement(“div”, { style: { fontSize: 10, color: C.muted } },
-ex.group,
-“ \u00B7 “,
-ex.sets,
-“\u00D7”,
-ex.reps)),
-React.createElement(“div”, { style: { fontSize: 11, color: color, fontWeight: 700 } }, “\u21C4”)))),
-filteredLib.length === 0 && React.createElement(“div”, { style: { fontSize: 12, color: C.muted, textAlign: “center”, padding: “8px 0” } }, “No matches”)))))))),
-React.createElement(“div”, { style: { fontSize: 10, color: C.muted, textTransform: “uppercase”, letterSpacing: “0.1em”, marginBottom: 10 } }, “Add Exercise”),
-React.createElement(“input”, { value: search, onChange: e => setSearch(e.target.value), placeholder: “Search to add…”, style: { width: “100%”, padding: “10px 14px”, borderRadius: 10, background: C.input, border: `1px solid ${C.inputBorder}`, color: C.text, fontSize: 13, outline: “none”, fontFamily: “inherit”, marginBottom: 8 } }),
-search.length > 0 && (React.createElement(“div”, { style: { display: “flex”, flexDirection: “column”, gap: 5 } }, LIBRARY.filter(ex => !exList.some(e => e.name === ex.name) && (ex.name.toLowerCase().includes(search.toLowerCase()) || ex.group.toLowerCase().includes(search.toLowerCase()))).slice(0, 8).map(ex => (React.createElement(“div”, { key: ex.name, onClick: () => addEx(ex), style: { padding: “9px 12px”, borderRadius: 10, background: C.card, border: `1px solid ${C.cardBorder}`, cursor: “pointer”, display: “flex”, justifyContent: “space-between”, alignItems: “center” } },
-React.createElement(“div”, null,
-React.createElement(“div”, { style: { fontSize: 13, fontWeight: 600, color: C.text } }, ex.name),
-React.createElement(“div”, { style: { fontSize: 11, color: C.muted } },
-ex.group,
-“ \u00B7 “,
-ex.sets,
-“\u00D7”,
-ex.reps)),
-React.createElement(“div”, { style: { fontSize: 16, color: color, fontWeight: 700 } }, “+”)))))),
-React.createElement(“button”, { onClick: () => setExList([…WORKOUT_PLANS[planName].exercises]), style: { marginTop: 20, width: “100%”, padding: “11px”, borderRadius: 10, background: “transparent”, border: `1px solid ${C.btnBorder}`, color: C.muted, fontSize: 12, cursor: “pointer” } }, “\u21BA Reset to default”))));
+    const C = useC();
+    const plan = WORKOUT_PLANS[planName];
+    const color = (plan === null || plan === void 0 ? void 0 : plan.color) || "#FF6B35";
+    const [exList, setExList] = useState([...exercises]);
+    const [swappingIdx, setSwappingIdx] = useState(null); // index being swapped
+    const [search, setSearch] = useState("");
+    const filteredLib = LIBRARY.filter(ex => !exList.some(e => e.name === ex.name) &&
+        (search === "" || ex.name.toLowerCase().includes(search.toLowerCase()) || ex.group.toLowerCase().includes(search.toLowerCase())));
+    const removeEx = (idx) => setExList(prev => prev.filter((_, i) => i !== idx));
+    const swapEx = (idx, newEx) => {
+        setExList(prev => prev.map((e, i) => i === idx
+            ? { name: newEx.name, sets: newEx.sets, reps: newEx.reps, muscle: newEx.group }
+            : e));
+        setSwappingIdx(null);
+        setSearch("");
+    };
+    const addEx = (ex) => {
+        setExList(prev => [...prev, { name: ex.name, sets: ex.sets, reps: ex.reps, muscle: ex.group }]);
+        setSearch("");
+    };
+    return (React.createElement("div", { style: { position: "fixed", inset: 0, background: C.surface, zIndex: 300, display: "flex", flexDirection: "column", maxWidth: 420, margin: "0 auto" } },
+        React.createElement("div", { style: { padding: "52px 24px 16px", borderBottom: `1px solid ${C.border}`, flexShrink: 0 } },
+            React.createElement("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "flex-start" } },
+                React.createElement("div", null,
+                    React.createElement("div", { style: { fontSize: 10, color: C.muted, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 4 } }, "Edit Plan"),
+                    React.createElement("div", { style: { fontSize: 24, fontWeight: 800, color: color } }, planName)),
+                React.createElement("div", { style: { display: "flex", gap: 8 } },
+                    React.createElement("button", { onClick: () => { onSave(exList); onClose(); }, style: { padding: "8px 16px", borderRadius: 10, background: color, border: "none", color: "#000", fontSize: 13, fontWeight: 700, cursor: "pointer" } }, "Save"),
+                    React.createElement("button", { onClick: onClose, style: { width: 36, height: 36, borderRadius: 10, background: C.btnBg, border: `1px solid ${C.btnBorder}`, color: C.muted, fontSize: 18, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" } }, "\u2715")))),
+        React.createElement("div", { style: { flex: 1, overflowY: "auto", padding: "12px 24px 24px" } },
+            React.createElement("div", { style: { fontSize: 10, color: C.muted, textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 10 } },
+                "Exercises (",
+                exList.length,
+                ")"),
+            React.createElement("div", { style: { display: "flex", flexDirection: "column", gap: 7, marginBottom: 20 } }, exList.map((ex, idx) => (React.createElement("div", { key: idx },
+                React.createElement("div", { style: { background: C.card, borderRadius: 12, padding: "11px 14px", border: `1px solid ${swappingIdx === idx ? color + "66" : C.cardBorder}`, display: "flex", alignItems: "center", gap: 10 } },
+                    React.createElement("div", { style: { flex: 1 } },
+                        React.createElement("div", { style: { fontSize: 13, fontWeight: 600, color: C.text } }, ex.name),
+                        React.createElement("div", { style: { fontSize: 11, color: C.muted, marginTop: 2 } },
+                            ex.muscle,
+                            " \u00B7 ",
+                            ex.sets,
+                            " sets \u00D7 ",
+                            ex.reps)),
+                    React.createElement("button", { onClick: () => { setSwappingIdx(swappingIdx === idx ? null : idx); setSearch(""); }, style: { padding: "5px 10px", borderRadius: 8, background: swappingIdx === idx ? color + "22" : C.btnBg, border: `1px solid ${swappingIdx === idx ? color : C.btnBorder}`, color: swappingIdx === idx ? color : C.muted, fontSize: 11, cursor: "pointer", fontWeight: 600 } }, "\u21C4 Swap"),
+                    React.createElement("button", { onClick: () => removeEx(idx), style: { width: 28, height: 28, borderRadius: 8, background: "#F8717112", border: "1px solid #F8717133", color: "#F87171", fontSize: 14, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 } }, "\u2715")),
+                swappingIdx === idx && (React.createElement("div", { style: { background: C.deep, borderRadius: 12, padding: "10px 12px", border: `1px solid ${color}33`, marginTop: 4 } },
+                    React.createElement("input", { value: search, onChange: e => setSearch(e.target.value), placeholder: "Search exercises...", style: { width: "100%", padding: "8px 12px", borderRadius: 8, background: C.input, border: `1px solid ${C.inputBorder}`, color: C.text, fontSize: 13, outline: "none", fontFamily: "inherit", marginBottom: 8 } }),
+                    React.createElement("div", { style: { display: "flex", flexDirection: "column", gap: 5, maxHeight: 180, overflowY: "auto" } },
+                        filteredLib.slice(0, 12).map(ex => (React.createElement("div", { key: ex.name, onClick: () => swapEx(idx, ex), style: { padding: "8px 10px", borderRadius: 8, background: C.card, border: `1px solid ${C.cardBorder}`, cursor: "pointer", display: "flex", justifyContent: "space-between", alignItems: "center" } },
+                            React.createElement("div", null,
+                                React.createElement("div", { style: { fontSize: 12, fontWeight: 600, color: C.text } }, ex.name),
+                                React.createElement("div", { style: { fontSize: 10, color: C.muted } },
+                                    ex.group,
+                                    " \u00B7 ",
+                                    ex.sets,
+                                    "\u00D7",
+                                    ex.reps)),
+                            React.createElement("div", { style: { fontSize: 11, color: color, fontWeight: 700 } }, "\u21C4")))),
+                        filteredLib.length === 0 && React.createElement("div", { style: { fontSize: 12, color: C.muted, textAlign: "center", padding: "8px 0" } }, "No matches")))))))),
+            React.createElement("div", { style: { fontSize: 10, color: C.muted, textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 10 } }, "Add Exercise"),
+            React.createElement("input", { value: search, onChange: e => setSearch(e.target.value), placeholder: "Search to add...", style: { width: "100%", padding: "10px 14px", borderRadius: 10, background: C.input, border: `1px solid ${C.inputBorder}`, color: C.text, fontSize: 13, outline: "none", fontFamily: "inherit", marginBottom: 8 } }),
+            search.length > 0 && (React.createElement("div", { style: { display: "flex", flexDirection: "column", gap: 5 } }, LIBRARY.filter(ex => !exList.some(e => e.name === ex.name) && (ex.name.toLowerCase().includes(search.toLowerCase()) || ex.group.toLowerCase().includes(search.toLowerCase()))).slice(0, 8).map(ex => (React.createElement("div", { key: ex.name, onClick: () => addEx(ex), style: { padding: "9px 12px", borderRadius: 10, background: C.card, border: `1px solid ${C.cardBorder}`, cursor: "pointer", display: "flex", justifyContent: "space-between", alignItems: "center" } },
+                React.createElement("div", null,
+                    React.createElement("div", { style: { fontSize: 13, fontWeight: 600, color: C.text } }, ex.name),
+                    React.createElement("div", { style: { fontSize: 11, color: C.muted } },
+                        ex.group,
+                        " \u00B7 ",
+                        ex.sets,
+                        "\u00D7",
+                        ex.reps)),
+                React.createElement("div", { style: { fontSize: 16, color: color, fontWeight: 700 } }, "+")))))),
+            React.createElement("button", { onClick: () => setExList([...WORKOUT_PLANS[planName].exercises]), style: { marginTop: 20, width: "100%", padding: "11px", borderRadius: 10, background: "transparent", border: `1px solid ${C.btnBorder}`, color: C.muted, fontSize: 12, cursor: "pointer" } }, "\u21BA Reset to default"))));
 }
 function WelcomeScreen({ onComplete }) {
-var _a;
-const [name, setName] = useState(””);
-const [days, setDays] = useState(3);
-const [goal, setGoal] = useState(“Build Muscle”);
-const [themeId, setThemeId] = useState(“solo”);
-const [step, setStep] = useState(1); // 1=name, 2=setup, 3=theme
-const [error, setError] = useState(””);
-const goals = [“Build Muscle”, “Lose Weight”, “Get Stronger”, “Stay Active”, “All of the Above”];
-const ANIME_THEMES = [“solo”, “pokemon”, “naruto”, “onepiece”, “dragonball”, “aot”];
-const OTHER_THEMES = [“greek”, “rpg”, “space”, “military”, “sports”];
-const submitName = () => { if (!name.trim()) {
-setError(“Enter your name to continue”);
-return;
-} setError(””); setStep(2); };
-const submitSetup = () => setStep(3);
-const submitTheme = () => onComplete({ name: name.trim(), goal, days, themeId });
-const accentColor = ((_a = APP_THEMES[themeId]) === null || _a === void 0 ? void 0 : _a.accent) || “#FF6B35”;
-return (React.createElement(“div”, { style: { minHeight: “100vh”, background: “#0A0A0A”, overflowY: “auto”, fontFamily: “‘DM Sans’,‘Helvetica Neue’,sans-serif”, maxWidth: 420, margin: “0 auto” } },
-React.createElement(“div”, { style: { padding: “60px 28px 120px” } },
-React.createElement(“div”, { style: { display: “flex”, justifyContent: “space-between”, alignItems: “flex-start”, marginBottom: 48 } },
-React.createElement(“div”, null,
-React.createElement(LevelUpLogo, { accent: “#FF6B35”, size: 1.2, showTagline: true })),
-step === 1 && (React.createElement(“button”, { onClick: submitName, style: { padding: “10px 20px”, borderRadius: 12, background: “#FF6B35”, border: “none”, color: “#000”, fontSize: 14, fontWeight: 800, cursor: “pointer”, marginTop: 4 } }, “Continue \u2192”)),
-step === 2 && (React.createElement(“button”, { onClick: submitSetup, style: { padding: “10px 20px”, borderRadius: 12, background: “#FF6B35”, border: “none”, color: “#000”, fontSize: 14, fontWeight: 800, cursor: “pointer”, marginTop: 4 } }, “Next \u2192”)),
-step === 3 && (React.createElement(“button”, { onClick: submitTheme, style: { padding: “10px 20px”, borderRadius: 12, background: accentColor, border: “none”, color: “#fff”, fontSize: 14, fontWeight: 800, cursor: “pointer”, marginTop: 4 } }, “Let’s Go \u2192”))),
-React.createElement(“div”, { style: { display: “flex”, gap: 6, marginBottom: 36 } }, [1, 2, 3].map(s => (React.createElement(“div”, { key: s, style: { height: 3, flex: 1, borderRadius: 2, background: s <= step ? “#FF6B35” : “#222”, transition: “background 0.3s” } })))),
-step === 1 && (React.createElement(React.Fragment, null,
-React.createElement(“div”, { style: { fontSize: 28, fontWeight: 800, color: “#F0EDE8”, letterSpacing: “-0.02em”, marginBottom: 8, lineHeight: 1.2 } }, “Welcome.”),
-React.createElement(“div”, { style: { fontSize: 14, color: “#555”, marginBottom: 40, lineHeight: 1.6 } }, “What should we call you?”),
-React.createElement(“input”, { value: name, onChange: e => { setName(e.target.value); setError(””); }, onKeyDown: e => e.key === “Enter” && submitName(), placeholder: “Your name”, autoFocus: true, style: { width: “100%”, padding: “16px 18px”, borderRadius: 14, background: “#141414”, border: `1.5px solid ${error ? "#F87171" : "#222"}`, color: “#F0EDE8”, fontSize: 18, outline: “none”, fontFamily: “inherit”, marginBottom: 8 } }),
-error && React.createElement(“div”, { style: { fontSize: 12, color: “#F87171”, marginBottom: 12 } }, error))),
-step === 2 && (React.createElement(React.Fragment, null,
-React.createElement(“div”, { style: { fontSize: 28, fontWeight: 800, color: “#F0EDE8”, letterSpacing: “-0.02em”, marginBottom: 8, lineHeight: 1.2 } },
-“Let’s set you up,”,
-React.createElement(“br”, null),
-React.createElement(“span”, { style: { color: “#FF6B35” } }, name),
-“.”),
-React.createElement(“div”, { style: { fontSize: 14, color: “#555”, marginBottom: 32, lineHeight: 1.6 } }, “A few quick settings \u2014 you can change these anytime.”),
-React.createElement(“div”, { style: { fontSize: 10, color: “#555”, textTransform: “uppercase”, letterSpacing: “0.1em”, marginBottom: 10 } }, “Your Goal”),
-React.createElement(“div”, { style: { display: “flex”, flexDirection: “column”, gap: 8, marginBottom: 28 } }, goals.map(g => (React.createElement(“button”, { key: g, onClick: () => setGoal(g), style: { padding: “12px 16px”, borderRadius: 12, cursor: “pointer”, textAlign: “left”, fontSize: 14, fontWeight: 600,
-background: goal === g ? “#FF6B3522” : “#141414”,
-border: `1.5px solid ${goal === g ? "#FF6B35" : "#222"}`,
-color: goal === g ? “#FF6B35” : “#666”, transition: “all 0.15s” } }, g)))),
-React.createElement(“div”, { style: { fontSize: 10, color: “#555”, textTransform: “uppercase”, letterSpacing: “0.1em”, marginBottom: 10 } }, “Days Per Week”),
-React.createElement(“div”, { style: { display: “flex”, gap: 8 } }, [2, 3, 4, 5, 6].map(d => (React.createElement(“button”, { key: d, onClick: () => setDays(d), style: { flex: 1, padding: “12px 0”, borderRadius: 12, cursor: “pointer”, fontSize: 15, fontWeight: 700,
-background: days === d ? “#FF6B3522” : “#141414”,
-border: `1.5px solid ${days === d ? "#FF6B35" : "#222"}`,
-color: days === d ? “#FF6B35” : “#555”, transition: “all 0.15s” } }, d)))))),
-step === 3 && (React.createElement(React.Fragment, null,
-React.createElement(“div”, { style: { fontSize: 28, fontWeight: 800, color: “#F0EDE8”, letterSpacing: “-0.02em”, marginBottom: 8, lineHeight: 1.2 } },
-“Choose your”,
-React.createElement(“br”, null),
-React.createElement(“span”, { style: { color: accentColor } }, “universe”),
-“.”),
-React.createElement(“div”, { style: { fontSize: 14, color: “#555”, marginBottom: 28, lineHeight: 1.6 } }, “This sets your rank names and colors. Change it anytime in Profile.”),
-React.createElement(“div”, { style: { fontSize: 10, color: “#444”, letterSpacing: “0.1em”, textTransform: “uppercase”, marginBottom: 10 } }, “Anime”),
-React.createElement(“div”, { style: { display: “flex”, flexDirection: “column”, gap: 8, marginBottom: 24 } }, ANIME_THEMES.map(id => {
-const theme = APP_THEMES[id];
-const isSelected = themeId === id;
-const topRank = theme.ranks[theme.ranks.length - 1];
-return (React.createElement(“button”, { key: id, onClick: () => setThemeId(id), style: { width: “100%”, padding: “12px 14px”, borderRadius: 14, cursor: “pointer”, textAlign: “left”,
-background: isSelected ? theme.accent + “22” : “#141414”,
-border: `1.5px solid ${isSelected ? theme.accent : "#222"}`,
-transition: “all 0.15s”, display: “flex”, alignItems: “center”, gap: 12 } },
-React.createElement(“div”, { style: { width: 4, height: 36, borderRadius: 4, background: theme.accent, flexShrink: 0 } }),
-React.createElement(“div”, { style: { flex: 1 } },
-React.createElement(“div”, { style: { display: “flex”, alignItems: “center”, gap: 8, marginBottom: 3 } },
-React.createElement(“span”, { style: { fontSize: 13, fontWeight: 700, color: isSelected ? theme.accent : “#DDD” } }, theme.name),
-React.createElement(“span”, { style: { fontSize: 9, padding: “2px 7px”, borderRadius: 6, background: theme.accent + “22”, color: theme.accent, border: `1px solid ${theme.accent}33`, fontWeight: 600 } }, theme.tag)),
-React.createElement(“div”, { style: { fontSize: 10, color: “#555” } },
-theme.ranks[0].title,
-“ \u2192 “,
-topRank.title)),
-isSelected && React.createElement(“div”, { style: { width: 8, height: 8, borderRadius: “50%”, background: theme.accent, flexShrink: 0 } })));
-})),
-React.createElement(“div”, { style: { fontSize: 10, color: “#444”, letterSpacing: “0.1em”, textTransform: “uppercase”, marginBottom: 10 } }, “Other”),
-React.createElement(“div”, { style: { display: “flex”, flexDirection: “column”, gap: 8 } }, OTHER_THEMES.map(id => {
-const theme = APP_THEMES[id];
-const isSelected = themeId === id;
-const allRanks = […(theme.ranks || []), …(theme.prestige || [])];
-const topRank = allRanks[allRanks.length - 1];
-return (React.createElement(“button”, { key: id, onClick: () => setThemeId(id), style: { width: “100%”, padding: “12px 14px”, borderRadius: 14, cursor: “pointer”, textAlign: “left”,
-background: isSelected ? theme.accent + “22” : “#141414”,
-border: `1.5px solid ${isSelected ? theme.accent : "#222"}`,
-transition: “all 0.15s”, display: “flex”, alignItems: “center”, gap: 12 } },
-React.createElement(“div”, { style: { width: 4, height: 36, borderRadius: 4, background: theme.accent, flexShrink: 0 } }),
-React.createElement(“div”, { style: { flex: 1 } },
-React.createElement(“div”, { style: { display: “flex”, alignItems: “center”, gap: 8, marginBottom: 3 } },
-React.createElement(“span”, { style: { fontSize: 13, fontWeight: 700, color: isSelected ? theme.accent : “#DDD” } }, theme.name),
-React.createElement(“span”, { style: { fontSize: 9, padding: “2px 7px”, borderRadius: 6, background: theme.accent + “22”, color: theme.accent, border: `1px solid ${theme.accent}33`, fontWeight: 600 } }, theme.tag)),
-React.createElement(“div”, { style: { fontSize: 10, color: “#555” } },
-theme.ranks[0].title,
-“ \u2192 “,
-topRank.title,
-theme.prestige ? “ · Prestige” : “”)),
-isSelected && React.createElement(“div”, { style: { width: 8, height: 8, borderRadius: “50%”, background: theme.accent, flexShrink: 0 } })));
-})))))));
+    var _a;
+    const [name, setName] = useState("");
+    const [days, setDays] = useState(3);
+    const [goal, setGoal] = useState("Build Muscle");
+    const [themeId, setThemeId] = useState("solo");
+    const [step, setStep] = useState(1); // 1=name, 2=setup, 3=theme
+    const [error, setError] = useState("");
+    const goals = ["Build Muscle", "Lose Weight", "Get Stronger", "Stay Active", "All of the Above"];
+    const ANIME_THEMES = ["solo", "pokemon", "naruto", "onepiece", "dragonball", "aot"];
+    const OTHER_THEMES = ["greek", "rpg", "space", "military", "sports"];
+    const submitName = () => { if (!name.trim()) {
+        setError("Enter your name to continue");
+        return;
+    } setError(""); setStep(2); };
+    const submitSetup = () => setStep(3);
+    const submitTheme = () => onComplete({ name: name.trim(), goal, days, themeId });
+    const accentColor = ((_a = APP_THEMES[themeId]) === null || _a === void 0 ? void 0 : _a.accent) || "#FF6B35";
+    return (React.createElement("div", { style: { minHeight: "100vh", background: "#0A0A0A", overflowY: "auto", fontFamily: "'DM Sans','Helvetica Neue',sans-serif", maxWidth: 420, margin: "0 auto" } },
+        React.createElement("div", { style: { padding: "60px 28px 120px" } },
+            React.createElement("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 48 } },
+                React.createElement("div", null,
+                    React.createElement(LevelUpLogo, { accent: "#FF6B35", size: 1.2, showTagline: true })),
+                step === 1 && (React.createElement("button", { onClick: submitName, style: { padding: "10px 20px", borderRadius: 12, background: "#FF6B35", border: "none", color: "#000", fontSize: 14, fontWeight: 800, cursor: "pointer", marginTop: 4 } }, "Continue \u2192")),
+                step === 2 && (React.createElement("button", { onClick: submitSetup, style: { padding: "10px 20px", borderRadius: 12, background: "#FF6B35", border: "none", color: "#000", fontSize: 14, fontWeight: 800, cursor: "pointer", marginTop: 4 } }, "Next \u2192")),
+                step === 3 && (React.createElement("button", { onClick: submitTheme, style: { padding: "10px 20px", borderRadius: 12, background: accentColor, border: "none", color: "#fff", fontSize: 14, fontWeight: 800, cursor: "pointer", marginTop: 4 } }, "Let's Go \u2192"))),
+            React.createElement("div", { style: { display: "flex", gap: 6, marginBottom: 36 } }, [1, 2, 3].map(s => (React.createElement("div", { key: s, style: { height: 3, flex: 1, borderRadius: 2, background: s <= step ? "#FF6B35" : "#222", transition: "background 0.3s" } })))),
+            step === 1 && (React.createElement(React.Fragment, null,
+                React.createElement("div", { style: { fontSize: 28, fontWeight: 800, color: "#F0EDE8", letterSpacing: "-0.02em", marginBottom: 8, lineHeight: 1.2 } }, "Welcome."),
+                React.createElement("div", { style: { fontSize: 14, color: "#555", marginBottom: 40, lineHeight: 1.6 } }, "What should we call you?"),
+                React.createElement("input", { value: name, onChange: e => { setName(e.target.value); setError(""); }, onKeyDown: e => e.key === "Enter" && submitName(), placeholder: "Your name", autoFocus: true, style: { width: "100%", padding: "16px 18px", borderRadius: 14, background: "#141414", border: `1.5px solid ${error ? "#F87171" : "#222"}`, color: "#F0EDE8", fontSize: 18, outline: "none", fontFamily: "inherit", marginBottom: 8 } }),
+                error && React.createElement("div", { style: { fontSize: 12, color: "#F87171", marginBottom: 12 } }, error))),
+            step === 2 && (React.createElement(React.Fragment, null,
+                React.createElement("div", { style: { fontSize: 28, fontWeight: 800, color: "#F0EDE8", letterSpacing: "-0.02em", marginBottom: 8, lineHeight: 1.2 } },
+                    "Let's set you up,",
+                    React.createElement("br", null),
+                    React.createElement("span", { style: { color: "#FF6B35" } }, name),
+                    "."),
+                React.createElement("div", { style: { fontSize: 14, color: "#555", marginBottom: 32, lineHeight: 1.6 } }, "A few quick settings \u2014 you can change these anytime."),
+                React.createElement("div", { style: { fontSize: 10, color: "#555", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 10 } }, "Your Goal"),
+                React.createElement("div", { style: { display: "flex", flexDirection: "column", gap: 8, marginBottom: 28 } }, goals.map(g => (React.createElement("button", { key: g, onClick: () => setGoal(g), style: { padding: "12px 16px", borderRadius: 12, cursor: "pointer", textAlign: "left", fontSize: 14, fontWeight: 600,
+                        background: goal === g ? "#FF6B3522" : "#141414",
+                        border: `1.5px solid ${goal === g ? "#FF6B35" : "#222"}`,
+                        color: goal === g ? "#FF6B35" : "#666", transition: "all 0.15s" } }, g)))),
+                React.createElement("div", { style: { fontSize: 10, color: "#555", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 10 } }, "Days Per Week"),
+                React.createElement("div", { style: { display: "flex", gap: 8 } }, [2, 3, 4, 5, 6].map(d => (React.createElement("button", { key: d, onClick: () => setDays(d), style: { flex: 1, padding: "12px 0", borderRadius: 12, cursor: "pointer", fontSize: 15, fontWeight: 700,
+                        background: days === d ? "#FF6B3522" : "#141414",
+                        border: `1.5px solid ${days === d ? "#FF6B35" : "#222"}`,
+                        color: days === d ? "#FF6B35" : "#555", transition: "all 0.15s" } }, d)))))),
+            step === 3 && (React.createElement(React.Fragment, null,
+                React.createElement("div", { style: { fontSize: 28, fontWeight: 800, color: "#F0EDE8", letterSpacing: "-0.02em", marginBottom: 8, lineHeight: 1.2 } },
+                    "Choose your",
+                    React.createElement("br", null),
+                    React.createElement("span", { style: { color: accentColor } }, "universe"),
+                    "."),
+                React.createElement("div", { style: { fontSize: 14, color: "#555", marginBottom: 28, lineHeight: 1.6 } }, "This sets your rank names and colors. Change it anytime in Profile."),
+                React.createElement("div", { style: { fontSize: 10, color: "#444", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 10 } }, "Anime"),
+                React.createElement("div", { style: { display: "flex", flexDirection: "column", gap: 8, marginBottom: 24 } }, ANIME_THEMES.map(id => {
+                    const theme = APP_THEMES[id];
+                    const isSelected = themeId === id;
+                    const topRank = theme.ranks[theme.ranks.length - 1];
+                    return (React.createElement("button", { key: id, onClick: () => setThemeId(id), style: { width: "100%", padding: "12px 14px", borderRadius: 14, cursor: "pointer", textAlign: "left",
+                            background: isSelected ? theme.accent + "22" : "#141414",
+                            border: `1.5px solid ${isSelected ? theme.accent : "#222"}`,
+                            transition: "all 0.15s", display: "flex", alignItems: "center", gap: 12 } },
+                        React.createElement("div", { style: { width: 4, height: 36, borderRadius: 4, background: theme.accent, flexShrink: 0 } }),
+                        React.createElement("div", { style: { flex: 1 } },
+                            React.createElement("div", { style: { display: "flex", alignItems: "center", gap: 8, marginBottom: 3 } },
+                                React.createElement("span", { style: { fontSize: 13, fontWeight: 700, color: isSelected ? theme.accent : "#DDD" } }, theme.name),
+                                React.createElement("span", { style: { fontSize: 9, padding: "2px 7px", borderRadius: 6, background: theme.accent + "22", color: theme.accent, border: `1px solid ${theme.accent}33`, fontWeight: 600 } }, theme.tag)),
+                            React.createElement("div", { style: { fontSize: 10, color: "#555" } },
+                                theme.ranks[0].title,
+                                " \u2192 ",
+                                topRank.title)),
+                        isSelected && React.createElement("div", { style: { width: 8, height: 8, borderRadius: "50%", background: theme.accent, flexShrink: 0 } })));
+                })),
+                React.createElement("div", { style: { fontSize: 10, color: "#444", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 10 } }, "Other"),
+                React.createElement("div", { style: { display: "flex", flexDirection: "column", gap: 8 } }, OTHER_THEMES.map(id => {
+                    const theme = APP_THEMES[id];
+                    const isSelected = themeId === id;
+                    const allRanks = [...(theme.ranks || []), ...(theme.prestige || [])];
+                    const topRank = allRanks[allRanks.length - 1];
+                    return (React.createElement("button", { key: id, onClick: () => setThemeId(id), style: { width: "100%", padding: "12px 14px", borderRadius: 14, cursor: "pointer", textAlign: "left",
+                            background: isSelected ? theme.accent + "22" : "#141414",
+                            border: `1.5px solid ${isSelected ? theme.accent : "#222"}`,
+                            transition: "all 0.15s", display: "flex", alignItems: "center", gap: 12 } },
+                        React.createElement("div", { style: { width: 4, height: 36, borderRadius: 4, background: theme.accent, flexShrink: 0 } }),
+                        React.createElement("div", { style: { flex: 1 } },
+                            React.createElement("div", { style: { display: "flex", alignItems: "center", gap: 8, marginBottom: 3 } },
+                                React.createElement("span", { style: { fontSize: 13, fontWeight: 700, color: isSelected ? theme.accent : "#DDD" } }, theme.name),
+                                React.createElement("span", { style: { fontSize: 9, padding: "2px 7px", borderRadius: 6, background: theme.accent + "22", color: theme.accent, border: `1px solid ${theme.accent}33`, fontWeight: 600 } }, theme.tag)),
+                            React.createElement("div", { style: { fontSize: 10, color: "#555" } },
+                                theme.ranks[0].title,
+                                " \u2192 ",
+                                topRank.title,
+                                theme.prestige ? " · Prestige" : "")),
+                        isSelected && React.createElement("div", { style: { width: 8, height: 8, borderRadius: "50%", background: theme.accent, flexShrink: 0 } })));
+                })))))));
 }
 function WorkoutApp() {
-var _a, _b;
-const [storageReady, setStorageReady] = useState(false);
-const [showSplash, setShowSplash] = useState(false); // starts false, set true after load or after welcome
-const [showWelcome, setShowWelcome] = useState(false);
-// ── PERSISTENT STATE ──────────────────────────────────────────────────────
-const [daysPerWeek, setDaysPerWeek] = useState(3);
-const [themeId, setThemeId] = useState(“solo”);
-const [intensity, setIntensity] = useState(“Moderate”);
-const [totalXP, setTotalXP] = useState(0);
-const [profile, setProfile] = useState({ name: “Jesse”, weight: “”, height: “”, age: “”, chest: “”, waist: “”, arms: “”, shoulders: “” });
-const [checkIns, setCheckIns] = useState([]);
-const [xpEvents, setXpEvents] = useState([]);
-const [cardioHistory, setCardioHistory] = useState([]);
-const [exercisePRs, setExercisePRs] = useState({});
-const [workoutHistory, setWorkoutHistory] = useState([]);
-const [customSchedule, setCustomSchedule] = useState(() => generateSchedule(3));
-const [currentWeekKey, setCurrentWeekKey] = useState(() => getISOWeek(new Date()));
-// Load from storage on mount
-useEffect(() => {
-(async () => {
-try {
-const keys = [“daysPerWeek”, “themeId”, “intensity”, “totalXP”, “profile”, “checkIns”, “xpEvents”, “cardioHistory”, “exercisePRs”, “workoutHistory”, “customSchedule”, “currentWeekKey”];
-const setters = { daysPerWeek: setDaysPerWeek, themeId: setThemeId, intensity: setIntensity, totalXP: setTotalXP, profile: setProfile, checkIns: setCheckIns, xpEvents: setXpEvents, cardioHistory: setCardioHistory, exercisePRs: setExercisePRs, workoutHistory: setWorkoutHistory, customSchedule: setCustomSchedule, currentWeekKey: setCurrentWeekKey };
-let hasProfile = false;
-for (const key of keys) {
-try {
-const res = localStorage.getItem(`jbr:${key}`);
-if (res) {
-setters[key](JSON.parse(res));
-if (key === “profile”)
-hasProfile = true;
-}
-}
-catch (e) { }
-}
-// First-time user — show welcome, no splash yet
-if (!hasProfile) {
-setShowWelcome(true);
-}
-else {
-// Returning user — show daily quote splash
-setShowSplash(true);
-}
-}
-catch (e) { }
-setStorageReady(true);
-})();
-}, []);
-// Save to storage whenever persistent state changes
-const save = async (key, value) => {
-try {
-localStorage.setItem(`jbr:${key}`, JSON.stringify(value));
-}
-catch (e) { }
-};
-useEffect(() => { if (storageReady)
-save(“daysPerWeek”, daysPerWeek); }, [daysPerWeek, storageReady]);
-useEffect(() => { if (storageReady)
-save(“themeId”, themeId); }, [themeId, storageReady]);
-useEffect(() => { if (storageReady)
-save(“intensity”, intensity); }, [intensity, storageReady]);
-useEffect(() => { if (storageReady)
-save(“totalXP”, totalXP); }, [totalXP, storageReady]);
-useEffect(() => { if (storageReady)
-save(“profile”, profile); }, [profile, storageReady]);
-useEffect(() => { if (storageReady)
-save(“checkIns”, checkIns); }, [checkIns, storageReady]);
-useEffect(() => { if (storageReady)
-save(“xpEvents”, xpEvents); }, [xpEvents, storageReady]);
-useEffect(() => { if (storageReady)
-save(“cardioHistory”, cardioHistory); }, [cardioHistory, storageReady]);
-useEffect(() => { if (storageReady)
-save(“exercisePRs”, exercisePRs); }, [exercisePRs, storageReady]);
-useEffect(() => { if (storageReady)
-save(“workoutHistory”, workoutHistory); }, [workoutHistory, storageReady]);
-useEffect(() => { if (storageReady)
-save(“customSchedule”, customSchedule); }, [customSchedule, storageReady]);
-useEffect(() => { if (storageReady)
-save(“currentWeekKey”, currentWeekKey); }, [currentWeekKey, storageReady]);
-const TH = APP_THEMES[themeId] || APP_THEMES.solo;
-const C = getC(TH);
-_C = C; // update module-level context for child components
-// Settings
-const [showSettings, setShowSettings] = useState(false);
-// Workout session (not persisted — resets each session)
-const [activeTab, setActiveTab] = useState(“home”);
-const [selectedWorkout, setSelectedWorkout] = useState(null);
-const [completedSets, setCompletedSets] = useState({});
-const [setLogs, setSetLogs] = useState({});
-const [workoutPhase, setWorkoutPhase] = useState(“stretch”);
-const [workoutActive, setWorkoutActive] = useState(false);
-const [workoutTimer, setWorkoutTimer] = useState(0);
-const [workoutEquipment, setWorkoutEquipment] = useState(“gym”);
-const [cardioMode, setCardioMode] = useState(false);
-const [manualNote, setManualNote] = useState(””);
-const [noteSearch, setNoteSearch] = useState(””);
-const [showNoteSuggestions, setShowNoteSuggestions] = useState(false);
-const [noteExpanded, setNoteExpanded] = useState(false);
-// Library
-const [libMode, setLibMode] = useState(“exercises”);
-const [ptArea, setPtArea] = useState(null);
-const [ptSection, setPtSection] = useState(“stretches”);
-const [libFilter, setLibFilter] = useState(“All”);
-const [libEquipment, setLibEquipment] = useState(“Any”);
-const [libSearch, setLibSearch] = useState(””);
-const [checked, setChecked] = useState({});
-const [showFilters, setShowFilters] = useState(false);
-const [customExercises, setCustomExercises] = useState([]);
-const [setCountOverrides, setSetCountOverrides] = useState({});
+    var _a, _b;
+    const [storageReady, setStorageReady] = useState(false);
+    const [showSplash, setShowSplash] = useState(false); // starts false, set true after load or after welcome
+    const [showWelcome, setShowWelcome] = useState(false);
+    // ── PERSISTENT STATE ──────────────────────────────────────────────────────
+    const [daysPerWeek, setDaysPerWeek] = useState(3);
+    const [themeId, setThemeId] = useState("solo");
+    const [intensity, setIntensity] = useState("Moderate");
+    const [totalXP, setTotalXP] = useState(0);
+    const [profile, setProfile] = useState({ name: "Jesse", weight: "", height: "", age: "", chest: "", waist: "", arms: "", shoulders: "" });
+    const [checkIns, setCheckIns] = useState([]);
+    const [xpEvents, setXpEvents] = useState([]);
+    const [cardioHistory, setCardioHistory] = useState([]);
+    const [exercisePRs, setExercisePRs] = useState({});
+    const [workoutHistory, setWorkoutHistory] = useState([]);
+    const [customSchedule, setCustomSchedule] = useState(() => generateSchedule(3));
+    const [currentWeekKey, setCurrentWeekKey] = useState(() => getISOWeek(new Date()));
+    // Load from storage on mount
+    useEffect(() => {
+        (async () => {
+            try {
+                const keys = ["daysPerWeek", "themeId", "intensity", "totalXP", "profile", "checkIns", "xpEvents", "cardioHistory", "exercisePRs", "workoutHistory", "customSchedule", "currentWeekKey"];
+                const setters = { daysPerWeek: setDaysPerWeek, themeId: setThemeId, intensity: setIntensity, totalXP: setTotalXP, profile: setProfile, checkIns: setCheckIns, xpEvents: setXpEvents, cardioHistory: setCardioHistory, exercisePRs: setExercisePRs, workoutHistory: setWorkoutHistory, customSchedule: setCustomSchedule, currentWeekKey: setCurrentWeekKey };
+                let hasProfile = false;
+                for (const key of keys) {
+                    try {
+                        const res = localStorage.getItem(`jbr:${key}`);
+                        if (res) {
+                            setters[key](JSON.parse(res));
+                            if (key === "profile")
+                                hasProfile = true;
+                        }
+                    }
+                    catch (e) { }
+                }
+                // First-time user — show welcome, no splash yet
+                if (!hasProfile) {
+                    setShowWelcome(true);
+                }
+                else {
+                    // Returning user — show daily quote splash
+                    setShowSplash(true);
+                }
+            }
+            catch (e) { }
+            setStorageReady(true);
+        })();
+    }, []);
+    // Save to storage whenever persistent state changes
+    const save = async (key, value) => {
+        try {
+            localStorage.setItem(`jbr:${key}`, JSON.stringify(value));
+        }
+        catch (e) { }
+    };
+    useEffect(() => { if (storageReady)
+        save("daysPerWeek", daysPerWeek); }, [daysPerWeek, storageReady]);
+    useEffect(() => { if (storageReady)
+        save("themeId", themeId); }, [themeId, storageReady]);
+    useEffect(() => { if (storageReady)
+        save("intensity", intensity); }, [intensity, storageReady]);
+    useEffect(() => { if (storageReady)
+        save("totalXP", totalXP); }, [totalXP, storageReady]);
+    useEffect(() => { if (storageReady)
+        save("profile", profile); }, [profile, storageReady]);
+    useEffect(() => { if (storageReady)
+        save("checkIns", checkIns); }, [checkIns, storageReady]);
+    useEffect(() => { if (storageReady)
+        save("xpEvents", xpEvents); }, [xpEvents, storageReady]);
+    useEffect(() => { if (storageReady)
+        save("cardioHistory", cardioHistory); }, [cardioHistory, storageReady]);
+    useEffect(() => { if (storageReady)
+        save("exercisePRs", exercisePRs); }, [exercisePRs, storageReady]);
+    useEffect(() => { if (storageReady)
+        save("workoutHistory", workoutHistory); }, [workoutHistory, storageReady]);
+    useEffect(() => { if (storageReady)
+        save("customSchedule", customSchedule); }, [customSchedule, storageReady]);
+    useEffect(() => { if (storageReady)
+        save("currentWeekKey", currentWeekKey); }, [currentWeekKey, storageReady]);
+    const TH = APP_THEMES[themeId] || APP_THEMES.solo;
+    const C = getC(TH);
+    _C = C; // update module-level context for child components
+    // Settings
+    const [showSettings, setShowSettings] = useState(false);
+    // Workout session (not persisted — resets each session)
+    const [activeTab, setActiveTab] = useState("home");
+    const [selectedWorkout, setSelectedWorkout] = useState(null);
+    const [completedSets, setCompletedSets] = useState({});
+    const [setLogs, setSetLogs] = useState({});
+    const [workoutPhase, setWorkoutPhase] = useState("stretch");
+    const [workoutActive, setWorkoutActive] = useState(false);
+    const [workoutTimer, setWorkoutTimer] = useState(0);
+    const [workoutEquipment, setWorkoutEquipment] = useState("gym");
+    const [cardioMode, setCardioMode] = useState(false);
+    const [manualNote, setManualNote] = useState("");
+    const [noteSearch, setNoteSearch] = useState("");
+    const [showNoteSuggestions, setShowNoteSuggestions] = useState(false);
+    const [noteExpanded, setNoteExpanded] = useState(false);
+    // Library
+    const [libMode, setLibMode] = useState("exercises");
+    const [ptArea, setPtArea] = useState(null);
+    const [ptSection, setPtSection] = useState("stretches");
+    const [libFilter, setLibFilter] = useState("All");
+    const [libEquipment, setLibEquipment] = useState("Any");
+    const [libSearch, setLibSearch] = useState("");
+    const [checked, setChecked] = useState({});
+    const [showFilters, setShowFilters] = useState(false);
+    const [customExercises, setCustomExercises] = useState([]);
+    const [setCountOverrides, setSetCountOverrides] = useState({});
 
 ```
 const [activeGuidedWorkout, setActiveGuidedWorkout] = useState(null);
