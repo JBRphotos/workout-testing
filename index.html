@@ -49,15 +49,24 @@
   </div>
   <script>
     window.addEventListener('load', function() {
-      // Lock to portrait in PWA mode
-      if (screen.orientation && screen.orientation.lock) {
-        screen.orientation.lock('portrait').catch(function() {});
-      }
+      // Lock to portrait in PWA mode — silent fail if not supported
+      try {
+        if (screen.orientation && typeof screen.orientation.lock === 'function') {
+          screen.orientation.lock('portrait').catch(function() {});
+        }
+      } catch(e) {}
       setTimeout(function() {
         if (typeof React === 'undefined' || typeof ReactDOM === 'undefined') {
           document.getElementById('fallback').style.display = 'flex';
         }
       }, 2000);
+    });
+    // Show fallback if React crashes on load
+    window.addEventListener('error', function() {
+      var root = document.getElementById('root');
+      if (root && !root.hasChildNodes()) {
+        document.getElementById('fallback').style.display = 'flex';
+      }
     });
   </script>
   <script>const { useState, useRef, useEffect } = React;
