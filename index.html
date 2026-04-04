@@ -49,24 +49,12 @@
   </div>
   <script>
     window.addEventListener('load', function() {
-      // Lock to portrait in PWA mode — silent fail if not supported
-      try {
-        if (screen.orientation && typeof screen.orientation.lock === 'function') {
-          screen.orientation.lock('portrait').catch(function() {});
-        }
-      } catch(e) {}
+      try { if (screen.orientation && typeof screen.orientation.lock === 'function') { screen.orientation.lock('portrait').catch(function(){}); } } catch(e) {}
       setTimeout(function() {
         if (typeof React === 'undefined' || typeof ReactDOM === 'undefined') {
           document.getElementById('fallback').style.display = 'flex';
         }
       }, 2000);
-    });
-    // Show fallback if React crashes on load
-    window.addEventListener('error', function() {
-      var root = document.getElementById('root');
-      if (root && !root.hasChildNodes()) {
-        document.getElementById('fallback').style.display = 'flex';
-      }
     });
   </script>
   <script>const { useState, useRef, useEffect } = React;
@@ -620,15 +608,6 @@ const IC = {
     Active: (c, s = 22) => React.createElement("svg", { width: s, height: s, viewBox: "0 0 24 24", fill: "none", stroke: c, strokeWidth: "1.5", strokeLinecap: "round", strokeLinejoin: "round" },
         React.createElement("circle", { cx: "12", cy: "12", r: "9" }),
         React.createElement("polygon", { points: "10,8 16,12 10,16", fill: c })),
-    FullBody: (c, s = 22) => React.createElement("svg", { width: s, height: s, viewBox: "0 0 28 28", fill: "none", stroke: c, strokeWidth: "1.5", strokeLinecap: "round", strokeLinejoin: "round" },
-        React.createElement("circle", { cx: "14", cy: "4", r: "2.2" }),
-        React.createElement("line", { x1: "14", y1: "6.2", x2: "14", y2: "13" }),
-        React.createElement("line", { x1: "14", y1: "9", x2: "7", y2: "7" }),
-        React.createElement("line", { x1: "14", y1: "9", x2: "21", y2: "7" }),
-        React.createElement("line", { x1: "14", y1: "13", x2: "10", y2: "20" }),
-        React.createElement("line", { x1: "14", y1: "13", x2: "18", y2: "20" }),
-        React.createElement("line", { x1: "10", y1: "20", x2: "8", y2: "26" }),
-        React.createElement("line", { x1: "18", y1: "20", x2: "20", y2: "26" })),
     Library: (c, s = 22) => React.createElement("svg", { width: s, height: s, viewBox: "0 0 24 24", fill: "none", stroke: c, strokeWidth: "1.5", strokeLinecap: "round", strokeLinejoin: "round" },
         React.createElement("rect", { x: "3", y: "4", width: "4", height: "16", rx: "1" }),
         React.createElement("rect", { x: "10", y: "4", width: "4", height: "16", rx: "1" }),
@@ -717,9 +696,8 @@ function LevelUpLogo({ accent = "#5B4FE8", size = 1, showTagline = true }) {
 // Map plan names to icon keys
 const PLAN_ICON = {
     Push: "Push", Pull: "Pull", Legs: "Legs",
-    "Full Body": "FullBody",
+    "Full Body": "Active", "Bodyweight Full Body": "Active",
     "Bodyweight Push": "Push", "Bodyweight Pull": "Pull", "Bodyweight Legs": "Legs",
-    "Bodyweight Full Body": "FullBody",
     Rest: "Rest", Custom: "Active",
 };
 // ── THEMES ────────────────────────────────────────────────────────────────────
@@ -1070,29 +1048,29 @@ const PT_AREAS = [
 // Each stretch: name, duration (sec), target muscle(s), cue, applicable days
 const ALL_STRETCHES = [
     // PUSH stretches
-    { name: "Chest Doorway Stretch", dur: 30, muscles: ["Chest", "Front Delts"], cue: "Place forearms on a doorframe, lean forward until you feel a deep chest stretch. Keep shoulders down.", days: ["Push", "Full Body", "Bodyweight Push", "Bodyweight Full Body"] },
-    { name: "Cross-Body Shoulder", dur: 30, muscles: ["Rear Delts", "Shoulders"], cue: "Pull one arm across your chest with the opposite hand. Keep shoulder blades level.", days: ["Push", "Full Body", "Bodyweight Push", "Bodyweight Full Body"] },
-    { name: "Tricep Overhead Stretch", dur: 30, muscles: ["Triceps"], cue: "Raise one arm, bend at elbow behind your head. Use opposite hand to gently push elbow back.", days: ["Push", "Full Body", "Bodyweight Push", "Bodyweight Full Body"] },
-    { name: "Neck Side Tilt", dur: 20, muscles: ["Traps", "Neck"], cue: "Tilt your head toward one shoulder, let gravity do the work. Don't force it.", days: ["Push", "Pull", "Full Body", "Bodyweight Push", "Bodyweight Pull", "Bodyweight Full Body"] },
-    { name: "Wall Pec Stretch", dur: 30, muscles: ["Chest"], cue: "Place one hand on a wall at shoulder height, rotate your body away until you feel the stretch across your chest.", days: ["Push", "Full Body", "Bodyweight Push", "Bodyweight Full Body"] },
+    { name: "Chest Doorway Stretch", dur: 30, muscles: ["Chest", "Front Delts"], cue: "Place forearms on a doorframe, lean forward until you feel a deep chest stretch. Keep shoulders down.", days: ["Push", "Bodyweight Push"] },
+    { name: "Cross-Body Shoulder", dur: 30, muscles: ["Rear Delts", "Shoulders"], cue: "Pull one arm across your chest with the opposite hand. Keep shoulder blades level.", days: ["Push", "Bodyweight Push"] },
+    { name: "Tricep Overhead Stretch", dur: 30, muscles: ["Triceps"], cue: "Raise one arm, bend at elbow behind your head. Use opposite hand to gently push elbow back.", days: ["Push", "Bodyweight Push"] },
+    { name: "Neck Side Tilt", dur: 20, muscles: ["Traps", "Neck"], cue: "Tilt your head toward one shoulder, let gravity do the work. Don't force it.", days: ["Push", "Pull", "Bodyweight Push", "Bodyweight Pull"] },
+    { name: "Wall Pec Stretch", dur: 30, muscles: ["Chest"], cue: "Place one hand on a wall at shoulder height, rotate your body away until you feel the stretch across your chest.", days: ["Push", "Bodyweight Push"] },
     // PULL stretches
-    { name: "Lat Hang", dur: 30, muscles: ["Lats", "Back"], cue: "Hang from a bar with both hands. Let your body weight stretch your lats. Slight hollow body position.", days: ["Pull", "Full Body", "Bodyweight Pull", "Bodyweight Full Body"] },
-    { name: "Child's Pose", dur: 40, muscles: ["Lats", "Back", "Shoulders"], cue: "Sit back on your heels, arms extended forward. Walk hands out as far as comfortable. Breathe deeply.", days: ["Pull", "Full Body", "Bodyweight Pull", "Bodyweight Full Body"] },
-    { name: "Doorway Bicep Stretch", dur: 25, muscles: ["Biceps"], cue: "Place palm flat on wall behind you at shoulder height, arm straight. Rotate body away slowly.", days: ["Pull", "Full Body", "Bodyweight Pull", "Bodyweight Full Body"] },
+    { name: "Lat Hang", dur: 30, muscles: ["Lats", "Back"], cue: "Hang from a bar with both hands. Let your body weight stretch your lats. Slight hollow body position.", days: ["Pull", "Bodyweight Pull"] },
+    { name: "Child's Pose", dur: 40, muscles: ["Lats", "Back", "Shoulders"], cue: "Sit back on your heels, arms extended forward. Walk hands out as far as comfortable. Breathe deeply.", days: ["Pull", "Bodyweight Pull"] },
+    { name: "Doorway Bicep Stretch", dur: 25, muscles: ["Biceps"], cue: "Place palm flat on wall behind you at shoulder height, arm straight. Rotate body away slowly.", days: ["Pull", "Bodyweight Pull"] },
     { name: "Cat-Cow", dur: 40, muscles: ["Back", "Core"], cue: "On all fours — arch your back up (cat), then dip it down and lift chest (cow). Move with your breath.", days: ["Pull", "Bodyweight Pull", "Legs", "Bodyweight Legs"] },
-    { name: "Thread the Needle", dur: 30, muscles: ["Mid Back", "Rear Delts"], cue: "On all fours, slide one arm under your body along the floor. Rest on your shoulder and breathe.", days: ["Pull", "Full Body", "Bodyweight Pull", "Bodyweight Full Body"] },
+    { name: "Thread the Needle", dur: 30, muscles: ["Mid Back", "Rear Delts"], cue: "On all fours, slide one arm under your body along the floor. Rest on your shoulder and breathe.", days: ["Pull", "Bodyweight Pull"] },
     // LEGS stretches
-    { name: "Hip Flexor Lunge", dur: 35, muscles: ["Hip Flexors", "Quads"], cue: "Drop into a low lunge, back knee on floor. Push hips forward and hold. Keep torso tall.", days: ["Legs", "Full Body", "Bodyweight Legs", "Bodyweight Full Body"] },
-    { name: "Standing Quad Stretch", dur: 25, muscles: ["Quads"], cue: "Stand on one leg, pull heel to glute. Keep knees together. Use a wall if needed for balance.", days: ["Legs", "Full Body", "Bodyweight Legs", "Bodyweight Full Body"] },
-    { name: "Seated Hamstring Stretch", dur: 35, muscles: ["Hamstrings"], cue: "Sit on floor with legs straight. Hinge from hips, reach toward feet. Keep back flat — don't round.", days: ["Legs", "Full Body", "Bodyweight Legs", "Bodyweight Full Body"] },
-    { name: "Pigeon Pose", dur: 45, muscles: ["Glutes", "Hip Flexors"], cue: "From a plank, bring one knee forward toward your wrist. Lower hips toward floor. Breathe and relax.", days: ["Legs", "Full Body", "Bodyweight Legs", "Bodyweight Full Body"] },
-    { name: "Calf Wall Stretch", dur: 30, muscles: ["Calves"], cue: "Place toes on a wall, heel on floor. Lean into the wall keeping leg straight. Feel the calf stretch.", days: ["Legs", "Full Body", "Bodyweight Legs", "Bodyweight Full Body"] },
-    { name: "Lying Glute Stretch", dur: 35, muscles: ["Glutes"], cue: "Lie on your back. Cross one ankle over the opposite knee. Pull the uncrossed leg toward your chest.", days: ["Legs", "Full Body", "Bodyweight Legs", "Bodyweight Full Body"] },
-    { name: "Adductor Squat Stretch", dur: 30, muscles: ["Inner Thighs", "Groin"], cue: "Wide stance squat position, elbows on inner knees. Gently push knees out and hold.", days: ["Legs", "Full Body", "Bodyweight Legs", "Bodyweight Full Body"] },
+    { name: "Hip Flexor Lunge", dur: 35, muscles: ["Hip Flexors", "Quads"], cue: "Drop into a low lunge, back knee on floor. Push hips forward and hold. Keep torso tall.", days: ["Legs", "Bodyweight Legs"] },
+    { name: "Standing Quad Stretch", dur: 25, muscles: ["Quads"], cue: "Stand on one leg, pull heel to glute. Keep knees together. Use a wall if needed for balance.", days: ["Legs", "Bodyweight Legs"] },
+    { name: "Seated Hamstring Stretch", dur: 35, muscles: ["Hamstrings"], cue: "Sit on floor with legs straight. Hinge from hips, reach toward feet. Keep back flat — don't round.", days: ["Legs", "Bodyweight Legs"] },
+    { name: "Pigeon Pose", dur: 45, muscles: ["Glutes", "Hip Flexors"], cue: "From a plank, bring one knee forward toward your wrist. Lower hips toward floor. Breathe and relax.", days: ["Legs", "Bodyweight Legs"] },
+    { name: "Calf Wall Stretch", dur: 30, muscles: ["Calves"], cue: "Place toes on a wall, heel on floor. Lean into the wall keeping leg straight. Feel the calf stretch.", days: ["Legs", "Bodyweight Legs"] },
+    { name: "Lying Glute Stretch", dur: 35, muscles: ["Glutes"], cue: "Lie on your back. Cross one ankle over the opposite knee. Pull the uncrossed leg toward your chest.", days: ["Legs", "Bodyweight Legs"] },
+    { name: "Adductor Squat Stretch", dur: 30, muscles: ["Inner Thighs", "Groin"], cue: "Wide stance squat position, elbows on inner knees. Gently push knees out and hold.", days: ["Legs", "Bodyweight Legs"] },
     // GENERAL / full body
-    { name: "Thoracic Rotation", dur: 30, muscles: ["Back", "Core"], cue: "Sit cross-legged, place one hand behind head. Rotate your elbow up toward the ceiling. Keep hips square.", days: ["Push", "Pull", "Legs", "Full Body", "Bodyweight Push", "Bodyweight Pull", "Bodyweight Legs", "Bodyweight Full Body"] },
-    { name: "Wrist Circles", dur: 20, muscles: ["Forearms", "Wrists"], cue: "Extend arms forward. Make large slow circles with both wrists — 5 each direction.", days: ["Push", "Pull", "Full Body", "Bodyweight Push", "Bodyweight Pull", "Bodyweight Full Body"] },
-    { name: "World's Greatest Stretch", dur: 45, muscles: ["Full Body"], cue: "From a lunge, place same-side hand on floor, rotate opposite arm to ceiling. Hold, then switch legs.", days: ["Push", "Pull", "Legs", "Full Body", "Bodyweight Push", "Bodyweight Pull", "Bodyweight Legs", "Bodyweight Full Body"] },
+    { name: "Thoracic Rotation", dur: 30, muscles: ["Back", "Core"], cue: "Sit cross-legged, place one hand behind head. Rotate your elbow up toward the ceiling. Keep hips square.", days: ["Push", "Pull", "Legs", "Bodyweight Push", "Bodyweight Pull", "Bodyweight Legs"] },
+    { name: "Wrist Circles", dur: 20, muscles: ["Forearms", "Wrists"], cue: "Extend arms forward. Make large slow circles with both wrists — 5 each direction.", days: ["Push", "Pull", "Bodyweight Push", "Bodyweight Pull"] },
+    { name: "World's Greatest Stretch", dur: 45, muscles: ["Full Body"], cue: "From a lunge, place same-side hand on floor, rotate opposite arm to ceiling. Hold, then switch legs.", days: ["Push", "Pull", "Legs", "Bodyweight Push", "Bodyweight Pull", "Bodyweight Legs"] },
 ];
 // ── FORM GUIDES ───────────────────────────────────────────────────────────────
 const FORM_GUIDES = {
@@ -1296,27 +1274,15 @@ const WORKOUT_PLANS = {
             { name: "Barbell Row", sets: 3, reps: "8-10", muscle: "Back" },
             { name: "Overhead Press", sets: 3, reps: "8-10", muscle: "Shoulders" },
             { name: "Romanian Deadlift", sets: 3, reps: "10-12", muscle: "Hamstrings" },
-        ],
-        accessoryOptions: [
-            [
-                { name: "Hammer Curls", sets: 2, reps: "12-15", muscle: "Biceps" },
-                { name: "Tricep Pushdowns", sets: 2, reps: "12-15", muscle: "Triceps" },
-            ],
-            [
-                { name: "Cable Curl", sets: 2, reps: "12-15", muscle: "Biceps" },
-                { name: "Skull Crushers", sets: 2, reps: "10-12", muscle: "Triceps" },
-            ],
-            [
-                { name: "Preacher Curl", sets: 2, reps: "10-12", muscle: "Biceps" },
-                { name: "Overhead Tricep Ext", sets: 2, reps: "12-15", muscle: "Triceps" },
-            ],
-        ],
-        coreOptions: [
+        ], accessoryOptions: [
+            [{ name: "Hammer Curls", sets: 2, reps: "12-15", muscle: "Biceps" }, { name: "Tricep Pushdowns", sets: 2, reps: "12-15", muscle: "Triceps" }],
+            [{ name: "Cable Curl", sets: 2, reps: "12-15", muscle: "Biceps" }, { name: "Skull Crushers", sets: 2, reps: "10-12", muscle: "Triceps" }],
+            [{ name: "Preacher Curl", sets: 2, reps: "10-12", muscle: "Biceps" }, { name: "Overhead Tricep Ext", sets: 2, reps: "12-15", muscle: "Triceps" }],
+        ], coreOptions: [
             { name: "Plank", sets: 3, reps: "45 sec", muscle: "Core" },
             { name: "Dead Bug", sets: 3, reps: "10 ea", muscle: "Core" },
             { name: "Ab Wheel Rollout", sets: 3, reps: "10-12", muscle: "Core" },
-        ],
-    },
+        ] },
     "Bodyweight Full Body": { icon: "FB", color: "#52E3A0", badge: "BW", exercises: [
             { name: "Bodyweight Squat", sets: 3, reps: "15-20", muscle: "Quads/Glutes" },
             { name: "Push-Ups", sets: 3, reps: "12-15", muscle: "Chest/Triceps" },
@@ -1324,27 +1290,15 @@ const WORKOUT_PLANS = {
             { name: "Jump Squat", sets: 3, reps: "10-12", muscle: "Power/Legs" },
             { name: "Pike Push-Ups", sets: 3, reps: "10-12", muscle: "Shoulders" },
             { name: "Glute Bridge", sets: 3, reps: "15-20", muscle: "Glutes/Hams" },
-        ],
-        accessoryOptions: [
-            [
-                { name: "Diamond Push-Ups", sets: 2, reps: "10-12", muscle: "Triceps" },
-                { name: "Chin-Ups", sets: 2, reps: "8-10", muscle: "Biceps/Back" },
-            ],
-            [
-                { name: "Dips", sets: 2, reps: "10-12", muscle: "Chest/Triceps" },
-                { name: "Hammer Curls", sets: 2, reps: "12-15", muscle: "Biceps" },
-            ],
-            [
-                { name: "Archer Push-Ups", sets: 2, reps: "6-8 ea", muscle: "Chest" },
-                { name: "Wide-Grip Pull-Ups", sets: 2, reps: "6-8", muscle: "Lats" },
-            ],
-        ],
-        coreOptions: [
+        ], accessoryOptions: [
+            [{ name: "Diamond Push-Ups", sets: 2, reps: "10-12", muscle: "Triceps" }, { name: "Chin-Ups", sets: 2, reps: "8-10", muscle: "Biceps/Back" }],
+            [{ name: "Dips", sets: 2, reps: "10-12", muscle: "Chest/Triceps" }, { name: "Hammer Curls", sets: 2, reps: "12-15", muscle: "Biceps" }],
+            [{ name: "Archer Push-Ups", sets: 2, reps: "6-8 ea", muscle: "Chest" }, { name: "Wide-Grip Pull-Ups", sets: 2, reps: "6-8", muscle: "Lats" }],
+        ], coreOptions: [
             { name: "Mountain Climbers", sets: 3, reps: "30 sec", muscle: "Core/Cardio" },
             { name: "Plank", sets: 3, reps: "45 sec", muscle: "Core" },
             { name: "Dead Bug", sets: 3, reps: "10 ea", muscle: "Core" },
-        ],
-    },
+        ] },
 };
 // ── LIBRARY ──────────────────────────────────────────────────────────────────
 const LIBRARY = [
@@ -4335,24 +4289,7 @@ const activePlan = selectedWorkout === "Custom"
     : WORKOUT_PLANS[selectedWorkout];
 const activeColor = (activePlan === null || activePlan === void 0 ? void 0 : activePlan.color) || "#FF6B35";
 // Helper — get effective exercises for a plan (respecting user overrides)
-const getPlanExercises = (planName) => {
-    try {
-        const plan = WORKOUT_PLANS[planName];
-        if (!plan) return [];
-        const base = plan.exercises || [];
-        if (!plan.accessoryOptions && !plan.coreOptions) return base;
-        const isoWeek = parseInt((getISOWeek(new Date()).split("-W")[1] || "1"));
-        const accessories = plan.accessoryOptions
-            ? plan.accessoryOptions[isoWeek % plan.accessoryOptions.length]
-            : [];
-        const core = plan.coreOptions
-            ? [plan.coreOptions[isoWeek % plan.coreOptions.length]]
-            : [];
-        return [...base, ...accessories, ...core];
-    } catch(e) {
-        return (WORKOUT_PLANS[planName] && WORKOUT_PLANS[planName].exercises) || [];
-    }
-};
+const getPlanExercises = (planName) => { try { var _a; var plan = WORKOUT_PLANS[planName]; if (!plan) return []; var base = plan.exercises || []; if (!plan.accessoryOptions && !plan.coreOptions) return base; var isoWeek = parseInt((getISOWeek(new Date()).split("-W")[1] || "1")); var accessories = plan.accessoryOptions ? plan.accessoryOptions[isoWeek % plan.accessoryOptions.length] : []; var core = plan.coreOptions ? [plan.coreOptions[isoWeek % plan.coreOptions.length]] : []; return [...base, ...accessories, ...core]; } catch(e) { return ((_a = WORKOUT_PLANS[planName]) === null || _a === void 0 ? void 0 : _a.exercises) || []; } };
 // For plan sessions, merge plan exercises with any appended library exercises
 const activeExercises = selectedWorkout === "Custom"
     ? customExercises
@@ -4720,10 +4657,7 @@ return (React.createElement("div", { style: { height: "100vh", background: TH.bg
             }, onCancel: () => setCardioMode(false) }))))),
     activeTab === "active" && selectedWorkout && (React.createElement("div", { style: { flex: 1, display: "flex", flexDirection: "column", overflow: "hidden", position: "relative", zIndex: 1 } },
         React.createElement("div", { style: { flexShrink: 0, padding: "48px 24px 12px" } },
-            React.createElement("button", { onClick: () => { setSelectedWorkout(null); setWorkoutActive(false); setCompletedSets({}); setSetLogs({}); setCustomExercises([]); setManualNote(""); }, style: { background: "none", border: "none", color: C.muted, cursor: "pointer", padding: "0 0 8px", fontSize: 13, display: "flex", alignItems: "center", gap: 4 } },
-                React.createElement("svg", { width: 14, height: 14, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round" },
-                    React.createElement("polyline", { points: "15 18 9 12 15 6" })),
-                "Back"),
+            React.createElement("button", { onClick: () => { setSelectedWorkout(null); setWorkoutActive(false); setCompletedSets({}); setSetLogs({}); setCustomExercises([]); }, style: { background: "none", border: "none", color: C.muted, cursor: "pointer", padding: "0 0 8px", fontSize: 13, display: "flex", alignItems: "center", gap: 4 } }, "‹ Back"),
             React.createElement("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "flex-start" } },
                 React.createElement("div", null,
                     React.createElement("div", { style: { fontSize: 10, color: C.muted, letterSpacing: "0.1em", textTransform: "uppercase" } }, "Active Session"),
@@ -4973,7 +4907,8 @@ return (React.createElement("div", { style: { height: "100vh", background: TH.bg
     React.createElement("style", null, `
     @keyframes bounce{0%,100%{opacity:0.3;transform:translateY(0)}50%{opacity:1;transform:translateY(-3px)}}
     @keyframes slideDown{from{opacity:0;transform:translateX(-50%) translateY(-12px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
-    
+    *{box-sizing:border-box;margin:0;padding:0}
+    ::-webkit-scrollbar{display:none}
     input::placeholder{color:var(--muted, #3a3a3a)}
   `)));
 ```
