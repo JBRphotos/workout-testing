@@ -3943,14 +3943,13 @@ _C = C; // update module-level context for child components
 // Settings
 const [showSettings, setShowSettings] = useState(false);
 // Workout session (not persisted — resets each session)
-const _savedSession = loadActiveSession();
-const [activeTab, setActiveTab] = useState(_savedSession ? “active” : “home”);
-const [selectedWorkout, setSelectedWorkout] = useState(_savedSession ? _savedSession.selectedWorkout : null);
-const [completedSets, setCompletedSets] = useState(_savedSession ? _savedSession.completedSets || {} : {});
-const [setLogs, setSetLogs] = useState(_savedSession ? _savedSession.setLogs || {} : {});
-const [workoutPhase, setWorkoutPhase] = useState(_savedSession ? _savedSession.workoutPhase || “workout” : “stretch”);
-const [workoutActive, setWorkoutActive] = useState(_savedSession ? true : false);
-const [workoutTimer, setWorkoutTimer] = useState(_savedSession ? _savedSession.workoutTimer || 0 : 0);
+const [activeTab, setActiveTab] = useState(() => { const _s = loadActiveSession(); return _s && _s.selectedWorkout ? “active” : “home”; });
+const [selectedWorkout, setSelectedWorkout] = useState(() => { const _s = loadActiveSession(); return _s ? _s.selectedWorkout || null : null; });
+const [completedSets, setCompletedSets] = useState(() => { const _s = loadActiveSession(); return _s ? _s.completedSets || {} : {}; });
+const [setLogs, setSetLogs] = useState(() => { const _s = loadActiveSession(); return _s ? _s.setLogs || {} : {}; });
+const [workoutPhase, setWorkoutPhase] = useState(() => { const _s = loadActiveSession(); return _s ? _s.workoutPhase || “workout” : “stretch”; });
+const [workoutActive, setWorkoutActive] = useState(() => { const _s = loadActiveSession(); return _s ? !!_s.selectedWorkout : false; });
+const [workoutTimer, setWorkoutTimer] = useState(() => { const _s = loadActiveSession(); return _s ? _s.workoutTimer || 0 : 0; });
 const [workoutEquipment, setWorkoutEquipment] = useState(“gym”);
 const [cardioMode, setCardioMode] = useState(false);
 const [manualNote, setManualNote] = useState(””);
@@ -4024,7 +4023,7 @@ const formatTime = s => `${String(Math.floor(s / 60)).padStart(2, '0')}:${String
 // ── AUTO-SAVE ACTIVE SESSION ──────────────────────────────────────────────
 useEffect(() => {
 if (workoutActive && selectedWorkout) {
-saveActiveSession({ selectedWorkout, completedSets, setLogs, workoutPhase, workoutTimer, customExercises, setCountOverrides, manualNote, intensity });
+saveActiveSession({ selectedWorkout, completedSets, setLogs, workoutPhase, workoutTimer, manualNote, intensity });
 }
 }, [workoutActive, selectedWorkout, completedSets, setLogs, workoutPhase, workoutTimer, manualNote]);
 const toggleSet = (name, idx) => setCompletedSets(prev => { const k = `${name}-${idx}`; return Object.assign(Object.assign({}, prev), { [k]: !prev[k] }); });
