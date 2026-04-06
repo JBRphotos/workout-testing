@@ -499,8 +499,8 @@ const getWeekKey = () => {
 };
 // ── SMART SCHEDULE HELPERS ───────────────────────────────────────────────────
 // Workout types grouped by "heaviness" — used to avoid back-to-back heavy days
-const HEAVY = ["Push", "Pull", "Legs"];
-const LIGHT = ["Bodyweight Push", "Bodyweight Pull", "Bodyweight Legs"];
+const HEAVY = ["Push", "Pull", "Legs", "Full Body"];
+const LIGHT = ["Bodyweight Push", "Bodyweight Pull", "Bodyweight Legs", "Bodyweight Full Body"];
 const WORKOUT_DAYS = [...HEAVY, ...LIGHT];
 // Generate a semi-random but valid weekly schedule for N workout days
 // Rules: no two heavy compound days back-to-back, rest days spread evenly,
@@ -695,7 +695,9 @@ function LevelUpLogo({ accent = "#5B4FE8", size = 1, showTagline = true }) {
 // Map plan names to icon keys
 const PLAN_ICON = {
     Push: "Push", Pull: "Pull", Legs: "Legs",
+    "Full Body": "FullBody",
     "Bodyweight Push": "Push", "Bodyweight Pull": "Pull", "Bodyweight Legs": "Legs",
+    "Bodyweight Full Body": "FullBody",
     Rest: "Rest", Custom: "Active",
 };
 // ── THEMES ────────────────────────────────────────────────────────────────────
@@ -707,8 +709,8 @@ const INTENSITY_CONFIG = {
 const SCHEDULES = {
     2: ["Push", "Rest", "Rest", "Pull", "Rest", "Rest", "Rest"],
     3: ["Push", "Rest", "Pull", "Rest", "Legs", "Rest", "Rest"],
-    4: ["Push", "Pull", "Rest", "Legs", "Push", "Rest", "Rest"],
-    5: ["Push", "Pull", "Legs", "Rest", "Push", "Pull", "Rest"],
+    4: ["Push", "Pull", "Rest", "Legs", "Full Body", "Rest", "Rest"],
+    5: ["Push", "Pull", "Legs", "Rest", "Full Body", "Pull", "Rest"],
     6: ["Push", "Pull", "Legs", "Push", "Pull", "Legs", "Rest"],
 };
 const GROUP_COLORS = {
@@ -1266,6 +1268,61 @@ const WORKOUT_PLANS = {
             { name: "Mountain Climbers", sets: 3, reps: "30 sec", muscle: "Core/Full Body" },
             { name: "Hollow Body Hold", sets: 3, reps: "30 sec", muscle: "Core" },
         ] },
+    "Full Body": { icon: "FB", color: "#52E3A0", exercises: [
+            { name: "Squat", sets: 4, reps: "6-8", muscle: "Quads/Glutes" },
+            { name: "Bench Press", sets: 3, reps: "8-10", muscle: "Chest" },
+            { name: "Barbell Row", sets: 3, reps: "8-10", muscle: "Back" },
+            { name: "Overhead Press", sets: 3, reps: "8-10", muscle: "Shoulders" },
+            { name: "Romanian Deadlift", sets: 3, reps: "10-12", muscle: "Hamstrings" },
+        ],
+        accessoryOptions: [
+            [
+                { name: "Hammer Curls", sets: 2, reps: "12-15", muscle: "Biceps" },
+                { name: "Tricep Pushdowns", sets: 2, reps: "12-15", muscle: "Triceps" },
+            ],
+            [
+                { name: "Cable Curl", sets: 2, reps: "12-15", muscle: "Biceps" },
+                { name: "Skull Crushers", sets: 2, reps: "10-12", muscle: "Triceps" },
+            ],
+            [
+                { name: "Preacher Curl", sets: 2, reps: "10-12", muscle: "Biceps" },
+                { name: "Overhead Tricep Ext", sets: 2, reps: "12-15", muscle: "Triceps" },
+            ],
+        ],
+        coreOptions: [
+            { name: "Plank", sets: 3, reps: "45 sec", muscle: "Core" },
+            { name: "Dead Bug", sets: 3, reps: "10 ea", muscle: "Core" },
+            { name: "Ab Wheel Rollout", sets: 3, reps: "10-12", muscle: "Core" },
+        ],
+    },
+    "Bodyweight Full Body": { icon: "FB", color: "#52E3A0", badge: "BW", exercises: [
+            { name: "Bodyweight Squat", sets: 3, reps: "15-20", muscle: "Quads/Glutes" },
+            { name: "Push-Ups", sets: 3, reps: "12-15", muscle: "Chest/Triceps" },
+            { name: "Inverted Row", sets: 3, reps: "10-12", muscle: "Back" },
+            { name: "Jump Squat", sets: 3, reps: "10-12", muscle: "Power/Legs" },
+            { name: "Pike Push-Ups", sets: 3, reps: "10-12", muscle: "Shoulders" },
+            { name: "Glute Bridge", sets: 3, reps: "15-20", muscle: "Glutes/Hams" },
+        ],
+        accessoryOptions: [
+            [
+                { name: "Diamond Push-Ups", sets: 2, reps: "10-12", muscle: "Triceps" },
+                { name: "Chin-Ups", sets: 2, reps: "8-10", muscle: "Biceps/Back" },
+            ],
+            [
+                { name: "Dips", sets: 2, reps: "10-12", muscle: "Chest/Triceps" },
+                { name: "Hammer Curls", sets: 2, reps: "12-15", muscle: "Biceps" },
+            ],
+            [
+                { name: "Archer Push-Ups", sets: 2, reps: "6-8 ea", muscle: "Chest" },
+                { name: "Wide-Grip Pull-Ups", sets: 2, reps: "6-8", muscle: "Lats" },
+            ],
+        ],
+        coreOptions: [
+            { name: "Mountain Climbers", sets: 3, reps: "30 sec", muscle: "Core/Cardio" },
+            { name: "Plank", sets: 3, reps: "45 sec", muscle: "Core" },
+            { name: "Dead Bug", sets: 3, reps: "10 ea", muscle: "Core" },
+        ],
+    },
 };
 // ── LIBRARY ──────────────────────────────────────────────────────────────────
 const LIBRARY = [
@@ -3780,6 +3837,26 @@ theme.prestige ? “ · Prestige” : “”)),
 isSelected && React.createElement(“div”, { style: { width: 8, height: 8, borderRadius: “50%”, background: theme.accent, flexShrink: 0 } })));
 })))))));
 }
+
+// ── ACTIVE SESSION PERSISTENCE ────────────────────────────────────────────────
+const ACTIVE_SESSION_KEY = “jbr:active_session_v1”;
+function saveActiveSession(data) { try { localStorage.setItem(ACTIVE_SESSION_KEY, JSON.stringify(data)); } catch(e) {} }
+function clearActiveSession() { try { localStorage.removeItem(ACTIVE_SESSION_KEY); } catch(e) {} }
+function loadActiveSession() { try { const r = localStorage.getItem(ACTIVE_SESSION_KEY); return r ? JSON.parse(r) : null; } catch(e) { return null; } }
+// ── WEEK INTENSITY PROFILE ────────────────────────────────────────────────────
+function getWeekIntensityProfile(workoutHistory) {
+const now = new Date();
+const weekStart = new Date(now);
+weekStart.setDate(now.getDate() - ((now.getDay() + 6) % 7));
+weekStart.setHours(0, 0, 0, 0);
+const thisWeek = workoutHistory.filter(s => new Date(s.date) >= weekStart);
+const totalSets = thisWeek.reduce((a, s) => a + (s.setsCompleted || 0), 0);
+const sessions = thisWeek.length;
+if (sessions === 0) return { suggestion: “Start the week strong — any workout counts.”, level: “fresh” };
+if (totalSets > 80) return { suggestion: “Big volume week — consider a lighter session today.”, level: “high” };
+if (sessions >= 4) return { suggestion: “Strong week so far. Keep intensity moderate to finish strong.”, level: “solid” };
+return { suggestion: `${sessions} session${sessions > 1 ? "s" : ""} in — keep the momentum going.`, level: “building” };
+}
 function WorkoutApp() {
 var _a, _b;
 const [storageReady, setStorageReady] = useState(false);
@@ -3866,13 +3943,14 @@ _C = C; // update module-level context for child components
 // Settings
 const [showSettings, setShowSettings] = useState(false);
 // Workout session (not persisted — resets each session)
-const [activeTab, setActiveTab] = useState(“home”);
-const [selectedWorkout, setSelectedWorkout] = useState(null);
-const [completedSets, setCompletedSets] = useState({});
-const [setLogs, setSetLogs] = useState({});
-const [workoutPhase, setWorkoutPhase] = useState(“stretch”);
-const [workoutActive, setWorkoutActive] = useState(false);
-const [workoutTimer, setWorkoutTimer] = useState(0);
+const _savedSession = loadActiveSession();
+const [activeTab, setActiveTab] = useState(_savedSession ? “active” : “home”);
+const [selectedWorkout, setSelectedWorkout] = useState(_savedSession ? _savedSession.selectedWorkout : null);
+const [completedSets, setCompletedSets] = useState(_savedSession ? _savedSession.completedSets || {} : {});
+const [setLogs, setSetLogs] = useState(_savedSession ? _savedSession.setLogs || {} : {});
+const [workoutPhase, setWorkoutPhase] = useState(_savedSession ? _savedSession.workoutPhase || “workout” : “stretch”);
+const [workoutActive, setWorkoutActive] = useState(_savedSession ? true : false);
+const [workoutTimer, setWorkoutTimer] = useState(_savedSession ? _savedSession.workoutTimer || 0 : 0);
 const [workoutEquipment, setWorkoutEquipment] = useState(“gym”);
 const [cardioMode, setCardioMode] = useState(false);
 const [manualNote, setManualNote] = useState(””);
@@ -3900,6 +3978,8 @@ const [loading, setLoading] = useState(false);
 const [showXPToast, setShowXPToast] = useState(null);
 const [weeklyCheckinDone, setWeeklyCheckinDone] = useState(false);
 const [showActivityLog, setShowActivityLog] = useState(false);
+const [showWorkoutLog, setShowWorkoutLog] = useState(false);
+const [showCardioLog, setShowCardioLog] = useState(false);
 const [editingPlan, setEditingPlan] = useState(null);
 const [showShareScreen, setShowShareScreen] = useState(false);
 const [showSharePrompt, setShowSharePrompt] = useState(false);
@@ -3941,6 +4021,12 @@ clearInterval(timerRef.current);
 }
 }, [workoutActive]);
 const formatTime = s => `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`;
+// ── AUTO-SAVE ACTIVE SESSION ──────────────────────────────────────────────
+useEffect(() => {
+if (workoutActive && selectedWorkout) {
+saveActiveSession({ selectedWorkout, completedSets, setLogs, workoutPhase, workoutTimer, customExercises, setCountOverrides, manualNote, intensity });
+}
+}, [workoutActive, selectedWorkout, completedSets, setLogs, workoutPhase, workoutTimer, manualNote]);
 const toggleSet = (name, idx) => setCompletedSets(prev => { const k = `${name}-${idx}`; return Object.assign(Object.assign({}, prev), { [k]: !prev[k] }); });
 const startWorkout = (type) => {
 setSelectedWorkout(type);
@@ -4022,6 +4108,7 @@ history: [sessionEntry, …((existing === null || existing === void 0 ? void 0 :
 return updated;
 });
 }
+clearActiveSession();
 setWorkoutActive(false);
 setSelectedWorkout(null);
 setActiveTab(“home”);
@@ -4480,6 +4567,9 @@ setShowShareScreen(true);
             }, onCancel: () => setCardioMode(false) }))))),
     activeTab === "active" && selectedWorkout && (React.createElement("div", { style: { flex: 1, display: "flex", flexDirection: "column", overflow: "hidden", position: "relative", zIndex: 1 } },
         React.createElement("div", { style: { flexShrink: 0, padding: "48px 24px 12px" } },
+            React.createElement("button", { onClick: () => { clearActiveSession(); setSelectedWorkout(null); setWorkoutActive(false); setCompletedSets({}); setSetLogs({}); setCustomExercises([]); setManualNote(""); }, style: { background: "none", border: "none", color: C.muted, cursor: "pointer", padding: "0 0 8px", fontSize: 13, display: "flex", alignItems: "center", gap: 4 } },
+                React.createElement("svg", { width: 14, height: 14, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round" }, React.createElement("polyline", { points: "15 18 9 12 15 6" })),
+                "Back"),
             React.createElement("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "flex-start" } },
                 React.createElement("div", null,
                     React.createElement("div", { style: { fontSize: 10, color: C.muted, letterSpacing: "0.1em", textTransform: "uppercase" } }, "Active Session"),
