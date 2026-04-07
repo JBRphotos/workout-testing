@@ -3840,7 +3840,7 @@ isSelected && React.createElement(“div”, { style: { width: 8, height: 8, bor
 
 // ── ACTIVE SESSION PERSISTENCE ────────────────────────────────────────────────
 const ACTIVE_SESSION_KEY = “jbr:active_session_v1”;
-function saveActiveSession(data) { try { localStorage.setItem(ACTIVE_SESSION_KEY, JSON.stringify({ …data, savedAt: Date.now() })); } catch(e) {} }
+function saveActiveSession(data) { try { localStorage.setItem(ACTIVE_SESSION_KEY, JSON.stringify(Object.assign({}, data, { savedAt: Date.now() }))); } catch(e) {} }
 function clearActiveSession() { try { localStorage.removeItem(ACTIVE_SESSION_KEY); } catch(e) {} }
 function loadActiveSession() { try { const r = localStorage.getItem(ACTIVE_SESSION_KEY); if (!r) return null; const d = JSON.parse(r); if (!d.savedAt || Date.now() - d.savedAt > 8 * 60 * 60 * 1000) { localStorage.removeItem(ACTIVE_SESSION_KEY); return null; } return d; } catch(e) { return null; } }
 // ── WEEK INTENSITY PROFILE ────────────────────────────────────────────────────
