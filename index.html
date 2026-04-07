@@ -4798,7 +4798,12 @@ try {
 ReactDOM.createRoot(document.getElementById(“root”)).render(React.createElement(WorkoutApp));
 }
 catch (e) {
-document.getElementById(“fallback”).style.display = “flex”;
+var fb = document.getElementById(“fallback”);
+fb.style.display = “flex”;
+var errDiv = document.createElement(“div”);
+errDiv.style.cssText = “color:#ff6b35;font-size:11px;margin-top:20px;word-break:break-all;text-align:left;padding:0 20px”;
+errDiv.textContent = “Error: “ + (e && e.message ? e.message : String(e));
+fb.appendChild(errDiv);
 }
 }
 </script>
