@@ -1,4 +1,4 @@
-<!DOCTYPE html><!-- v20260411-003 -->
+<!DOCTYPE html><!-- v20260411-004 -->
 
 <html lang="en">
 <head>
@@ -3421,7 +3421,7 @@ const [swappingIdx, setSwappingIdx] = useState(null); // index being swapped
 const [search, setSearch] = useState("");
 const filteredLib = LIBRARY.filter(ex => !exList.some(e => e.name === ex.name) &&
 (search === "" || ex.name.toLowerCase().includes(search.toLowerCase()) || ex.group.toLowerCase().includes(search.toLowerCase())));
-const removeEx = (idx) => setExList(prev => prev.filter((*, i) => i !== idx));
+const removeEx = (idx) => setExList(prev => prev.filter((_item, i) => i !== idx));
 const swapEx = (idx, newEx) => {
 setExList(prev => prev.map((e, i) => i === idx
 ? { name: newEx.name, sets: newEx.sets, reps: newEx.reps, muscle: newEx.group }
