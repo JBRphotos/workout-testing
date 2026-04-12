@@ -1,4 +1,4 @@
-<!DOCTYPE html><!-- v20260411-005 -->
+<!DOCTYPE html><!-- v20260411-009 -->
 
 <html lang="en">
 <head>
@@ -2227,7 +2227,7 @@ function PRList({ exercisePRs, color }) {
         hasMore && (React.createElement("button", { onClick: () => setShowAll(v => !v), style: { width: "100%", marginTop: 8, padding: "8px", borderRadius: 10, background: "none",
                 border: "1px solid #1e1e1e", color: C.muted, fontSize: 12, cursor: "pointer" } }, showAll ? `▲ Show less` : `▼ Show all ${filtered.length} exercises`))));
 }
-function HunterProfile({ rankInfo, totalXP, profile, setProfile, checkIns, setCheckIns, weeklyCheckinDone, xpEvents, awardXP, intensity, cardioHistory = [], themeId, setThemeId, exercisePRs = {}, setShowCardioLog, workoutHistory = [], setShowWorkoutLog, onResetStats }) {
+function HunterProfile({ rankInfo, totalXP, profile, setProfile, checkIns, setCheckIns, weeklyCheckinDone, xpEvents, awardXP, intensity, cardioHistory = [], themeId, setThemeId, exercisePRs = {}, setShowActivityLog, workoutHistory = [], onResetStats }) {
     const C = useC();
     const [resetConfirm, setResetConfirm] = useState(false);
     const [expandedSession, setExpandedSession] = useState(null);
@@ -2317,10 +2317,10 @@ function HunterProfile({ rankInfo, totalXP, profile, setProfile, checkIns, setCh
         React.createElement("div", { style: { padding: "0 24px 20px" } },
             React.createElement("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 } },
                 React.createElement("div", { style: { fontSize: 10, color: C.muted, letterSpacing: "0.1em", textTransform: "uppercase" } }, "Workout Log"),
-                workoutHistory.length > 0 && (React.createElement("button", { onClick: () => setShowWorkoutLog === null || setShowWorkoutLog === void 0 ? void 0 : setShowWorkoutLog(true), style: { fontSize: 10, padding: "4px 10px", borderRadius: 8, background: C.btnBg, border: `1px solid ${C.btnBorder}`, color: C.muted, cursor: "pointer" } },
+                (workoutHistory.length > 0 || cardioHistory.length > 0) && (React.createElement("button", { onClick: () => setShowActivityLog(true), style: { fontSize: 10, padding: "4px 10px", borderRadius: 8, background: C.btnBg, border: `1px solid ${C.btnBorder}`, color: C.muted, cursor: "pointer" } },
                     "View All (",
-                    workoutHistory.length,
-                    ")"))),
+                    workoutHistory.length + (cardioHistory || []).length,
+                    " activities)"))),
             workoutHistory.length === 0 ? (React.createElement("div", { style: { fontSize: 12, color: C.muted, padding: "4px 0" } }, "No workouts logged yet")) : (React.createElement("div", { style: { display: "flex", flexDirection: "column", gap: 8 } }, workoutHistory.slice(0, 3).map((s, i) => {
                 var _a, _b;
                 const plan = WORKOUT_PLANS[s.workout];
@@ -2408,35 +2408,6 @@ function HunterProfile({ rankInfo, totalXP, profile, setProfile, checkIns, setCh
                 React.createElement("div", { style: { fontSize: 13, fontWeight: 700, color: current.color } },
                     "+",
                     ev.xp))))))),
-        cardioHistory.length > 0 && (React.createElement("div", { style: { padding: "0 24px 20px" } },
-            React.createElement("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 } },
-                React.createElement("div", { style: { fontSize: 10, color: C.muted, letterSpacing: "0.1em", textTransform: "uppercase" } }, "Cardio Log"),
-                React.createElement("button", { onClick: () => setShowCardioLog === null || setShowCardioLog === void 0 ? void 0 : setShowCardioLog(true), style: { fontSize: 10, padding: "4px 10px", borderRadius: 8, background: C.card, border: `1px solid ${C.inputBorder}`, color: C.muted, cursor: "pointer" } },
-                    "View All (",
-                    cardioHistory.length,
-                    ")")),
-            React.createElement("div", { style: { display: "flex", flexDirection: "column", gap: 7 } }, cardioHistory.slice(0, 3).map((c, i) => {
-                var _a;
-                const ct = CARDIO_TYPES.find(t => t.id === c.type);
-                return (React.createElement("div", { key: i, style: { background: C.deep, borderRadius: 12, padding: "11px 14px", border: `1px solid ${C.cardBorder}`, display: "flex", alignItems: "center", justifyContent: "space-between" } },
-                    React.createElement("div", { style: { display: "flex", alignItems: "center", gap: 10 } },
-                        React.createElement("div", { style: { width: 28, height: 28, borderRadius: 8, background: (ct === null || ct === void 0 ? void 0 : ct.color) + "22", border: `1px solid ${ct === null || ct === void 0 ? void 0 : ct.color}44`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 } }, ((_a = ct === null || ct === void 0 ? void 0 : ct.icon) === null || _a === void 0 ? void 0 : _a.call(ct, ct.color, 16)) || IC.Cardio((ct === null || ct === void 0 ? void 0 : ct.color) || "#52E3A0", 16)),
-                        React.createElement("div", null,
-                            React.createElement("div", { style: { fontSize: 12, fontWeight: 600, color: C.text, textTransform: "capitalize" } }, c.type),
-                            React.createElement("div", { style: { fontSize: 10, color: C.muted, display: "flex", gap: 6 } },
-                                c.distance && React.createElement("span", null,
-                                    c.distance,
-                                    " mi"),
-                                c.duration && React.createElement("span", null,
-                                    c.duration,
-                                    " min")))),
-                    React.createElement("div", { style: { textAlign: "right" } },
-                        React.createElement("div", { style: { fontSize: 12, fontWeight: 700, color: (ct === null || ct === void 0 ? void 0 : ct.color) || "#888" } },
-                            "+",
-                            c.xp,
-                            " XP"),
-                        React.createElement("div", { style: { fontSize: 9, color: C.muted } }, c.date))));
-            })))),
         React.createElement("div", { style: { padding: "0 24px" } },
             React.createElement("div", { style: { fontSize: 10, color: C.muted, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 10 } }, "Rank Progression"),
             React.createElement("div", { style: { display: "flex", flexDirection: "column", gap: 6 } }, (() => {
@@ -2977,6 +2948,191 @@ function CardioLog({ cardioHistory, onClose, accentColor }) {
                         React.createElement("div", { style: { fontSize: 10, color: C.muted, marginTop: 2 } }, c.date)))));
         }))))));
 }
+
+function ActivityLog({ workoutHistory, cardioHistory, onClose, accentColor, onShare, onUpdateNote }) {
+    const C = useC();
+    const [expanded, setExpanded] = useState(null);
+    const [editingNote, setEditingNote] = useState(null);
+    const [noteText, setNoteText] = useState("");
+    const accent = accentColor || "#FF6B35";
+
+    // Build sessions: group by date, merge same-day workout+cardio into one session
+    // Each session: { date, workout: obj|null, cardioList: [], totalXP, workoutIdx }
+    const sessions = [];
+    const byDate = {};
+
+    (workoutHistory || []).forEach((s, i) => {
+        const d = s.date || "Unknown";
+        if (!byDate[d]) byDate[d] = { date: d, workout: null, workoutIdx: null, cardioList: [] };
+        // keep first workout per day (most recent already at index 0)
+        if (!byDate[d].workout) { byDate[d].workout = s; byDate[d].workoutIdx = i; }
+    });
+    (cardioHistory || []).forEach((c) => {
+        const d = c.date || "Unknown";
+        if (!byDate[d]) byDate[d] = { date: d, workout: null, workoutIdx: null, cardioList: [] };
+        byDate[d].cardioList.push(c);
+    });
+
+    const sortedDates = Object.keys(byDate).sort((a, b) => new Date(b) - new Date(a));
+
+    // Summary stats (unchanged arrays)
+    const totalWorkouts = (workoutHistory || []).length;
+    const totalCardio = (cardioHistory || []).length;
+    const totalSets = (workoutHistory || []).reduce((a, s) => a + (s.setsCompleted || 0), 0);
+    const totalMiles = (cardioHistory || []).reduce((a, c) => a + (parseFloat(c.distance) || 0), 0);
+    const totalXPAll = [...(workoutHistory || []), ...(cardioHistory || [])].reduce((a, s) => a + (s.xpEarned || s.xp || 0), 0);
+
+    return React.createElement("div", { style: { position: "fixed", inset: 0, background: C.surface, zIndex: 200, display: "flex", flexDirection: "column" } },
+        // Header
+        React.createElement("div", { style: { padding: "52px 24px 16px", borderBottom: "1px solid " + C.border, flexShrink: 0 } },
+            React.createElement("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "flex-start" } },
+                React.createElement("div", null,
+                    React.createElement("div", { style: { fontSize: 10, color: C.muted, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 4 } }, "History"),
+                    React.createElement("div", { style: { fontSize: 26, fontWeight: 800, letterSpacing: "-0.02em", color: C.text } }, "Activity Log")),
+                React.createElement("button", { onClick: onClose, style: { width: 36, height: 36, borderRadius: 10, background: C.btnBg, border: "1px solid " + C.btnBorder, color: C.muted, fontSize: 18, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" } }, "\u2715")),
+            React.createElement("div", { style: { display: "flex", gap: 8, marginTop: 16 } },
+                [
+                    { label: "Workouts", value: totalWorkouts },
+                    { label: "Cardio", value: totalCardio },
+                    { label: "Sets", value: totalSets },
+                    { label: "Miles", value: totalMiles.toFixed(1) },
+                    { label: "XP", value: totalXPAll },
+                ].map(s => React.createElement("div", { key: s.label, style: { flex: 1, background: C.card, borderRadius: 12, padding: "10px 4px", border: "1px solid " + C.cardBorder, textAlign: "center" } },
+                    React.createElement("div", { style: { fontSize: 14, fontWeight: 800, color: accent } }, s.value),
+                    React.createElement("div", { style: { fontSize: 8, color: C.muted, textTransform: "uppercase", letterSpacing: "0.06em", marginTop: 2 } }, s.label))))),
+
+        // Sessions list
+        React.createElement("div", { style: { flex: 1, overflowY: "auto", padding: "12px 24px 40px" } },
+            sortedDates.length === 0
+                ? React.createElement("div", { style: { textAlign: "center", padding: "40px 0", color: C.muted, fontSize: 13 } }, "No activity logged yet")
+                : React.createElement("div", { style: { display: "flex", flexDirection: "column", gap: 12 } },
+                    sortedDates.map(date => {
+                        const sess = byDate[date];
+                        const w = sess.workout;
+                        const cardioList = sess.cardioList;
+                        const isOpen = expanded === date;
+
+                        // Colors
+                        const plan = w ? WORKOUT_PLANS[w.workout] : null;
+                        const wColor = (plan && plan.color) || "#FF6B35";
+                        const firstCardio = cardioList[0];
+                        const firstCT = firstCardio ? CARDIO_TYPES.find(t => t.id === firstCardio.type) : null;
+                        const cColor = (firstCT && firstCT.color) || "#52E3A0";
+                        const primaryColor = w ? wColor : cColor;
+
+                        // Combined XP
+                        const wXP = w ? (w.xpEarned || 0) : 0;
+                        const cXP = cardioList.reduce((a, c) => a + (c.xp || 0), 0);
+                        const totalXP = wXP + cXP;
+
+                        // Subtitle line
+                        const wSub = w ? (w.setsCompleted + " sets \u00B7 " + w.duration + "min") : null;
+                        const cSub = cardioList.map(c => {
+                            const ct = CARDIO_TYPES.find(t => t.id === c.type);
+                            return (c.distance ? c.distance + "mi " : "") + (ct ? ct.label : c.type);
+                        }).join(", ");
+
+                        // Primary title
+                        const title = w ? w.workout : (firstCT ? firstCT.label + " \u00B7 " + (firstCardio.location === "outside" ? "Outdoor" : "Indoor") : "Cardio");
+
+                        // Icon
+                        const icon = w
+                            ? ((IC[PLAN_ICON[w.workout]] && IC[PLAN_ICON[w.workout]](wColor, 20)) || IC.Active(wColor, 20))
+                            : ((firstCT && firstCT.icon && firstCT.icon(cColor, 20)) || IC.Cardio(cColor, 20));
+
+                        return React.createElement("div", { key: date },
+                            React.createElement("div", { style: { fontSize: 10, color: C.muted, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 6, paddingLeft: 2 } }, date),
+                            React.createElement("div", { style: { background: C.card, borderRadius: 14, border: "1px solid " + (isOpen ? primaryColor + "55" : C.cardBorder), overflow: "hidden", transition: "border-color 0.15s" } },
+
+                                // Row header — always visible
+                                React.createElement("div", { onClick: () => setExpanded(isOpen ? null : date), style: { padding: "13px 16px", display: "flex", alignItems: "center", gap: 12, cursor: "pointer" } },
+                                    React.createElement("div", { style: { width: 36, height: 36, borderRadius: 10, background: primaryColor + "22", border: "1px solid " + primaryColor + "44", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 } }, icon),
+                                    React.createElement("div", { style: { flex: 1, minWidth: 0 } },
+                                        React.createElement("div", { style: { fontSize: 13, fontWeight: 700, color: C.text } }, title),
+                                        React.createElement("div", { style: { fontSize: 11, color: C.muted, marginTop: 2, display: "flex", gap: 6, flexWrap: "wrap", alignItems: "center" } },
+                                            wSub && React.createElement("span", null, wSub),
+                                            wSub && cSub && React.createElement("span", { style: { color: C.border } }, "\u00B7"),
+                                            // cardio pills
+                                            cardioList.length > 0 && React.createElement("span", { style: { color: cColor } },
+                                                cardioList.map((c, ci) => {
+                                                    var ct2 = CARDIO_TYPES.find(function(t) { return t.id === c.type; });
+                                                    return (ci > 0 ? ", " : "") + (c.distance ? c.distance + "mi " : "") + (ct2 ? ct2.label : c.type);
+                                                }).join("")))),
+                                    React.createElement("div", { style: { textAlign: "right", flexShrink: 0 } },
+                                        React.createElement("div", { style: { fontSize: 12, fontWeight: 700, color: accent } }, "+" + totalXP + " XP"),
+                                        React.createElement("div", { style: { fontSize: 10, color: C.muted, marginTop: 1 } }, w ? (w.time || "") : (firstCardio && firstCardio.time ? firstCardio.time : ""))),
+                                    React.createElement("div", { style: { fontSize: 11, color: C.muted, transform: isOpen ? "rotate(180deg)" : "none", transition: "transform 0.2s", marginLeft: 4 } }, "\u25BE")),
+
+                                // Expanded detail
+                                isOpen && React.createElement("div", { style: { background: C.deep, borderTop: "1px solid " + C.cardBorder, padding: "12px 16px" } },
+
+                                    // Workout exercises section
+                                    w && React.createElement("div", { style: { marginBottom: cardioList.length > 0 ? 14 : 0 } },
+                                        React.createElement("div", { style: { fontSize: 9, color: C.muted, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 8 } }, "Exercises Logged"),
+                                        Object.keys(w.exercises || {}).length === 0
+                                            ? React.createElement("div", { style: { fontSize: 12, color: C.muted } }, "No set data recorded")
+                                            : React.createElement("div", { style: { display: "flex", flexDirection: "column", gap: 6 } },
+                                                Object.entries(w.exercises).map(function(kv) {
+                                                    var ename = kv[0], sets = kv[1];
+                                                    return React.createElement("div", { key: ename, style: { display: "flex", justifyContent: "space-between", alignItems: "center" } },
+                                                        React.createElement("div", { style: { fontSize: 12, color: C.text } }, ename),
+                                                        React.createElement("div", { style: { display: "flex", gap: 5, flexWrap: "wrap", justifyContent: "flex-end" } },
+                                                            (sets || []).map((set, j) => React.createElement("div", { key: j, style: { fontSize: 10, padding: "2px 7px", borderRadius: 8, background: wColor + "22", color: wColor } },
+                                                                (set.weight > 0 ? set.weight + "lb" : "") +
+                                                                (set.weight > 0 && set.reps > 0 ? " \u00D7 " : "") +
+                                                                (set.reps > 0 ? "" + set.reps : "")))));
+                                                }))),
+
+                                    // Cardio entries section
+                                    cardioList.length > 0 && React.createElement("div", null,
+                                        w && React.createElement("div", { style: { height: 1, background: C.border, marginBottom: 12 } }),
+                                        React.createElement("div", { style: { fontSize: 9, color: C.muted, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 8 } }, "Cardio"),
+                                        cardioList.map((c, ci) => {
+                                            var ct3 = CARDIO_TYPES.find(function(t) { return t.id === c.type; });
+                                            var cc = (ct3 && ct3.color) || "#52E3A0";
+                                            return React.createElement("div", { key: ci, style: { display: "flex", alignItems: "center", gap: 10, marginBottom: ci < cardioList.length - 1 ? 8 : 0 } },
+                                                React.createElement("div", { style: { width: 28, height: 28, borderRadius: 8, background: cc + "22", border: "1px solid " + cc + "44", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 } },
+                                                    (ct3 && ct3.icon && ct3.icon(cc, 14)) || IC.Cardio(cc, 14)),
+                                                React.createElement("div", { style: { flex: 1 } },
+                                                    React.createElement("div", { style: { fontSize: 12, color: C.text, fontWeight: 600, textTransform: "capitalize" } }, c.type + " \u00B7 " + (c.location === "outside" ? "Outdoor" : "Indoor")),
+                                                    React.createElement("div", { style: { fontSize: 11, color: C.muted, marginTop: 2, display: "flex", gap: 8, flexWrap: "wrap" } },
+                                                        c.distance && React.createElement("span", null, c.distance + " mi"),
+                                                        c.duration && React.createElement("span", null, c.duration + " min"),
+                                                        c.pace && React.createElement("span", { style: { color: cc } }, c.pace + " " + (c.type === "run" ? "min/mi" : "mph")),
+                                                        c.incline && React.createElement("span", null, c.incline + "% incline"))),
+                                                React.createElement("div", { style: { fontSize: 11, fontWeight: 700, color: cc } }, "+" + (c.xp || 0) + " XP"));
+                                        })),
+
+                                    // Note section (workout notes only)
+                                    w && onUpdateNote && React.createElement("div", { style: { marginTop: 12 } },
+                                        w.note && editingNote !== date
+                                            ? React.createElement("div", { style: { padding: "9px 12px", background: wColor + "12", borderRadius: 10, border: "1px solid " + wColor + "22" } },
+                                                React.createElement("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 4 } },
+                                                    React.createElement("div", { style: { fontSize: 10, color: wColor, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em" } }, "Note"),
+                                                    React.createElement("button", { onClick: () => { setEditingNote(date); setNoteText(w.note || ""); }, style: { background: "none", border: "none", color: C.muted, fontSize: 10, cursor: "pointer", textDecoration: "underline" } }, "Edit")),
+                                                React.createElement("div", { style: { fontSize: 12, color: C.text, lineHeight: 1.6 } }, w.note))
+                                            : React.createElement("div", null,
+                                                React.createElement("div", { style: { fontSize: 10, color: C.muted, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 6 } }, w.note ? "Edit Note" : "Add Note"),
+                                                React.createElement("div", { onClick: () => { setEditingNote(date); setNoteText(w.note || ""); }, style: { width: "100%", padding: "9px 12px", borderRadius: 10, background: C.input, border: "1.5px solid " + C.inputBorder, color: (editingNote === date ? noteText : w.note) ? C.text : C.muted, fontSize: 12, lineHeight: 1.5, minHeight: 38, cursor: "text" } },
+                                                    (editingNote === date ? noteText : w.note) || "Add a note..."),
+                                                editingNote === date && React.createElement("div", { style: { position: "fixed", top: 0, left: 0, right: 0, bottom: 0, zIndex: 600, background: "rgba(0,0,0,0.5)", display: "flex", flexDirection: "column", justifyContent: "flex-end" }, onClick: e => { if (e.target === e.currentTarget) setEditingNote(null); } },
+                                                    React.createElement("div", { style: { background: C.surface, borderRadius: "20px 20px 0 0", padding: "20px 20px calc(20px + env(safe-area-inset-bottom))", maxHeight: "70vh", display: "flex", flexDirection: "column" } },
+                                                        React.createElement("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 } },
+                                                            React.createElement("div", { style: { fontSize: 13, fontWeight: 700, color: C.text } }, w.note ? "Edit Note" : "Add Note"),
+                                                            React.createElement("button", { onClick: () => { onUpdateNote(sess.workoutIdx, noteText.trim()); setEditingNote(null); }, style: { background: accent, border: "none", color: "#fff", fontSize: 13, fontWeight: 700, cursor: "pointer", padding: "6px 16px", borderRadius: 8 } }, "Save")),
+                                                        React.createElement("textarea", { autoFocus: true, value: noteText, onChange: e => setNoteText(e.target.value), placeholder: "Add a note...", style: { flex: 1, width: "100%", padding: "12px", borderRadius: 10, background: C.input, border: "1.5px solid " + C.inputBorder, color: C.text, fontSize: 14, outline: "none", fontFamily: "inherit", resize: "none", lineHeight: 1.6, minHeight: 160 } }),
+                                                        React.createElement("button", { onClick: () => setEditingNote(null), style: { marginTop: 10, padding: "10px", borderRadius: 10, background: C.btnBg, border: "1px solid " + C.btnBorder, color: C.muted, fontSize: 13, cursor: "pointer", width: "100%" } }, "Cancel"))))),
+
+                                    // Share button — always show if there's a workout, or standalone cardio
+                                    onShare && React.createElement("button", { onClick: () => onShare({ workout: w, cardioList: cardioList, totalXP: totalXP, date: date }), style: { marginTop: 12, width: "100%", padding: "9px", borderRadius: 10, background: primaryColor + "22", border: "1px solid " + primaryColor + "44", color: primaryColor, fontSize: 12, fontWeight: 600, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 6 } },
+                                        React.createElement("svg", { width: "13", height: "13", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" },
+                                            React.createElement("path", { d: "M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" }),
+                                            React.createElement("circle", { cx: "12", cy: "13", r: "4" })),
+                                        "Share Stats"))));
+                    
+                    }))));
+}
+
 const DAILY_QUOTES = []; // loaded from quotes.json
 // ── QUOTE SPLASH ──────────────────────────────────────────────────────────────
 // Shows a daily motivational quote on app open for ~3 seconds
@@ -3095,12 +3251,14 @@ const [size, setSize] = useState("medium");
 const [showSettings, setShowSettings] = useState(false);
 const [uiVisible, setUiVisible] = useState(true);
 const [facing, setFacing] = useState("environment");
-const { workout, duration, xpEarned, rankInfo } = summary;
-const plan = WORKOUT_PLANS[workout];
-const color = (plan === null || plan === void 0 ? void 0 : plan.color) || "#FF6B35";
+const { workout, duration, xpEarned, rankInfo, cardioOnDay, isCardioOnly } = summary;
+const plan = workout ? WORKOUT_PLANS[workout] : null;
+const firstCardio = cardioOnDay && cardioOnDay[0];
+const firstCT = firstCardio ? CARDIO_TYPES.find(function(t) { return t.id === firstCardio.type; }) : null;
+const color = (plan && plan.color) || (firstCT && firstCT.color) || "#FF6B35";
 const rank = rankInfo === null || rankInfo === void 0 ? void 0 : rankInfo.current;
-const mins = Math.floor(duration);
-const formatDur = mins >= 60 ? `${Math.floor(mins / 60)}h ${mins % 60}m` : `${mins}m`;
+const mins = duration ? Math.floor(duration) : 0;
+const formatDur = mins > 0 ? (mins >= 60 ? Math.floor(mins/60) + "h " + (mins%60) + "m" : mins + "m") : null;
 const startCamera = async (facingMode) => {
 var _a;
 (_a = streamRef.current) === null || _a === void 0 ? void 0 : _a.getTracks().forEach(t => t.stop());
@@ -3226,11 +3384,20 @@ ctx.fillText(new Date().toLocaleDateString([], { weekday: "long", month: "short"
 ctx.font = `900 ${nameSz}px 'Helvetica Neue',Arial,sans-serif`;
 ctx.fillStyle = "#fff";
 ctx.shadowBlur = px(14);
-ctx.fillText((workout || "").replace("Bodyweight ", "BW "), spos.x, spos.y + dateSz + py(5));
+const displayTitle = isCardioOnly
+    ? (firstCT ? firstCT.label : "Cardio")
+    : (workout || "").replace("Bodyweight ", "BW ");
+ctx.fillText(displayTitle, spos.x, spos.y + dateSz + py(5));
 // Stats row — measure widths first, then draw side by side
 const statsY = spos.y + dateSz + py(5) + nameSz + py(12);
 ctx.shadowBlur = px(8);
-const statsData = [{ label: "DURATION", value: formatDur }, { label: "XP EARNED", value: `+${xpEarned}` }];
+const cardioLine = cardioOnDay && cardioOnDay.length > 0
+    ? cardioOnDay.map(function(c) { var ct = CARDIO_TYPES.find(function(t) { return t.id === c.type; }); return (c.distance ? c.distance + "mi " : (c.duration ? c.duration + "min " : "")) + (ct ? ct.label : c.type); }).join(", ")
+    : null;
+const statsData = [];
+if (formatDur) statsData.push({ label: "DURATION", value: formatDur });
+if (cardioLine) statsData.push({ label: "CARDIO", value: cardioLine.substring(0, 14) });
+statsData.push({ label: "XP EARNED", value: "+" + xpEarned });
 ctx.font = `900 ${valSz}px 'Helvetica Neue',Arial,sans-serif`;
 const w0 = ctx.measureText(statsData[0].value).width;
 const w1 = ctx.measureText(statsData[1].value).width;
@@ -3710,8 +3877,7 @@ const [loading, setLoading] = useState(false);
 // UI-only (not persisted)
 const [showXPToast, setShowXPToast] = useState(null);
 const [weeklyCheckinDone, setWeeklyCheckinDone] = useState(false);
-const [showCardioLog, setShowCardioLog] = useState(false);
-const [showWorkoutLog, setShowWorkoutLog] = useState(false);
+const [showActivityLog, setShowActivityLog] = useState(false);
 const [editingPlan, setEditingPlan] = useState(null);
 const [showShareScreen, setShowShareScreen] = useState(false);
 const [showSharePrompt, setShowSharePrompt] = useState(false);
@@ -4053,21 +4219,24 @@ return (React.createElement("div", { style: { height: "100vh", background: TH.bg
             setWorkoutHistory(prev => [session, ...prev]);
             setActiveGuidedWorkout(null);
         } })),
-    showWorkoutLog && (React.createElement(WorkoutLog, { workoutHistory: workoutHistory, onClose: () => setShowWorkoutLog(false), accentColor: TH.accent, onUpdateNote: (idx, note) => {
+    showActivityLog && React.createElement(ActivityLog, { workoutHistory: workoutHistory, cardioHistory: cardioHistory, onClose: () => setShowActivityLog(false), accentColor: TH.accent, onUpdateNote: (idx, note) => {
             setWorkoutHistory(prev => prev.map((s, i) => i === idx ? Object.assign(Object.assign({}, s), { note }) : s));
-        }, onShare: (session) => {
+        }, onShare: (sess) => {
+            const w = sess.workout;
+            const cardioList = sess.cardioList || [];
             setLastWorkoutSummary({
-                workout: session.workout,
-                duration: session.duration,
-                setsCompleted: session.setsCompleted,
-                xpEarned: session.xpEarned,
-                intensity: session.intensity,
+                workout: w ? w.workout : null,
+                duration: w ? w.duration : null,
+                setsCompleted: w ? w.setsCompleted : null,
+                xpEarned: sess.totalXP,
+                intensity: w ? w.intensity : null,
                 rankInfo: getRankInfo(totalXP, themeId),
+                cardioOnDay: cardioList,
+                isCardioOnly: !w && cardioList.length > 0,
             });
-            setShowWorkoutLog(false);
+            setShowActivityLog(false);
             setShowShareScreen(true);
-        } })),
-    showCardioLog && (React.createElement(CardioLog, { cardioHistory: cardioHistory, onClose: () => setShowCardioLog(false), accentColor: TH.accent })),
+        } }),
     activeTab === "home" && (React.createElement("div", { style: { flex: 1, overflowY: "auto", position: "relative", zIndex: 1, paddingBottom: 80 } },
         React.createElement("div", { style: { padding: "52px 24px 16px" } },
             React.createElement("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "flex-start" } },
@@ -4257,7 +4426,7 @@ return (React.createElement("div", { style: { height: "100vh", background: TH.bg
         React.createElement("div", { style: { fontSize: 26, fontWeight: 700, marginBottom: 18 } }, "What's the plan?"),
         React.createElement("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 } },
             React.createElement("div", { style: { fontSize: 10, color: C.muted, letterSpacing: "0.1em", textTransform: "uppercase" } }, "Cardio"),
-            cardioHistory.length > 0 && (React.createElement("button", { onClick: () => setShowCardioLog(true), style: { fontSize: 10, padding: "4px 10px", borderRadius: 8, background: C.card, border: `1px solid ${C.inputBorder}`, color: C.muted, cursor: "pointer" } },
+            cardioHistory.length > 0 && (React.createElement("button", { onClick: () => setShowActivityLog(true), style: { fontSize: 10, padding: "4px 10px", borderRadius: 8, background: C.card, border: `1px solid ${C.inputBorder}`, color: C.muted, cursor: "pointer" } },
                 "Log (",
                 cardioHistory.length,
                 ")"))),
@@ -4535,7 +4704,7 @@ return (React.createElement("div", { style: { height: "100vh", background: TH.bg
                 showXPToast.xp,
                 " XP"),
             React.createElement("div", { style: { fontSize: 11, color: C.muted, marginTop: 2 } }, showXPToast.label)))),
-    activeTab === "profile" && (React.createElement(HunterProfile, { rankInfo: rankInfo, totalXP: totalXP, profile: profile, setProfile: setProfile, checkIns: checkIns, setCheckIns: setCheckIns, weeklyCheckinDone: weeklyCheckinDone, xpEvents: xpEvents, awardXP: awardXP, intensity: intensity, cardioHistory: cardioHistory, exercisePRs: exercisePRs, workoutHistory: workoutHistory, setShowCardioLog: setShowCardioLog, setShowWorkoutLog: setShowWorkoutLog, onResetStats: () => {
+    activeTab === "profile" && (React.createElement(HunterProfile, { rankInfo: rankInfo, totalXP: totalXP, profile: profile, setProfile: setProfile, checkIns: checkIns, setCheckIns: setCheckIns, weeklyCheckinDone: weeklyCheckinDone, xpEvents: xpEvents, awardXP: awardXP, intensity: intensity, cardioHistory: cardioHistory, exercisePRs: exercisePRs, workoutHistory: workoutHistory, setShowActivityLog: setShowActivityLog, onResetStats: () => {
             setTotalXP(0);
             setProfile({ name: profile.name, goal: profile.goal, weight: "", height: "", age: "", chest: "", waist: "", arms: "", shoulders: "" });
             setCheckIns([]);
