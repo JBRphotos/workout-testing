@@ -4747,6 +4747,18 @@ document.getElementById("fallback").style.display = "flex";
 }
 }
 </script>
+...your existing code...
 
+<script>
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      window.scrollTo(0, 1);
+      window.scrollTo(0, 0);
+    }, 50);
+  });
+</script>
+
+</body>
+</html>
 </body>
 </html>
