@@ -43,6 +43,20 @@
               "reps": "10-12",
               "muscle": "Triceps"
             }
+          ],
+          "coreOptions": [
+            {
+              "name": "Tricep Dip Bar Hold",
+              "sets": 3,
+              "reps": "30 sec",
+              "muscle": "Core/Stability"
+            },
+            {
+              "name": "Plank",
+              "sets": 3,
+              "reps": "45 sec",
+              "muscle": "Core"
+            }
           ]
         },
         {
@@ -83,6 +97,20 @@
               "sets": 3,
               "reps": "8-10",
               "muscle": "Triceps"
+            }
+          ],
+          "coreOptions": [
+            {
+              "name": "Ab Wheel Rollout",
+              "sets": 3,
+              "reps": "8-10",
+              "muscle": "Core"
+            },
+            {
+              "name": "Dead Bug",
+              "sets": 3,
+              "reps": "10 ea",
+              "muscle": "Core"
             }
           ]
         },
@@ -125,6 +153,20 @@
               "reps": "10-12",
               "muscle": "Triceps"
             }
+          ],
+          "coreOptions": [
+            {
+              "name": "Hanging Knee Raise",
+              "sets": 3,
+              "reps": "12-15",
+              "muscle": "Core"
+            },
+            {
+              "name": "Plank",
+              "sets": 3,
+              "reps": "60 sec",
+              "muscle": "Core"
+            }
           ]
         },
         {
@@ -165,6 +207,20 @@
               "sets": 3,
               "reps": "10-12",
               "muscle": "Triceps"
+            }
+          ],
+          "coreOptions": [
+            {
+              "name": "Cable Crunch",
+              "sets": 3,
+              "reps": "15-20",
+              "muscle": "Core"
+            },
+            {
+              "name": "Pallof Press",
+              "sets": 3,
+              "reps": "12 ea",
+              "muscle": "Core/Anti-Rotation"
             }
           ]
         }
@@ -213,6 +269,20 @@
               "reps": "10-12",
               "muscle": "Biceps"
             }
+          ],
+          "coreOptions": [
+            {
+              "name": "Hanging Leg Raise",
+              "sets": 3,
+              "reps": "10-12",
+              "muscle": "Core"
+            },
+            {
+              "name": "Dead Bug",
+              "sets": 3,
+              "reps": "10 ea",
+              "muscle": "Core"
+            }
           ]
         },
         {
@@ -253,6 +323,20 @@
               "sets": 3,
               "reps": "8-10",
               "muscle": "Biceps"
+            }
+          ],
+          "coreOptions": [
+            {
+              "name": "Ab Wheel Rollout",
+              "sets": 3,
+              "reps": "8-10",
+              "muscle": "Core"
+            },
+            {
+              "name": "Plank Row Hold",
+              "sets": 3,
+              "reps": "30 sec",
+              "muscle": "Core/Back"
             }
           ]
         },
@@ -295,6 +379,20 @@
               "reps": "10-12",
               "muscle": "Biceps"
             }
+          ],
+          "coreOptions": [
+            {
+              "name": "Dragon Flag Negatives",
+              "sets": 3,
+              "reps": "5-6",
+              "muscle": "Core"
+            },
+            {
+              "name": "Pallof Press",
+              "sets": 3,
+              "reps": "12 ea",
+              "muscle": "Core"
+            }
           ]
         },
         {
@@ -335,6 +433,20 @@
               "sets": 3,
               "reps": "8-10",
               "muscle": "Biceps"
+            }
+          ],
+          "coreOptions": [
+            {
+              "name": "Cable Crunch",
+              "sets": 3,
+              "reps": "15-20",
+              "muscle": "Core"
+            },
+            {
+              "name": "Hollow Body Hold",
+              "sets": 3,
+              "reps": "30 sec",
+              "muscle": "Core"
             }
           ]
         }
@@ -383,6 +495,20 @@
               "reps": "15-20",
               "muscle": "Calves"
             }
+          ],
+          "coreOptions": [
+            {
+              "name": "Plank",
+              "sets": 3,
+              "reps": "60 sec",
+              "muscle": "Core"
+            },
+            {
+              "name": "Dead Bug",
+              "sets": 3,
+              "reps": "10 ea",
+              "muscle": "Core"
+            }
           ]
         },
         {
@@ -423,6 +549,20 @@
               "sets": 4,
               "reps": "15-20",
               "muscle": "Calves"
+            }
+          ],
+          "coreOptions": [
+            {
+              "name": "Ab Wheel Rollout",
+              "sets": 3,
+              "reps": "10-12",
+              "muscle": "Core"
+            },
+            {
+              "name": "Side Plank",
+              "sets": 3,
+              "reps": "30 sec ea",
+              "muscle": "Core/Obliques"
             }
           ]
         },
@@ -465,6 +605,20 @@
               "reps": "20-25",
               "muscle": "Calves"
             }
+          ],
+          "coreOptions": [
+            {
+              "name": "Hanging Knee Raise",
+              "sets": 3,
+              "reps": "12-15",
+              "muscle": "Core"
+            },
+            {
+              "name": "Plank",
+              "sets": 3,
+              "reps": "45 sec",
+              "muscle": "Core"
+            }
           ]
         },
         {
@@ -505,6 +659,20 @@
               "sets": 4,
               "reps": "12-15",
               "muscle": "Calves"
+            }
+          ],
+          "coreOptions": [
+            {
+              "name": "Pallof Press",
+              "sets": 3,
+              "reps": "12 ea",
+              "muscle": "Core/Anti-Rotation"
+            },
+            {
+              "name": "Hollow Body Hold",
+              "sets": 3,
+              "reps": "30 sec",
+              "muscle": "Core"
             }
           ]
         }
@@ -950,6 +1118,20 @@
               "reps": "15-20",
               "muscle": "Side Delts"
             }
+          ],
+          "coreOptions": [
+            {
+              "name": "Plank",
+              "sets": 3,
+              "reps": "60 sec",
+              "muscle": "Core"
+            },
+            {
+              "name": "Mountain Climbers",
+              "sets": 3,
+              "reps": "30 sec",
+              "muscle": "Core/Cardio"
+            }
           ]
         },
         {
@@ -984,6 +1166,20 @@
               "sets": 3,
               "reps": "15-20",
               "muscle": "Front Delts"
+            }
+          ],
+          "coreOptions": [
+            {
+              "name": "Hollow Body Hold",
+              "sets": 3,
+              "reps": "30 sec",
+              "muscle": "Core"
+            },
+            {
+              "name": "Dead Bug",
+              "sets": 3,
+              "reps": "10 ea",
+              "muscle": "Core"
             }
           ]
         },
@@ -1020,6 +1216,20 @@
               "reps": "20 ea",
               "muscle": "Shoulders/Core"
             }
+          ],
+          "coreOptions": [
+            {
+              "name": "L-Sit Hold",
+              "sets": 3,
+              "reps": "15-20 sec",
+              "muscle": "Core"
+            },
+            {
+              "name": "Side Plank",
+              "sets": 3,
+              "reps": "30 sec ea",
+              "muscle": "Core/Obliques"
+            }
           ]
         },
         {
@@ -1054,6 +1264,20 @@
               "sets": 3,
               "reps": "20-25",
               "muscle": "Side Delts"
+            }
+          ],
+          "coreOptions": [
+            {
+              "name": "Ab Wheel Rollout",
+              "sets": 3,
+              "reps": "8-10",
+              "muscle": "Core"
+            },
+            {
+              "name": "Hanging Knee Raise",
+              "sets": 3,
+              "reps": "12-15",
+              "muscle": "Core"
             }
           ]
         }
@@ -1097,6 +1321,20 @@
               "reps": "12-15",
               "muscle": "Biceps"
             }
+          ],
+          "coreOptions": [
+            {
+              "name": "Plank",
+              "sets": 3,
+              "reps": "60 sec",
+              "muscle": "Core"
+            },
+            {
+              "name": "Mountain Climbers",
+              "sets": 3,
+              "reps": "30 sec",
+              "muscle": "Core/Cardio"
+            }
           ]
         },
         {
@@ -1131,6 +1369,20 @@
               "sets": 3,
               "reps": "8-10",
               "muscle": "Biceps"
+            }
+          ],
+          "coreOptions": [
+            {
+              "name": "Hollow Body Hold",
+              "sets": 3,
+              "reps": "30 sec",
+              "muscle": "Core"
+            },
+            {
+              "name": "Dead Bug",
+              "sets": 3,
+              "reps": "10 ea",
+              "muscle": "Core"
             }
           ]
         },
@@ -1167,6 +1419,20 @@
               "reps": "20-25",
               "muscle": "Rear Delts"
             }
+          ],
+          "coreOptions": [
+            {
+              "name": "L-Sit Hold",
+              "sets": 3,
+              "reps": "15-20 sec",
+              "muscle": "Core"
+            },
+            {
+              "name": "Side Plank",
+              "sets": 3,
+              "reps": "30 sec ea",
+              "muscle": "Core/Obliques"
+            }
           ]
         },
         {
@@ -1201,6 +1467,20 @@
               "sets": 3,
               "reps": "15-20",
               "muscle": "Biceps"
+            }
+          ],
+          "coreOptions": [
+            {
+              "name": "Ab Wheel Rollout",
+              "sets": 3,
+              "reps": "8-10",
+              "muscle": "Core"
+            },
+            {
+              "name": "Hanging Knee Raise",
+              "sets": 3,
+              "reps": "12-15",
+              "muscle": "Core"
             }
           ]
         }
@@ -1250,6 +1530,20 @@
               "reps": "30 sec",
               "muscle": "Core"
             }
+          ],
+          "coreOptions": [
+            {
+              "name": "Plank",
+              "sets": 3,
+              "reps": "60 sec",
+              "muscle": "Core"
+            },
+            {
+              "name": "Mountain Climbers",
+              "sets": 3,
+              "reps": "30 sec",
+              "muscle": "Core/Cardio"
+            }
           ]
         },
         {
@@ -1289,6 +1583,20 @@
               "name": "Plank",
               "sets": 3,
               "reps": "45 sec",
+              "muscle": "Core"
+            }
+          ],
+          "coreOptions": [
+            {
+              "name": "Hollow Body Hold",
+              "sets": 3,
+              "reps": "30 sec",
+              "muscle": "Core"
+            },
+            {
+              "name": "Dead Bug",
+              "sets": 3,
+              "reps": "10 ea",
               "muscle": "Core"
             }
           ]
@@ -1332,6 +1640,20 @@
               "reps": "10 ea",
               "muscle": "Core"
             }
+          ],
+          "coreOptions": [
+            {
+              "name": "L-Sit Hold",
+              "sets": 3,
+              "reps": "15-20 sec",
+              "muscle": "Core"
+            },
+            {
+              "name": "Side Plank",
+              "sets": 3,
+              "reps": "30 sec ea",
+              "muscle": "Core/Obliques"
+            }
           ]
         },
         {
@@ -1371,6 +1693,20 @@
               "name": "Hollow Body Hold",
               "sets": 3,
               "reps": "30-45 sec",
+              "muscle": "Core"
+            }
+          ],
+          "coreOptions": [
+            {
+              "name": "Ab Wheel Rollout",
+              "sets": 3,
+              "reps": "8-10",
+              "muscle": "Core"
+            },
+            {
+              "name": "Hanging Knee Raise",
+              "sets": 3,
+              "reps": "12-15",
               "muscle": "Core"
             }
           ]
