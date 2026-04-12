@@ -1,4 +1,4 @@
-<!DOCTYPE html><!-- v20260411-009 -->
+<!DOCTYPE html><!-- v20260411-013 -->
 
 <html lang="en">
 <head>
@@ -496,6 +496,14 @@ const getWeekKey = () => {
     const mon = new Date(d);
     mon.setDate(d.getDate() - ((day + 6) % 7));
     return `${mon.getFullYear()}-${mon.getMonth()}-${mon.getDate()}`;
+};
+// Returns ISO week number (1-52) — used to pick workout variant
+const getWeekNumber = () => {
+    const d = new Date();
+    d.setHours(0, 0, 0, 0);
+    d.setDate(d.getDate() + 4 - (d.getDay() || 7));
+    const yearStart = new Date(d.getFullYear(), 0, 1);
+    return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
 };
 // ── SMART SCHEDULE HELPERS ───────────────────────────────────────────────────
 // Workout types grouped by "heaviness" — used to avoid back-to-back heavy days
@@ -1230,7 +1238,7 @@ const FORM_GUIDES = {
     "KB Turkish Get-Up": { cues: ["Lie flat, KB pressed overhead, eye on the bell", "Rise to elbow, then to hand, then to kneeling", "Stand up fully, then reverse every step to lie back down", "Keep the KB locked overhead throughout every transition"], muscles: ["Full Body", "Core", "Shoulder Stability"], tip: "Go slow — this is a technique exercise, not a conditioning one. Speed comes after mastery" },
 };
 // ── GYM WORKOUT PLANS ────────────────────────────────────────────────────────
-const WORKOUT_PLANS = {
+let WORKOUT_PLANS = {
     Push: { icon: "↑", color: "#FF6B35", exercises: [
             { name: "Bench Press", sets: 4, reps: "6-8", muscle: "Chest" },
             { name: "Incline Dumbbell Press", sets: 3, reps: "8-10", muscle: "Upper Chest" },
@@ -3805,6 +3813,25 @@ setSetLogs(_d.l||{});setWorkoutPhase(_d.p||'stretch');
 setWorkoutEquipment(_d.e||'gym');setWorkoutTimer(_d.t||0);
 setWorkoutActive(true);setActiveTab('workout');}}}catch(_r){}
 setStorageReady(true);
+// Load workouts.json — pick weekly variant for each plan
+fetch('workouts.json')
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+        if (!data || !data.plans) return;
+        var wk = getWeekNumber();
+        Object.keys(data.plans).forEach(function(planName) {
+            var p = data.plans[planName];
+            if (!p.variants || !p.variants.length) return;
+            var v = p.variants[wk % p.variants.length];
+            if (WORKOUT_PLANS[planName]) {
+                WORKOUT_PLANS[planName].exercises = v.exercises;
+                if (v.accessoryOptions) WORKOUT_PLANS[planName].accessoryOptions = v.accessoryOptions;
+                if (v.coreOptions) WORKOUT_PLANS[planName].coreOptions = v.coreOptions;
+            }
+        });
+        setWorkoutVariantWeek(wk);
+    })
+    .catch(function() {});
 })();
 }, []);
 // Save to storage whenever persistent state changes
@@ -3878,6 +3905,7 @@ const [loading, setLoading] = useState(false);
 const [showXPToast, setShowXPToast] = useState(null);
 const [weeklyCheckinDone, setWeeklyCheckinDone] = useState(false);
 const [showActivityLog, setShowActivityLog] = useState(false);
+const [workoutVariantWeek, setWorkoutVariantWeek] = useState(0);
 const [editingPlan, setEditingPlan] = useState(null);
 const [showShareScreen, setShowShareScreen] = useState(false);
 const [showSharePrompt, setShowSharePrompt] = useState(false);
