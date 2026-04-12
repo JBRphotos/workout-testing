@@ -1,5 +1,5 @@
 
-<!DOCTYPE html><!-- v20260411-012.3-->
+<!DOCTYPE html><!-- v20260411-012.5-->
 
 <html lang="en">
 <head>
@@ -13,8 +13,6 @@
   <style>
  body {
   padding-top: env(safe-area-inset-top);
-  overflow: hidden;
-  height: 100dvh;
 }
 </style>
   <title>Level Up</title>
@@ -4752,15 +4750,16 @@ document.getElementById("fallback").style.display = "flex";
 ...your existing code...
 
 <script>
+  function forceReflow() {
+    document.body.style.display = 'none';
+    document.body.offsetHeight;
+    document.body.style.display = '';
+  }
+
   window.addEventListener('load', () => {
-    setTimeout(() => {
-      window.scrollTo(0, 1);
-      window.scrollTo(0, 0);
-    }, 50);
+    setTimeout(forceReflow, 50);
   });
 </script>
 
-</body>
-</html>
 </body>
 </html>
