@@ -1,4 +1,4 @@
-<!DOCTYPE html><!-- v20260411-016 -->
+<!DOCTYPE html><!-- v20260411-017 -->
 
 <html lang="en">
 <head>
@@ -16,7 +16,7 @@
   <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html,body{touch-action:manipulation}
+    html,body{touch-action:manipulation;background:#F0F0FF}
     #root{position:fixed;top:0;left:0;right:0;bottom:0;overflow:hidden}
     ::-webkit-scrollbar{display:none}
     input[type=number]::-webkit-inner-spin-button,
@@ -4260,7 +4260,7 @@ isCardioOnly: !w && cardioList.length > 0,
 setShowActivityLog(false);
 setShowShareScreen(true);
 } }),
-activeTab === “home” && (React.createElement(“div”, { style: { flex: 1, overflowY: “auto”, position: “relative”, zIndex: 1, paddingBottom: “calc(80px + env(safe-area-inset-bottom))” } },
+activeTab === “home” && (React.createElement(“div”, { style: { flex: 1, overflowY: “auto”, position: “relative”, zIndex: 1, paddingBottom: 80 } },
 React.createElement(“div”, { style: { padding: “52px 24px 16px” } },
 React.createElement(“div”, { style: { display: “flex”, justifyContent: “space-between”, alignItems: “flex-start” } },
 React.createElement(“div”, null,
@@ -4741,7 +4741,7 @@ setCardioHistory([]);
 setExercisePRs({});
 setWorkoutHistory([]);
 }, themeId: themeId, setThemeId: setThemeId })),
-React.createElement(“div”, { style: { flexShrink: 0, position: “relative”, zIndex: 100, background: (TH.text && TH.text.startsWith(”#1”) || TH.text && TH.text.startsWith(”#0”)) ? `rgba(255,255,255,0.97)` : `rgba(10,10,10,0.98)`, backdropFilter: “blur(20px)”, borderTop: `1px solid ${TH.border}`, display: “flex”, justifyContent: “space-around”, paddingTop: “10px”, paddingBottom: “calc(max(20px, env(safe-area-inset-bottom)) + 16px)” } }, [
+React.createElement(“div”, { style: { flexShrink: 0, position: “relative”, zIndex: 100, background: ((_b = TH.bg) === null || _b === void 0 ? void 0 : _b.startsWith(”#F”)) ? “rgba(255,255,255,0.97)” : `rgba(10,10,10,0.98)`, backdropFilter: “blur(20px)”, borderTop: `1px solid ${TH.border}`, display: “flex”, justifyContent: “space-around”, paddingTop: “10px”, paddingBottom: “calc(16px + env(safe-area-inset-bottom))” } }, [
 { id: “home”, key: “Home”, label: “Home” },
 { id: “active”, key: “Active”, label: “Active” },
 { id: “library”, key: “Library”, label: “Library” },
