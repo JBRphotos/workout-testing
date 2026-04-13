@@ -1,4 +1,4 @@
-<!DOCTYPE html><!-- v20260411-017.1 -->
+<!DOCTYPE html><!-- v20260411-018 -->
 
 <html lang="en">
 <head>
@@ -1233,7 +1233,7 @@ const FORM_GUIDES = {
     "KB Turkish Get-Up": { cues: ["Lie flat, KB pressed overhead, eye on the bell", "Rise to elbow, then to hand, then to kneeling", "Stand up fully, then reverse every step to lie back down", "Keep the KB locked overhead throughout every transition"], muscles: ["Full Body", "Core", "Shoulder Stability"], tip: "Go slow — this is a technique exercise, not a conditioning one. Speed comes after mastery" },
 };
 // ── GYM WORKOUT PLANS ────────────────────────────────────────────────────────
-let WORKOUT_PLANS = {
+const WORKOUT_PLANS = {
     Push: { icon: "↑", color: "#FF6B35", exercises: [
             { name: "Bench Press", sets: 4, reps: "6-8", muscle: "Chest" },
             { name: "Incline Dumbbell Press", sets: 3, reps: "8-10", muscle: "Upper Chest" },
@@ -4164,11 +4164,9 @@ plan.exercises.length > 3 && React.createElement(“span”, { style: { fontSize
 plan.exercises.length - 3))));
 };
 if (!storageReady) {
-return (React.createElement(React.Fragment, null,
-React.createElement(“div”, { style: { height: “100vh”, background: “#0A0A0A”, display: “flex”, flexDirection: “column”, alignItems: “center”, justifyContent: “center”, fontFamily: “‘DM Sans’,sans-serif” } },
+return (React.createElement(“div”, { style: { position: “fixed”, inset: 0, background: “#0A0A0A”, display: “flex”, flexDirection: “column”, alignItems: “center”, justifyContent: “center”, fontFamily: “‘DM Sans’,sans-serif”, zIndex: 9999 } },
 React.createElement(LevelUpLogo, { accent: “#FF6B35”, size: 0.9, showTagline: false }),
-React.createElement(“div”, { style: { fontSize: 12, color: “#444”, letterSpacing: “0.1em”, textTransform: “uppercase” } }, “Loading…”)),
-showSplash && React.createElement(QuoteSplash, { onDone: () => setShowSplash(false) })));
+React.createElement(“div”, { style: { fontSize: 12, color: “#444”, letterSpacing: “0.1em”, textTransform: “uppercase”, marginTop: 16 } }, “Loading…”)));
 }
 if (showWelcome) {
 return (React.createElement(React.Fragment, null,
