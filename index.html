@@ -1,4 +1,4 @@
-<!DOCTYPE html><!-- v20260411-012.7-->
+<!DOCTYPE html><!-- v20260413-013.0-->
 
 <html lang="en">
 <head>
@@ -3764,6 +3764,41 @@ theme.prestige ? “ · Prestige” : “”)),
 isSelected && React.createElement(“div”, { style: { width: 8, height: 8, borderRadius: “50%”, background: theme.accent, flexShrink: 0 } })));
 })))))));
 }
+// ── ERROR BOUNDARY ───────────────────────────────────────────────────────────
+// Catches render errors and shows them on-screen instead of a blank screen
+class ErrorBoundary extends React.Component {
+constructor(props) {
+super(props);
+this.state = { hasError: false, error: null };
+}
+static getDerivedStateFromError(error) {
+return { hasError: true, error };
+}
+componentDidCatch(error, info) {
+console.error(‘WorkoutApp crash:’, error, info.componentStack);
+}
+render() {
+if (this.state.hasError) {
+const msg = String(this.state.error);
+return React.createElement(‘div’, {
+style: {
+position: ‘fixed’, inset: 0, background: ‘#0A0A0A’,
+color: ‘#fff’, padding: ‘40px 20px’,
+fontFamily: “‘DM Sans’,sans-serif”, overflow: ‘auto’, zIndex: 9999,
+display: ‘flex’, flexDirection: ‘column’, gap: 12
+}
+},
+React.createElement(‘div’, { style: { color: ‘#FF6B35’, fontWeight: 800, fontSize: 18 } }, ‘⚠ App Error — v20260413-013.0’),
+React.createElement(‘div’, { style: { color: ‘#aaa’, fontSize: 11, lineHeight: 1.6, wordBreak: ‘break-all’, fontFamily: ‘monospace’, background: ‘#111’, padding: 14, borderRadius: 10, border: ‘1px solid #333’ } }, msg),
+React.createElement(‘button’, {
+onClick: () => { localStorage.clear(); location.reload(); },
+style: { marginTop: 8, padding: ‘12px 20px’, background: ‘#FF6B3522’, border: ‘1px solid #FF6B3555’, color: ‘#FF6B35’, borderRadius: 12, fontSize: 14, cursor: ‘pointer’, fontWeight: 600 }
+}, ‘Clear data & reload’)
+);
+}
+return this.props.children;
+}
+}
 function WorkoutApp() {
 var _a, _b;
 const [storageReady, setStorageReady] = useState(false);
@@ -3858,12 +3893,6 @@ const [showSettings, setShowSettings] = useState(false);
 const [activeTab, setActiveTab] = useState(“home”);
 const [selectedWorkout, setSelectedWorkout] = useState(null);
 const [workoutsJsonData, setWorkoutsJsonData] = useState(null);
-useEffect(() => {
-fetch(‘workouts.json’)
-.then(r => r.json())
-.then(data => setWorkoutsJsonData(data))
-.catch(() => {});
-}, []);
 const [completedSets, setCompletedSets] = useState({});
 const [setLogs, setSetLogs] = useState({});
 const [workoutPhase, setWorkoutPhase] = useState(“stretch”);
@@ -3929,6 +3958,13 @@ useEffect(() => { setLogsRef.current = setLogs; }, [setLogs]);
 useEffect(() => { selectedWorkoutRef.current = selectedWorkout; }, [selectedWorkout]);
 useEffect(() => { workoutPhaseRef.current = workoutPhase; }, [workoutPhase]);
 useEffect(() => { workoutEquipmentRef.current = workoutEquipment; }, [workoutEquipment]);
+// Fetch workouts.json for weekly variant rotation
+useEffect(() => {
+fetch(‘workouts.json’)
+.then(r => r.json())
+.then(data => setWorkoutsJsonData(data))
+.catch(() => {});
+}, []);
 useEffect(() => {
 if (workoutActive) {
 workoutStartRef.current = Date.now() - workoutBaseRef.current * 1000;
@@ -4782,7 +4818,9 @@ input::placeholder{color:var(--muted, #3a3a3a)}
 }
 if (typeof React !== “undefined” && typeof ReactDOM !== “undefined”) {
 try {
-ReactDOM.createRoot(document.getElementById(“root”)).render(React.createElement(WorkoutApp));
+ReactDOM.createRoot(document.getElementById(“root”)).render(
+React.createElement(ErrorBoundary, null, React.createElement(WorkoutApp))
+);
 }
 catch (e) {
 document.getElementById(“fallback”).style.display = “flex”;
