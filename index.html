@@ -1,4 +1,4 @@
-<!DOCTYPE html><!-- v20260413-013.4-->
+<!DOCTYPE html><!-- v20260413-013.5-->
 
 <html lang="en">
 <head>
@@ -604,7 +604,7 @@ function getOverloadSuggestion(prData, exName) {
     const topOfRange = parseInt(String(((_b = (_a = recent.allSets) === null || _a === void 0 ? void 0 : _a[0]) === null || _b === void 0 ? void 0 : _b.reps) || r));
     const isPR = !prev || recent.weight >= (prev.weight || 0);
     if (isPR && r >= 8) {
-        return { type: "weight", message: `Add ${weightIncrement}lb → ${w + weightIncrement}lb`, value: w + weightIncrement };
+        return { type: "weight", message: `Add ${weightIncrement}lb -> ${w + weightIncrement}lb`, value: w + weightIncrement };
     }
     if (isPR && r >= 6 && isUpperCompound) {
         return { type: "weight", message: `Try ${w + weightIncrement}lb this session`, value: w + weightIncrement };
@@ -1812,7 +1812,7 @@ function ExerciseCard({ ex, workoutColor, completedSets, toggleSet, intensity, s
                                 background: prData.isNew ? workoutColor + "33" : C.btnBg,
                                 color: prData.isNew ? workoutColor : "#555",
                                 border: `1px solid ${prData.isNew ? workoutColor + "55" : C.btnBorder}`,
-                                fontWeight: 600 } }, prData.isNew ? "★ NEW PR" : `PR ${prData.weight}lb × ${prData.reps}`))),
+                                fontWeight: 600 } }, prData.isNew ? "★ NEW PR" : `PR ${prData.weight}lb x ${prData.reps}`))),
                     React.createElement("div", { style: { fontSize: 11, color: C.muted, marginTop: 2, display: "flex", alignItems: "center", gap: 6, flexWrap: "wrap" } },
                         React.createElement("span", null, ex.muscle),
                         React.createElement("span", null, "\u00B7"),
@@ -1932,7 +1932,7 @@ function ExerciseCard({ ex, workoutColor, completedSets, toggleSet, intensity, s
                 " ",
                 log.weight && `${log.weight}lb`,
                 " ",
-                log.reps && `×${log.reps}`));
+                log.reps && `x${log.reps}`));
         }))),
         allDone && (React.createElement("div", { style: { padding: "0 14px 12px", display: "flex", gap: 5, flexWrap: "wrap" } }, Array.from({ length: adjSets }).map((_, i) => {
             const log = setLogs === null || setLogs === void 0 ? void 0 : setLogs[`${ex.name}-${i}`];
@@ -1942,7 +1942,7 @@ function ExerciseCard({ ex, workoutColor, completedSets, toggleSet, intensity, s
                 " ",
                 (log === null || log === void 0 ? void 0 : log.weight) && `${log.weight}lb`,
                 " ",
-                (log === null || log === void 0 ? void 0 : log.reps) && `×${log.reps}`));
+                (log === null || log === void 0 ? void 0 : log.reps) && `x${log.reps}`));
         }))),
         expanded && guide && React.createElement(FormGuideBody, { guide: guide, color: workoutColor })));
 }
@@ -2239,7 +2239,7 @@ function PRList({ exercisePRs, color }) {
                     }))) : (React.createElement("div", { style: { fontSize: 11, color: C.muted } }, "No history yet"))))));
         })),
         hasMore && (React.createElement("button", { onClick: () => setShowAll(v => !v), style: { width: "100%", marginTop: 8, padding: "8px", borderRadius: 10, background: "none",
-                border: "1px solid #1e1e1e", color: C.muted, fontSize: 12, cursor: "pointer" } }, showAll ? `▲ Show less` : `▼ Show all ${filtered.length} exercises`))));
+                border: "1px solid #1e1e1e", color: C.muted, fontSize: 12, cursor: "pointer" } }, showAll ? `Show less` : `Show all ${filtered.length} exercises`))));
 }
 function HunterProfile({ rankInfo, totalXP, profile, setProfile, checkIns, setCheckIns, weeklyCheckinDone, xpEvents, awardXP, intensity, cardioHistory = [], themeId, setThemeId, exercisePRs = {}, setShowActivityLog, workoutHistory = [], onResetStats }) {
     const C = useC();
@@ -2844,7 +2844,7 @@ function GuidedWorkout({ template, format, onClose, onComplete }) {
                     totalRounds),
                 React.createElement("div", { style: { fontSize: 24, fontWeight: 800, color: C.text, letterSpacing: "-0.02em", marginBottom: 6, minHeight: 58, display: "flex", alignItems: "center", justifyContent: "center" } }, currentExName),
                 isNorwegian && (React.createElement("div", { style: { background: phaseColor + "18", borderRadius: 10, padding: "8px 14px", border: `1px solid ${phaseColor}33`, marginBottom: 12, fontSize: 12, color: phaseColor, fontWeight: 600 } }, isWorkPhase
-                    ? (hrWorkLow ? `Target: ${hrWorkLow}–${hrWork} BPM  (85–95% max HR)` : "Target: 85–95% Max HR")
+                    ? (hrWorkLow ? `Target: ${hrWorkLow}-${hrWork} BPM  (85-95% max HR)` : "Target: 85–95% Max HR")
                     : (hrRest ? `Recovery: ~${hrRest} BPM  (~70% max HR)` : "Recovery: ~70% Max HR"))),
                 React.createElement("div", { style: { position: "relative", width: 190, height: 190, margin: "0 auto 16px" } },
                     React.createElement("svg", { width: 190, height: 190, style: { position: "absolute", top: 0, left: 0, transform: "rotate(-90deg)" } },
@@ -3469,7 +3469,7 @@ ctx.textAlign = “left”;
 ctx.fillText(“Level Up”, px(20), ch - py(100));
 ctx.font = `400 ${px(9)}px 'Helvetica Neue',Arial,sans-serif`;
 ctx.fillStyle = “rgba(255,255,255,0.4)”;
-ctx.fillText(`WORKOUT TRACKER · ${(profile === null || profile === void 0 ? void 0 : profile.name) || ""}`, px(20), ch - py(86));
+ctx.fillText(`WORKOUT TRACKER | ${(profile === null || profile === void 0 ? void 0 : profile.name) || ""}`, px(20), ch - py(86));
 ctx.shadowBlur = 0;
 canvas.toBlob(async (blob) => {
 var _a;
@@ -3768,28 +3768,13 @@ isSelected && React.createElement(“div”, { style: { width: 8, height: 8, bor
 class ErrorBoundary extends React.Component {
 constructor(p) { super(p); this.state = { err: null }; }
 static getDerivedStateFromError(e) { return { err: e }; }
-componentDidCatch(e, info) { console.error(‘WorkoutApp crash:’, e, info.componentStack); }
+componentDidCatch(e, i) { console.error(‘App crash:’, e, i.componentStack); }
 render() {
 if (this.state.err) {
-return React.createElement(‘div’, {
-style: { position:‘fixed’, inset:0, background:’#0A0A0A’, color:’#fff’,
-padding:‘40px 20px’, fontFamily:”‘DM Sans’,sans-serif”,
-overflow:‘auto’, zIndex:9999, display:‘flex’, flexDirection:‘column’, gap:16 }
-},
-React.createElement(‘div’, { style: { color:’#FF6B35’, fontWeight:800, fontSize:20 } },
-‘App Error v013.4’),
-React.createElement(‘div’, { style: { color:’#666’, fontSize:12 } },
-‘Copy this error and send it for debugging:’),
-React.createElement(‘div’, { style: { color:’#aaa’, fontSize:11,
-fontFamily:‘monospace’, background:’#111’, padding:14,
-borderRadius:10, wordBreak:‘break-all’, lineHeight:1.6 } },
-String(this.state.err)),
-React.createElement(‘button’, {
-onClick: function() { localStorage.clear(); location.reload(); },
-style: { marginTop:8, padding:‘14px 20px’, background:’#FF6B3522’,
-border:‘1px solid #FF6B3555’, color:’#FF6B35’, borderRadius:12,
-fontSize:14, cursor:‘pointer’, fontWeight:600 }
-}, ‘Clear data and reload’)
+return React.createElement(‘div’, { style: { position:‘fixed’, inset:0, background:’#0A0A0A’, color:’#fff’, padding:‘40px 20px’, fontFamily:”‘DM Sans’,sans-serif”, overflow:‘auto’, zIndex:9999, display:‘flex’, flexDirection:‘column’, gap:16 } },
+React.createElement(‘div’, { style: { color:’#FF6B35’, fontWeight:800, fontSize:20 } }, ‘App Error v013.5’),
+React.createElement(‘div’, { style: { color:’#aaa’, fontSize:11, fontFamily:‘monospace’, background:’#111’, padding:14, borderRadius:10, wordBreak:‘break-all’ } }, String(this.state.err)),
+React.createElement(‘button’, { onClick: function() { localStorage.clear(); location.reload(); }, style: { padding:‘14px’, background:’#FF6B3522’, border:‘1px solid #FF6B3555’, color:’#FF6B35’, borderRadius:12, fontSize:14, cursor:‘pointer’, fontWeight:600 } }, ‘Clear data and reload’)
 );
 }
 return this.props.children;
@@ -3889,12 +3874,6 @@ const [showSettings, setShowSettings] = useState(false);
 const [activeTab, setActiveTab] = useState(“home”);
 const [selectedWorkout, setSelectedWorkout] = useState(null);
 const [workoutsJsonData, setWorkoutsJsonData] = useState(null);
-useEffect(() => {
-fetch(‘workouts.json’)
-.then(r => r.json())
-.then(d => setWorkoutsJsonData(d))
-.catch(() => {});
-}, []);
 const [completedSets, setCompletedSets] = useState({});
 const [setLogs, setSetLogs] = useState({});
 const [workoutPhase, setWorkoutPhase] = useState(“stretch”);
@@ -4021,7 +4000,7 @@ const allDone = totalPossibleSets > 0 && setsCompleted >= totalPossibleSets;
 const xpBase = getXP(“WORKOUT_COMPLETE”, intensity);
 const xpSets = setsCompleted * getXP(“SET_COMPLETE”, intensity);
 const xpBonus = allDone ? getXP(“FULL_WORKOUT”, intensity) : 0;
-awardXP(xpBase + xpSets + xpBonus, allDone ? `${selectedWorkout} — full clear! (${setsCompleted} sets)` : `${selectedWorkout} workout (${setsCompleted} sets)`);
+awardXP(xpBase + xpSets + xpBonus, allDone ? `${selectedWorkout} - full clear! (${setsCompleted} sets)` : `${selectedWorkout} workout (${setsCompleted} sets)`);
 }
 // ── Extract PRs from this session’s setLogs ──
 // Group logs by exercise name, find the best set (highest weight)
@@ -4102,7 +4081,7 @@ const msgs = […messages, userMsg];
 setMessages(msgs);
 setInput(””);
 setLoading(true);
-const sysPrompt = `You are a personal fitness AI coach for ${profile.name || "the user"}.\n- Goal: ${profile.goal || "Build muscle"}\n- Equipment: Full gym + bodyweight\n- Frequency: ${daysPerWeek} days/week\n- Current intensity: ${intensity}\n- Experience: Intermediate\nKeep responses concise. Format exercises as: **Name** — sets x reps — note. Be direct and motivating.`;
+const sysPrompt = `You are a personal fitness AI coach for ${profile.name || "the user"}.\n- Goal: ${profile.goal || "Build muscle"}\n- Equipment: Full gym + bodyweight\n- Frequency: ${daysPerWeek} days/week\n- Current intensity: ${intensity}\n- Experience: Intermediate\nKeep responses concise. Format exercises as: **Name** - sets x reps - note. Be direct and motivating.`;
 try {
 const res = await fetch(“https://api.anthropic.com/v1/messages”, {
 method: “POST”, headers: { “Content-Type”: “application/json” },
@@ -4125,6 +4104,10 @@ if (thisWeek !== currentWeekKey) {
 setCurrentWeekKey(thisWeek);
 setCustomSchedule(generateSchedule(daysPerWeek));
 }
+}, []);
+// Fetch workouts.json for weekly variant rotation
+useEffect(() => {
+fetch(‘workouts.json’).then(r => r.json()).then(d => setWorkoutsJsonData(d)).catch(() => {});
 }, []);
 // When days-per-week changes, regenerate
 const handleSetDaysPerWeek = (d) => {
@@ -4391,7 +4374,7 @@ const landedIdx = next.findIndex((v, i) => i > editingDay && v === prev);
 const wrapped = landedIdx === -1 ? next.findIndex((v, i) => i !== editingDay && v === prev) : landedIdx;
 const dayNames = [“Mon”, “Tue”, “Wed”, “Thu”, “Fri”, “Sat”, “Sun”];
 if (wrapped !== -1) {
-setShiftNotice(`${prev} moved → ${dayNames[wrapped]}`);
+setShiftNotice(`${prev} moved -> ${dayNames[wrapped]}`);
 setTimeout(() => setShiftNotice(null), 3500);
 }
 }
@@ -4532,7 +4515,7 @@ React.createElement(“div”, { style: { fontSize: 10, color: C.muted, letterSp
 React.createElement(“div”, { style: { fontSize: 24, fontWeight: 700, marginTop: 3 } }, “Log Cardio”)),
 React.createElement(CardioLogger, { workoutColor: “#FF6B35”, onComplete: (data) => {
 setCardioHistory(prev => [Object.assign(Object.assign({}, data), { date: new Date().toLocaleDateString(), workoutContext: “Standalone” }), …prev]);
-awardXP(data.xp, `${data.type} — ${data.distance || "?"} mi ${data.location}`);
+awardXP(data.xp, `${data.type} - ${data.distance || "?"} mi ${data.location}`);
 setCardioMode(false);
 }, onCancel: () => setCardioMode(false) }))))),
 activeTab === “active” && selectedWorkout && (React.createElement(“div”, { style: { flex: 1, display: “flex”, flexDirection: “column”, overflow: “hidden”, position: “relative”, zIndex: 1 } },
@@ -4623,7 +4606,7 @@ setNoteSearch(””);
 React.createElement(“button”, { onClick: endWorkout, style: { width: “100%”, padding: “14px”, borderRadius: 12, marginTop: 8, background: C.card, border: `1.5px solid ${C.cardBorder}`, color: C.muted, fontSize: 14, fontWeight: 600, cursor: “pointer” } }, “Finish Workout”)))),
 workoutPhase === “cardio” && (React.createElement(CardioLogger, { workoutColor: activeColor, onComplete: (data) => {
 setCardioHistory(prev => [Object.assign(Object.assign({}, data), { date: new Date().toLocaleDateString(), workoutContext: selectedWorkout }), …prev]);
-awardXP(data.xp, `${data.type} — ${data.distance || "?"} mi ${data.location}`);
+awardXP(data.xp, `${data.type} - ${data.distance || "?"} mi ${data.location}`);
 setWorkoutPhase(“workout”);
 }, onCancel: () => setWorkoutPhase(“workout”) })))),
 activeTab === “library” && (React.createElement(“div”, { style: { flex: 1, display: “flex”, flexDirection: “column”, overflow: “hidden”, position: “relative”, zIndex: 1 } },
