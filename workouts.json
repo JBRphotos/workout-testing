@@ -100,22 +100,6 @@
               "muscle": "Triceps",
               "note": "Lateral head isolation \u2014 cable keeps tension at peak"
             }
-          ],
-          "coreCloseout": [
-            {
-              "name": "Ab Wheel Rollout",
-              "sets": 3,
-              "reps": "8-10",
-              "muscle": "Core",
-              "note": "Anti-extension \u2014 spine already loaded from pressing"
-            },
-            {
-              "name": "Dead Bug",
-              "sets": 3,
-              "reps": "8-10 ea",
-              "muscle": "Core",
-              "note": "Opposite pattern to bench \u2014 stabilizes lumbar"
-            }
           ]
         },
         {
@@ -164,22 +148,6 @@
               "reps": "10-15",
               "muscle": "Triceps",
               "note": "Bodyweight compound \u2014 tricep + lower chest, high metabolic cost"
-            }
-          ],
-          "coreCloseout": [
-            {
-              "name": "Plank",
-              "sets": 3,
-              "reps": "60 sec",
-              "muscle": "Core",
-              "note": "Isometric anti-extension \u2014 high volume push day closer"
-            },
-            {
-              "name": "Shoulder Taps",
-              "sets": 3,
-              "reps": "16 ea",
-              "muscle": "Core",
-              "note": "Anti-rotation plank variation"
             }
           ]
         },
@@ -230,22 +198,6 @@
               "muscle": "Shoulders",
               "note": "Isolation only \u2014 keeps shoulder health during heavy pressing block"
             }
-          ],
-          "coreCloseout": [
-            {
-              "name": "Ab Wheel Rollout",
-              "sets": 4,
-              "reps": "6-8",
-              "muscle": "Core",
-              "note": "Strength anti-extension \u2014 full control"
-            },
-            {
-              "name": "Side Plank",
-              "sets": 3,
-              "reps": "45 sec",
-              "muscle": "Core",
-              "note": "Lateral stability \u2014 complements heavy pressing"
-            }
           ]
         },
         {
@@ -294,22 +246,6 @@
               "reps": "12-15",
               "muscle": "Triceps",
               "note": "Peak contraction at full extension \u2014 novel angle"
-            }
-          ],
-          "coreCloseout": [
-            {
-              "name": "Mountain Climbers",
-              "sets": 3,
-              "reps": "30 sec",
-              "muscle": "Core",
-              "note": "Dynamic anti-extension \u2014 keeps heart rate up post-press"
-            },
-            {
-              "name": "Dead Bug",
-              "sets": 3,
-              "reps": "10-12 ea",
-              "muscle": "Core",
-              "note": "Controlled breathing \u2014 reset CNS after power work"
             }
           ]
         },
@@ -360,22 +296,6 @@
               "muscle": "Triceps",
               "note": "Long head volume after compound strength work"
             }
-          ],
-          "coreCloseout": [
-            {
-              "name": "Ab Wheel Rollout",
-              "sets": 3,
-              "reps": "8-12",
-              "muscle": "Core",
-              "note": "Anti-extension strength accessory"
-            },
-            {
-              "name": "Plank",
-              "sets": 3,
-              "reps": "60 sec",
-              "muscle": "Core",
-              "note": "Isometric volume finisher"
-            }
           ]
         },
         {
@@ -424,22 +344,6 @@
               "reps": "15-20",
               "muscle": "Triceps",
               "note": "High rep dips for metabolic tricep + chest stimulus"
-            }
-          ],
-          "coreCloseout": [
-            {
-              "name": "Mountain Climbers",
-              "sets": 4,
-              "reps": "45 sec",
-              "muscle": "Core",
-              "note": "Metabolic finisher \u2014 max heart rate"
-            },
-            {
-              "name": "Shoulder Taps",
-              "sets": 3,
-              "reps": "20 ea",
-              "muscle": "Core",
-              "note": "High rep anti-rotation endurance"
             }
           ]
         }
@@ -500,22 +404,6 @@
               "muscle": "Biceps",
               "note": "Long head stretch at bottom \u2014 greater ROM than standing"
             }
-          ],
-          "coreCloseout": [
-            {
-              "name": "Bird Dog",
-              "sets": 3,
-              "reps": "10 ea",
-              "muscle": "Core",
-              "note": "Anti-rotation posterior \u2014 mirrors hinge pattern of deadlift"
-            },
-            {
-              "name": "Side Plank",
-              "sets": 3,
-              "reps": "30 sec",
-              "muscle": "Core",
-              "note": "Lateral chain \u2014 complements lat and erector work"
-            }
           ]
         },
         {
@@ -565,22 +453,6 @@
               "muscle": "Biceps",
               "note": "Highest bicep EMG of any curl \u2014 peak contraction isolation"
             }
-          ],
-          "coreCloseout": [
-            {
-              "name": "Bird Dog",
-              "sets": 4,
-              "reps": "12 ea",
-              "muscle": "Core",
-              "note": "High volume anti-rotation \u2014 posterior chain carry-over"
-            },
-            {
-              "name": "Dead Bug",
-              "sets": 3,
-              "reps": "10-12 ea",
-              "muscle": "Core",
-              "note": "Contralateral pattern \u2014 mirrors row mechanics"
-            }
           ]
         },
         {
@@ -589,129 +461,99 @@
           "repScheme": "4-6 reps, 80-85% 1RM",
           "exercises": [
             {
-              "name": "Rack Pull",
+              "name": "Deadlift",
               "sets": 4,
               "reps": "4-5",
               "muscle": "Back",
-              "note": "Deadlift variation above knee \u2014 overloads upper back and traps"
+              "note": "Primary strength pull - max posterior chain load"
             },
             {
-              "name": "Weighted Pull-Ups",
+              "name": "T-Bar Row",
               "sets": 4,
-              "reps": "4-6",
+              "reps": "5-6",
               "muscle": "Back",
-              "note": "Add plate or belt \u2014 heaviest vertical pull of the cycle"
+              "note": "Thick mid-back compound - neutral grip reduces bicep fatigue"
             },
             {
-              "name": "Meadows Row",
+              "name": "Pendlay Row",
               "sets": 4,
-              "reps": "6-8",
+              "reps": "4-5",
               "muscle": "Back",
-              "note": "Landmine row \u2014 unique angle hits lower lat hard"
+              "note": "Dead-stop barbell row - eliminates momentum, pure back strength"
             },
             {
               "name": "Chest Supported Row",
               "sets": 3,
               "reps": "6-8",
               "muscle": "Back",
-              "note": "Eliminates lower back fatigue \u2014 pure back strength"
+              "note": "Isolates mid-back without lower back fatigue - go heavy"
             },
             {
               "name": "Reverse Curl",
               "sets": 3,
               "reps": "8-10",
               "muscle": "Biceps",
-              "note": "Brachialis + forearm strength \u2014 supports all compound pulling"
+              "note": "Brachialis + forearm strength - supports all heavy pulling"
             },
             {
               "name": "Preacher Curl",
               "sets": 3,
               "reps": "8-10",
               "muscle": "Biceps",
-              "note": "Eliminates cheating \u2014 pure bicep strength at bottom"
+              "note": "Eliminates cheating - pure bicep strength at bottom range"
             }
           ],
-          "coreCloseout": [
-            {
-              "name": "Side Plank",
-              "sets": 4,
-              "reps": "45 sec",
-              "muscle": "Core",
-              "note": "Lateral isometric strength \u2014 supports heavy rows"
-            },
-            {
-              "name": "Bird Dog",
-              "sets": 3,
-              "reps": "8 ea",
-              "muscle": "Core",
-              "note": "Controlled strength reps"
-            }
-          ]
+          "coreCloseout": []
         },
         {
           "label": "D",
           "focus": "Power + Athletic",
-          "repScheme": "Mixed rep ranges, explosive movements",
+          "repScheme": "Mixed rep ranges, explosive and novel movements",
           "exercises": [
             {
               "name": "KB Swing",
               "sets": 4,
               "reps": "15-20",
               "muscle": "Back",
-              "note": "Hip hinge power \u2014 posterior chain athleticism and conditioning"
+              "note": "Hip hinge power - posterior chain conditioning + calorie burn"
             },
             {
-              "name": "KB Romanian Deadlift",
+              "name": "Single-Arm DB Row",
               "sets": 4,
               "reps": "10-12",
               "muscle": "Back",
-              "note": "Novel grip and load path vs barbell \u2014 fresh stimulus"
+              "note": "Unilateral - max ROM, fixes imbalances, heavy load possible"
             },
             {
-              "name": "Neutral-Grip Pull-Ups",
-              "sets": 4,
-              "reps": "8-10",
-              "muscle": "Back",
-              "note": "Strongest pull-up grip \u2014 hits brachialis hard"
-            },
-            {
-              "name": "Inverted Row",
+              "name": "Meadows Row",
               "sets": 3,
               "reps": "10-12",
               "muscle": "Back",
-              "note": "Bodyweight horizontal row \u2014 novel relative to cable/BB"
+              "note": "Landmine row - unique angle hits lower lat and rear delt hard"
             },
             {
-              "name": "Chin-Ups",
-              "sets": 3,
-              "reps": "8-10",
-              "muscle": "Biceps",
-              "note": "Underhand grip = more bicep contribution than pull-up"
-            },
-            {
-              "name": "Towel Curls",
+              "name": "Seated Cable Row (Wide Grip)",
               "sets": 3,
               "reps": "12-15",
-              "muscle": "Biceps",
-              "note": "Grip-intensive \u2014 forearm and bicep together"
-            }
-          ],
-          "coreCloseout": [
-            {
-              "name": "Mountain Climbers",
-              "sets": 3,
-              "reps": "30 sec",
-              "muscle": "Core",
-              "note": "Dynamic \u2014 athletic carry-over from KB swing power day"
+              "muscle": "Back",
+              "note": "Wide grip shifts load to upper back and rear delts"
             },
             {
-              "name": "Bird Dog",
+              "name": "Incline Dumbbell Curl",
               "sets": 3,
-              "reps": "10 ea",
-              "muscle": "Core",
-              "note": "Posterior reset after explosive hip hinge work"
+              "reps": "10-12",
+              "muscle": "Biceps",
+              "note": "Long head stretch - greater ROM than standing curl"
+            },
+            {
+              "name": "Hammer Curls",
+              "sets": 3,
+              "reps": "10-12",
+              "muscle": "Biceps",
+              "note": "Brachialis + brachioradialis - arm thickness"
             }
-          ]
+          ],
+          "coreCloseout": []
         },
         {
           "label": "E",
@@ -760,88 +602,57 @@
               "muscle": "Biceps",
               "note": "Volume accessory after heavy pulling"
             }
-          ],
-          "coreCloseout": [
-            {
-              "name": "Side Plank",
-              "sets": 3,
-              "reps": "45 sec",
-              "muscle": "Core",
-              "note": "Lateral stability strength accessory"
-            },
-            {
-              "name": "Bird Dog",
-              "sets": 3,
-              "reps": "10 ea",
-              "muscle": "Core",
-              "note": "Anti-rotation volume \u2014 posterior chain complement"
-            }
           ]
         },
         {
           "label": "F",
           "focus": "Metabolic",
-          "repScheme": "12-20 reps, minimal rest, conditioning focus",
+          "repScheme": "12-20 reps, circuit-style, calorie burn focus",
           "exercises": [
             {
               "name": "KB Swing",
               "sets": 4,
               "reps": "20-25",
               "muscle": "Back",
-              "note": "High rep swing \u2014 posterior chain conditioning + calorie burn"
+              "note": "High rep swing - posterior chain conditioning + calorie burn"
             },
             {
-              "name": "Pull-Ups",
+              "name": "Seated Cable Row",
               "sets": 4,
-              "reps": "AMRAP",
+              "reps": "15-20",
               "muscle": "Back",
-              "note": "Max reps each set \u2014 bodyweight metabolic"
+              "note": "High rep horizontal pull - constant cable tension"
             },
             {
-              "name": "Australian Pull-Up",
+              "name": "Lat Pulldown (Wide Grip)",
+              "sets": 4,
+              "reps": "15-20",
+              "muscle": "Back",
+              "note": "High rep vertical pull - lat width endurance"
+            },
+            {
+              "name": "Single-Arm DB Row",
               "sets": 3,
               "reps": "15-20",
               "muscle": "Back",
-              "note": "High rep horizontal pull \u2014 easier to sustain than pull-up"
+              "note": "High rep unilateral - metabolic back work"
             },
             {
-              "name": "Inverted Row",
+              "name": "Cable Curl",
               "sets": 3,
-              "reps": "15-20",
-              "muscle": "Back",
-              "note": "Bodyweight row volume \u2014 no rest needed between exercises"
-            },
-            {
-              "name": "Chin-Ups",
-              "sets": 3,
-              "reps": "AMRAP",
+              "reps": "20-25",
               "muscle": "Biceps",
-              "note": "Max reps \u2014 supinated grip bicep endurance"
+              "note": "Constant tension - bicep endurance finisher"
             },
             {
               "name": "Band Bicep Curl",
               "sets": 3,
-              "reps": "20-25",
+              "reps": "25-30",
               "muscle": "Biceps",
-              "note": "Light band, high rep \u2014 bicep pump and endurance finisher"
+              "note": "Light band high rep - bicep pump and endurance"
             }
           ],
-          "coreCloseout": [
-            {
-              "name": "Mountain Climbers",
-              "sets": 4,
-              "reps": "45 sec",
-              "muscle": "Core",
-              "note": "Metabolic posterior chain finisher"
-            },
-            {
-              "name": "Russian Twists",
-              "sets": 3,
-              "reps": "20 ea",
-              "muscle": "Core",
-              "note": "High rep rotation \u2014 metabolic core endurance"
-            }
-          ]
+          "coreCloseout": []
         }
       ]
     },
@@ -902,22 +713,6 @@
               "muscle": "Legs",
               "note": "Gastrocnemius \u2014 standing for full stretch"
             }
-          ],
-          "coreCloseout": [
-            {
-              "name": "Plank",
-              "sets": 3,
-              "reps": "45 sec",
-              "muscle": "Core",
-              "note": "Anti-extension \u2014 hip flexors already taxed from squats"
-            },
-            {
-              "name": "Dead Bug",
-              "sets": 3,
-              "reps": "8-10 ea",
-              "muscle": "Core",
-              "note": "Hip flexor deload pattern \u2014 opposite of squat mechanics"
-            }
           ]
         },
         {
@@ -966,22 +761,6 @@
               "reps": "12-15",
               "muscle": "Legs",
               "note": "Glute isolation in extended position"
-            }
-          ],
-          "coreCloseout": [
-            {
-              "name": "Plank",
-              "sets": 4,
-              "reps": "60 sec",
-              "muscle": "Core",
-              "note": "Isometric volume \u2014 avoids further hip flexor loading"
-            },
-            {
-              "name": "Side Plank",
-              "sets": 3,
-              "reps": "30 sec",
-              "muscle": "Core",
-              "note": "Lateral stability \u2014 supports hip abductor work from lunges"
             }
           ]
         },
@@ -1032,22 +811,6 @@
               "muscle": "Legs",
               "note": "Heavier than A/B \u2014 strength reps for gastrocnemius"
             }
-          ],
-          "coreCloseout": [
-            {
-              "name": "Ab Wheel Rollout",
-              "sets": 3,
-              "reps": "6-8",
-              "muscle": "Core",
-              "note": "Strength anti-extension \u2014 hip flexors recovering from heavy squats"
-            },
-            {
-              "name": "Plank",
-              "sets": 3,
-              "reps": "60 sec",
-              "muscle": "Core",
-              "note": "Isometric hold \u2014 minimal hip flexor involvement"
-            }
           ]
         },
         {
@@ -1096,22 +859,6 @@
               "reps": "15-20",
               "muscle": "Legs",
               "note": "Hip flexed stretches gastrocnemius further than standing"
-            }
-          ],
-          "coreCloseout": [
-            {
-              "name": "Dead Bug",
-              "sets": 3,
-              "reps": "10 ea",
-              "muscle": "Core",
-              "note": "Controlled reset after plyometric leg work"
-            },
-            {
-              "name": "Bird Dog",
-              "sets": 3,
-              "reps": "10 ea",
-              "muscle": "Core",
-              "note": "Posterior chain finisher \u2014 glute + core after power day"
             }
           ]
         },
@@ -1162,22 +909,6 @@
               "muscle": "Legs",
               "note": "Strength-rep calves \u2014 heavier load than hypertrophy blocks"
             }
-          ],
-          "coreCloseout": [
-            {
-              "name": "Plank",
-              "sets": 4,
-              "reps": "60 sec",
-              "muscle": "Core",
-              "note": "Strength isometric \u2014 minimal hip flexor tax"
-            },
-            {
-              "name": "Dead Bug",
-              "sets": 3,
-              "reps": "10 ea",
-              "muscle": "Core",
-              "note": "Anti-extension accessory \u2014 spine decompression after heavy loads"
-            }
           ]
         },
         {
@@ -1226,22 +957,6 @@
               "reps": "20-25",
               "muscle": "Legs",
               "note": "High rep burnout \u2014 calf endurance finisher"
-            }
-          ],
-          "coreCloseout": [
-            {
-              "name": "Mountain Climbers",
-              "sets": 4,
-              "reps": "45 sec",
-              "muscle": "Core",
-              "note": "Metabolic finisher \u2014 legs already pre-fatigued"
-            },
-            {
-              "name": "Plank",
-              "sets": 3,
-              "reps": "60 sec",
-              "muscle": "Core",
-              "note": "Isometric burnout \u2014 high metabolic cost, no hip flexor stress"
             }
           ]
         }
@@ -1306,22 +1021,6 @@
               "muscle": "Triceps",
               "note": "Long head \u2014 40% more growth than pressdowns"
             }
-          ],
-          "coreCloseout": [
-            {
-              "name": "Hanging Leg Raise",
-              "sets": 3,
-              "reps": "10-15",
-              "muscle": "Core",
-              "note": "Flexion \u2014 full body day can handle it"
-            },
-            {
-              "name": "Russian Twists",
-              "sets": 3,
-              "reps": "16 ea",
-              "muscle": "Core",
-              "note": "Rotation \u2014 the pattern full body compound day misses"
-            }
           ]
         },
         {
@@ -1370,22 +1069,6 @@
               "reps": "8-10",
               "muscle": "Triceps",
               "note": "Long head stretch \u2014 pairs with curl as superset option"
-            }
-          ],
-          "coreCloseout": [
-            {
-              "name": "V-Ups",
-              "sets": 3,
-              "reps": "12-15",
-              "muscle": "Core",
-              "note": "Full flexion volume \u2014 complements high volume session"
-            },
-            {
-              "name": "Russian Twists",
-              "sets": 4,
-              "reps": "20 ea",
-              "muscle": "Core",
-              "note": "Rotational endurance \u2014 high rep volume block"
             }
           ]
         },
@@ -1436,22 +1119,6 @@
               "muscle": "Biceps",
               "note": "Brachialis strength \u2014 supports all compound pulling"
             }
-          ],
-          "coreCloseout": [
-            {
-              "name": "Hanging Leg Raise",
-              "sets": 4,
-              "reps": "8-10",
-              "muscle": "Core",
-              "note": "Strength flexion reps"
-            },
-            {
-              "name": "Side Plank",
-              "sets": 3,
-              "reps": "45 sec",
-              "muscle": "Core",
-              "note": "Lateral isometric \u2014 full body strength day closer"
-            }
           ]
         },
         {
@@ -1500,22 +1167,6 @@
               "reps": "10-12",
               "muscle": "Triceps",
               "note": "Long head anchor"
-            }
-          ],
-          "coreCloseout": [
-            {
-              "name": "Mountain Climbers",
-              "sets": 4,
-              "reps": "30 sec",
-              "muscle": "Core",
-              "note": "Dynamic power finisher \u2014 athletic carry-over"
-            },
-            {
-              "name": "V-Ups",
-              "sets": 3,
-              "reps": "12-15",
-              "muscle": "Core",
-              "note": "Explosive flexion \u2014 power endurance core"
             }
           ]
         },
@@ -1566,22 +1217,6 @@
               "muscle": "Triceps",
               "note": "Strength tricep compound after bench"
             }
-          ],
-          "coreCloseout": [
-            {
-              "name": "Hanging Leg Raise",
-              "sets": 3,
-              "reps": "10-12",
-              "muscle": "Core",
-              "note": "Strength + volume flexion \u2014 powerbuilding accessory"
-            },
-            {
-              "name": "Ab Wheel Rollout",
-              "sets": 3,
-              "reps": "8-10",
-              "muscle": "Core",
-              "note": "Anti-extension strength \u2014 complements heavy compound day"
-            }
           ]
         },
         {
@@ -1630,22 +1265,6 @@
               "reps": "AMRAP",
               "muscle": "Back",
               "note": "Max reps \u2014 bodyweight metabolic pull"
-            }
-          ],
-          "coreCloseout": [
-            {
-              "name": "V-Ups",
-              "sets": 4,
-              "reps": "15-20",
-              "muscle": "Core",
-              "note": "High rep flexion \u2014 metabolic full body finisher"
-            },
-            {
-              "name": "Mountain Climbers",
-              "sets": 4,
-              "reps": "45 sec",
-              "muscle": "Core",
-              "note": "Max metabolic output \u2014 full body circuit closer"
             }
           ]
         }
@@ -1700,22 +1319,6 @@
               "muscle": "Triceps",
               "note": "Closest BW to close-grip bench"
             }
-          ],
-          "coreCloseout": [
-            {
-              "name": "Plank",
-              "sets": 3,
-              "reps": "45 sec",
-              "muscle": "Core",
-              "note": "Anti-extension \u2014 mirrors push-up mechanics"
-            },
-            {
-              "name": "Dead Bug",
-              "sets": 3,
-              "reps": "8-10 ea",
-              "muscle": "Core",
-              "note": "Opposite pattern to push-up \u2014 stabilizes spine"
-            }
           ]
         },
         {
@@ -1756,22 +1359,6 @@
               "reps": "8-10",
               "muscle": "Chest",
               "note": "High chest demand \u2014 protracted position"
-            }
-          ],
-          "coreCloseout": [
-            {
-              "name": "Shoulder Taps",
-              "sets": 3,
-              "reps": "16 ea",
-              "muscle": "Core",
-              "note": "Push-up position anti-rotation \u2014 direct carry-over"
-            },
-            {
-              "name": "Plank",
-              "sets": 3,
-              "reps": "60 sec",
-              "muscle": "Core",
-              "note": "Volume plank closer"
             }
           ]
         },
@@ -1814,22 +1401,6 @@
               "muscle": "Triceps",
               "note": "Neurological strength"
             }
-          ],
-          "coreCloseout": [
-            {
-              "name": "Ab Wheel Rollout",
-              "sets": 3,
-              "reps": "6-8",
-              "muscle": "Core",
-              "note": "Strength anti-extension \u2014 BW strength day"
-            },
-            {
-              "name": "Side Plank",
-              "sets": 3,
-              "reps": "45 sec",
-              "muscle": "Core",
-              "note": "Lateral isometric \u2014 heavy BW push closer"
-            }
           ]
         },
         {
@@ -1870,22 +1441,6 @@
               "reps": "15-20",
               "muscle": "Triceps",
               "note": "High rep endurance"
-            }
-          ],
-          "coreCloseout": [
-            {
-              "name": "Mountain Climbers",
-              "sets": 3,
-              "reps": "30 sec",
-              "muscle": "Core",
-              "note": "Dynamic power \u2014 athletic BW day finisher"
-            },
-            {
-              "name": "Shoulder Taps",
-              "sets": 3,
-              "reps": "16 ea",
-              "muscle": "Core",
-              "note": "Anti-rotation from push position"
             }
           ]
         },
@@ -1928,22 +1483,6 @@
               "muscle": "Triceps",
               "note": "Strength reps \u2014 controlled tempo"
             }
-          ],
-          "coreCloseout": [
-            {
-              "name": "Ab Wheel Rollout",
-              "sets": 3,
-              "reps": "8-10",
-              "muscle": "Core",
-              "note": "Anti-extension strength accessory"
-            },
-            {
-              "name": "Plank",
-              "sets": 3,
-              "reps": "60 sec",
-              "muscle": "Core",
-              "note": "Isometric volume"
-            }
           ]
         },
         {
@@ -1984,22 +1523,6 @@
               "reps": "20-25",
               "muscle": "Triceps",
               "note": "High rep metabolic finisher"
-            }
-          ],
-          "coreCloseout": [
-            {
-              "name": "Mountain Climbers",
-              "sets": 4,
-              "reps": "45 sec",
-              "muscle": "Core",
-              "note": "Metabolic push position finisher"
-            },
-            {
-              "name": "Shoulder Taps",
-              "sets": 3,
-              "reps": "20 ea",
-              "muscle": "Core",
-              "note": "High rep anti-rotation endurance"
             }
           ]
         }
@@ -2053,22 +1576,6 @@
               "muscle": "Back",
               "note": "Lower trap + scapular control"
             }
-          ],
-          "coreCloseout": [
-            {
-              "name": "Bird Dog",
-              "sets": 3,
-              "reps": "10 ea",
-              "muscle": "Core",
-              "note": "Anti-rotation posterior \u2014 mirrors pull-up pattern"
-            },
-            {
-              "name": "Dead Bug",
-              "sets": 3,
-              "reps": "8-10 ea",
-              "muscle": "Core",
-              "note": "Contralateral stability \u2014 complements pulling mechanics"
-            }
           ]
         },
         {
@@ -2109,22 +1616,6 @@
               "reps": "12-15",
               "muscle": "Biceps",
               "note": "Grip intensive"
-            }
-          ],
-          "coreCloseout": [
-            {
-              "name": "Bird Dog",
-              "sets": 4,
-              "reps": "12 ea",
-              "muscle": "Core",
-              "note": "High volume anti-rotation"
-            },
-            {
-              "name": "Side Plank",
-              "sets": 3,
-              "reps": "30 sec",
-              "muscle": "Core",
-              "note": "Lateral chain \u2014 lat and oblique connection"
             }
           ]
         },
@@ -2167,22 +1658,6 @@
               "muscle": "Back",
               "note": "Add weight plate"
             }
-          ],
-          "coreCloseout": [
-            {
-              "name": "Side Plank",
-              "sets": 4,
-              "reps": "45 sec",
-              "muscle": "Core",
-              "note": "Lateral strength \u2014 supports heavy BW pull day"
-            },
-            {
-              "name": "Bird Dog",
-              "sets": 3,
-              "reps": "8 ea",
-              "muscle": "Core",
-              "note": "Strength controlled reps"
-            }
           ]
         },
         {
@@ -2223,22 +1698,6 @@
               "reps": "5x5s",
               "muscle": "Back",
               "note": "Erector endurance"
-            }
-          ],
-          "coreCloseout": [
-            {
-              "name": "Mountain Climbers",
-              "sets": 3,
-              "reps": "30 sec",
-              "muscle": "Core",
-              "note": "Dynamic finisher after athletic BW pull"
-            },
-            {
-              "name": "Bird Dog",
-              "sets": 3,
-              "reps": "10 ea",
-              "muscle": "Core",
-              "note": "Posterior reset"
             }
           ]
         },
@@ -2281,22 +1740,6 @@
               "muscle": "Back",
               "note": "Erector volume"
             }
-          ],
-          "coreCloseout": [
-            {
-              "name": "Side Plank",
-              "sets": 3,
-              "reps": "45 sec",
-              "muscle": "Core",
-              "note": "Lateral stability strength"
-            },
-            {
-              "name": "Dead Bug",
-              "sets": 3,
-              "reps": "10 ea",
-              "muscle": "Core",
-              "note": "Anti-rotation volume"
-            }
           ]
         },
         {
@@ -2337,22 +1780,6 @@
               "reps": "25-30",
               "muscle": "Biceps",
               "note": "High rep endurance finisher"
-            }
-          ],
-          "coreCloseout": [
-            {
-              "name": "Mountain Climbers",
-              "sets": 4,
-              "reps": "45 sec",
-              "muscle": "Core",
-              "note": "Metabolic BW pull closer"
-            },
-            {
-              "name": "Russian Twists",
-              "sets": 3,
-              "reps": "20 ea",
-              "muscle": "Core",
-              "note": "Rotation endurance"
             }
           ]
         }
@@ -2415,22 +1842,6 @@
               "muscle": "Legs",
               "note": "Deep gastroc stretch"
             }
-          ],
-          "coreCloseout": [
-            {
-              "name": "Plank",
-              "sets": 3,
-              "reps": "45 sec",
-              "muscle": "Core",
-              "note": "Anti-extension \u2014 hip flexors taxed from BW squat"
-            },
-            {
-              "name": "Dead Bug",
-              "sets": 3,
-              "reps": "8-10 ea",
-              "muscle": "Core",
-              "note": "Hip flexor deload \u2014 opposite of squat pattern"
-            }
           ]
         },
         {
@@ -2478,22 +1889,6 @@
               "reps": "45 sec",
               "muscle": "Legs",
               "note": "Isometric quad endurance"
-            }
-          ],
-          "coreCloseout": [
-            {
-              "name": "Plank",
-              "sets": 4,
-              "reps": "60 sec",
-              "muscle": "Core",
-              "note": "Volume isometric \u2014 avoids hip flexor overload"
-            },
-            {
-              "name": "Bird Dog",
-              "sets": 3,
-              "reps": "12 ea",
-              "muscle": "Core",
-              "note": "Glute + core posterior \u2014 leg volume day carry-over"
             }
           ]
         },
@@ -2543,22 +1938,6 @@
               "muscle": "Legs",
               "note": "Strength phase calves"
             }
-          ],
-          "coreCloseout": [
-            {
-              "name": "Side Plank",
-              "sets": 3,
-              "reps": "45 sec",
-              "muscle": "Core",
-              "note": "Lateral strength \u2014 knee and hip stability support"
-            },
-            {
-              "name": "Plank",
-              "sets": 3,
-              "reps": "60 sec",
-              "muscle": "Core",
-              "note": "Isometric strength hold"
-            }
           ]
         },
         {
@@ -2606,22 +1985,6 @@
               "reps": "60 sec",
               "muscle": "Legs",
               "note": "Isometric burnout finisher"
-            }
-          ],
-          "coreCloseout": [
-            {
-              "name": "Dead Bug",
-              "sets": 3,
-              "reps": "10 ea",
-              "muscle": "Core",
-              "note": "Controlled reset after plyometric BW legs"
-            },
-            {
-              "name": "Bird Dog",
-              "sets": 3,
-              "reps": "10 ea",
-              "muscle": "Core",
-              "note": "Posterior chain finisher"
             }
           ]
         },
@@ -2671,22 +2034,6 @@
               "muscle": "Legs",
               "note": "Calf volume"
             }
-          ],
-          "coreCloseout": [
-            {
-              "name": "Plank",
-              "sets": 4,
-              "reps": "60 sec",
-              "muscle": "Core",
-              "note": "Strength isometric \u2014 minimal hip flexor stress"
-            },
-            {
-              "name": "Dead Bug",
-              "sets": 3,
-              "reps": "10 ea",
-              "muscle": "Core",
-              "note": "Anti-extension accessory"
-            }
           ]
         },
         {
@@ -2734,22 +2081,6 @@
               "reps": "60 sec",
               "muscle": "Legs",
               "note": "Isometric burnout"
-            }
-          ],
-          "coreCloseout": [
-            {
-              "name": "Mountain Climbers",
-              "sets": 4,
-              "reps": "45 sec",
-              "muscle": "Core",
-              "note": "Metabolic \u2014 legs pre-fatigued, core takes over"
-            },
-            {
-              "name": "Plank",
-              "sets": 3,
-              "reps": "60 sec",
-              "muscle": "Core",
-              "note": "Isometric burnout closer"
             }
           ]
         }
@@ -2813,22 +2144,6 @@
               "muscle": "Legs",
               "note": "Posterior chain balance"
             }
-          ],
-          "coreCloseout": [
-            {
-              "name": "Hanging Leg Raise",
-              "sets": 3,
-              "reps": "10-15",
-              "muscle": "Core",
-              "note": "Flexion \u2014 full body BW day can handle it"
-            },
-            {
-              "name": "Russian Twists",
-              "sets": 3,
-              "reps": "16 ea",
-              "muscle": "Core",
-              "note": "Rotation \u2014 the pattern BW full body misses"
-            }
           ]
         },
         {
@@ -2876,22 +2191,6 @@
               "reps": "5-8",
               "muscle": "Legs",
               "note": "Highest BW hamstring stimulus"
-            }
-          ],
-          "coreCloseout": [
-            {
-              "name": "V-Ups",
-              "sets": 3,
-              "reps": "12-15",
-              "muscle": "Core",
-              "note": "Flexion volume \u2014 BW volume day"
-            },
-            {
-              "name": "Russian Twists",
-              "sets": 4,
-              "reps": "20 ea",
-              "muscle": "Core",
-              "note": "Rotational endurance"
             }
           ]
         },
@@ -2941,22 +2240,6 @@
               "muscle": "Chest",
               "note": "High chest + tricep demand"
             }
-          ],
-          "coreCloseout": [
-            {
-              "name": "Hanging Leg Raise",
-              "sets": 4,
-              "reps": "8-10",
-              "muscle": "Core",
-              "note": "Strength flexion \u2014 BW skill day"
-            },
-            {
-              "name": "Side Plank",
-              "sets": 3,
-              "reps": "45 sec",
-              "muscle": "Core",
-              "note": "Lateral isometric strength"
-            }
           ]
         },
         {
@@ -3005,22 +2288,6 @@
               "muscle": "Legs",
               "note": "Lateral power"
             }
-          ],
-          "coreCloseout": [
-            {
-              "name": "Mountain Climbers",
-              "sets": 4,
-              "reps": "30 sec",
-              "muscle": "Core",
-              "note": "Dynamic power \u2014 athletic BW full body closer"
-            },
-            {
-              "name": "V-Ups",
-              "sets": 3,
-              "reps": "12-15",
-              "muscle": "Core",
-              "note": "Explosive flexion power"
-            }
           ]
         },
         {
@@ -3066,22 +2333,6 @@
               "name": "Ab Wheel Rollout",
               "sets": 3,
               "reps": "8-12",
-              "muscle": "Core",
-              "note": "Anti-extension strength"
-            }
-          ],
-          "coreCloseout": [
-            {
-              "name": "Hanging Leg Raise",
-              "sets": 3,
-              "reps": "10-12",
-              "muscle": "Core",
-              "note": "Strength flexion accessory"
-            },
-            {
-              "name": "Ab Wheel Rollout",
-              "sets": 3,
-              "reps": "8-10",
               "muscle": "Core",
               "note": "Anti-extension strength"
             }
@@ -3132,22 +2383,6 @@
               "reps": "10-12",
               "muscle": "Legs",
               "note": "Explosive finisher"
-            }
-          ],
-          "coreCloseout": [
-            {
-              "name": "V-Ups",
-              "sets": 4,
-              "reps": "15-20",
-              "muscle": "Core",
-              "note": "High rep metabolic flexion"
-            },
-            {
-              "name": "Mountain Climbers",
-              "sets": 4,
-              "reps": "45 sec",
-              "muscle": "Core",
-              "note": "Max metabolic output closer"
             }
           ]
         }
