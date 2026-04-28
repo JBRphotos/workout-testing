@@ -139,12 +139,17 @@
 // -- XP + LEVEL SYSTEM --------------------------------------------------------
 // XP rewards scale with intensity. Each entry: { Light, Moderate, Hard, description }
 const XP_TABLE = [
-    { id: "WORKOUT_COMPLETE", label: "Finish a workout", Light: 100, Moderate: 150, Hard: 225, iconKey: "Trophy", desc: "Awarded once per session when you tap Finish Workout." },
-    { id: "SET_COMPLETE", label: "Per set completed", Light: 5, Moderate: 8, Hard: 12, iconKey: "Check", desc: "Each individual set you mark off during a session." },
-    { id: "CHECKIN_SUBMIT", label: "Weekly check-in", Light: 50, Moderate: 50, Hard: 50, iconKey: "Clipboard", desc: "Log your weight and notes once per week. Always 50 XP regardless of intensity." },
-    { id: "FULL_WORKOUT", label: "Complete all sets (bonus)", Light: 25, Moderate: 50, Hard: 80, iconKey: "Star", desc: "Bonus XP for finishing every single set in a workout without skipping any." },
-    { id: "CARDIO_SESSION", label: "Cardio session", Light: 30, Moderate: 30, Hard: 30, iconKey: "Cardio", desc: "Base XP per cardio session. Bonus XP awarded on top based on pace." },
-    { id: "STRETCH_SESSION", label: "Complete stretch phase", Light: 15, Moderate: 20, Hard: 20, iconKey: "Stretch", desc: "Awarded when you tap Done Stretching before a workout." },
+    { id: "WORKOUT_COMPLETE", label: "Finish a workout", Light: 80, Moderate: 150, Hard: 280, iconKey: "Trophy", desc: "Awarded once per session when you tap Finish Workout." },
+    { id: "SET_COMPLETE", label: "Per set completed", Light: 4, Moderate: 8, Hard: 18, iconKey: "Check", desc: "Each individual set you mark off during a session." },
+    { id: "CHECKIN_SUBMIT", label: "Weekly check-in", Light: 50, Moderate: 75, Hard: 100, iconKey: "Clipboard", desc: "Log your weight and notes once per week." },
+    { id: "FULL_WORKOUT", label: "Complete all sets (bonus)", Light: 20, Moderate: 60, Hard: 120, iconKey: "Star", desc: "Bonus XP for finishing every single set in a workout without skipping any." },
+    { id: "CARDIO_SESSION", label: "Cardio session", Light: 25, Moderate: 50, Hard: 80, iconKey: "Cardio", desc: "Base XP per cardio session. Bonus XP awarded on top based on pace." },
+    { id: "STRETCH_SESSION", label: "Complete stretch phase", Light: 10, Moderate: 20, Hard: 35, iconKey: "Stretch", desc: "Awarded when you complete the stretch or cool down phase." },
+    { id: "STREAK_3", label: "3-day streak", Light: 75, Moderate: 100, Hard: 150, iconKey: "Fire", desc: "Complete workouts 3 days in a row." },
+    { id: "STREAK_7", label: "7-day streak", Light: 200, Moderate: 300, Hard: 450, iconKey: "Fire", desc: "Complete workouts 7 days in a row." },
+    { id: "STREAK_30", label: "30-day streak", Light: 750, Moderate: 1000, Hard: 1500, iconKey: "Fire", desc: "Complete workouts 30 days in a row." },
+    { id: "PR_BEAT", label: "Beat a personal record", Light: 50, Moderate: 75, Hard: 100, iconKey: "Trophy", desc: "Awarded each time you exceed your logged PR for an exercise." },
+    { id: "WEEK_COMPLETE", label: "Hit weekly goal", Light: 100, Moderate: 150, Hard: 250, iconKey: "Star", desc: "Complete your target days/week." },
 ];
 const getXP = (id, intensity) => {
     const row = XP_TABLE.find(r => r.id === id);
@@ -447,9 +452,9 @@ const INTENSITY_CONFIG = {
 const SCHEDULES = {
     2: ["Push", "Rest", "Rest", "Pull", "Rest", "Rest", "Rest"],
     3: ["Push", "Rest", "Pull", "Rest", "Legs", "Rest", "Rest"],
-    4: ["Push", "Pull", "Rest", "Legs", "Push", "Rest", "Rest"],
-    5: ["Push", "Pull", "Legs", "Rest", "Push", "Pull", "Rest"],
-    6: ["Push", "Pull", "Legs", "Push", "Pull", "Legs", "Rest"],
+    4: ["Push", "Pull", "Legs", "Rest", "Full Body", "Rest", "Rest"],
+    5: ["Push", "Pull", "Legs", "Rest", "Push", "Pull", "Full Body"],
+    6: ["Push", "Pull", "Legs", "Push", "Pull", "Full Body", "Legs"],
 };
 const GROUP_COLORS = {
     Chest: "#FF6B35", Back: "#4ECDC4", Shoulders: "#F7DC6F",
@@ -1882,6 +1887,19 @@ function HunterProfile({ rankInfo, totalXP, setTotalXP, setXpEvents, profile, se
                         React.createElement("button", { onClick: () => { onResetStats === null || onResetStats === void 0 ? void 0 : onResetStats(); setResetConfirm(false); }, style: { flex: 1, padding: "11px", borderRadius: 10, background: "#F87171", border: "none", color: "#000", fontSize: 13, fontWeight: 700, cursor: "pointer" } }, "Yes, Reset")))),
             React.createElement("div", { style: { textAlign: "center", marginTop: 20, paddingBottom: 8 } },
                 React.createElement("div", { style: { fontSize: 9, color: C.muted, letterSpacing: "0.12em", fontFamily: "monospace", opacity: 0.5 } }, window.__v)),
+        rankInfo && rankInfo.current && rankInfo.current.rank === "SS" && prestigeLevel < 5 && (React.createElement("div", { style: { padding: "16px 24px" } },
+            !prestigePending
+                ? React.createElement("div", { style: { background: "linear-gradient(135deg, #FFD70018, #FF950010)", borderRadius: 14, padding: "18px", border: "1.5px solid #FFD70044", textAlign: "center" } },
+                    React.createElement("div", { style: { fontSize: 20, marginBottom: 4 } }, "\u2605"),
+                    React.createElement("div", { style: { fontSize: 14, fontWeight: 800, color: "#FFD700", marginBottom: 6 } }, "Max Rank Reached"),
+                    React.createElement("div", { style: { fontSize: 12, color: C.muted, marginBottom: 14, lineHeight: 1.6 } }, "Prestige to start over with a permanent badge. History, PRs, and cardio are all kept."),
+                    React.createElement("button", { onClick: () => setPrestigePending(true), style: { padding: "10px 24px", borderRadius: 12, background: "linear-gradient(135deg, #FFD700, #FF9500)", border: "none", color: "#000", fontSize: 13, fontWeight: 800, cursor: "pointer" } }, prestigeLevel === 0 ? "Prestige \u2192" : ("Prestige " + (prestigeLevel + 1) + " \u2192")))
+                : React.createElement("div", { style: { background: "#F8717118", borderRadius: 14, padding: "18px", border: "1.5px solid #F8717144" } },
+                    React.createElement("div", { style: { fontSize: 14, fontWeight: 800, color: "#F87171", marginBottom: 8 } }, "Confirm Prestige?"),
+                    React.createElement("div", { style: { fontSize: 12, color: C.muted, marginBottom: 14, lineHeight: 1.6 } }, "XP and rank reset to 0. History, PRs, and cardio all kept. P" + (prestigeLevel + 1) + " badge added permanently."),
+                    React.createElement("div", { style: { display: "flex", gap: 8 } },
+                        React.createElement("button", { onClick: () => setPrestigePending(false), style: { flex: 1, padding: "11px", borderRadius: 10, background: C.btnBg, border: `1px solid ${C.btnBorder}`, color: C.muted, fontSize: 13, cursor: "pointer" } }, "Cancel"),
+                        React.createElement("button", { onClick: () => { setPrestigeLevel(p => p + 1); setTotalXP(0); setXpEvents([]); setPrestigePending(false); }, style: { flex: 1, padding: "11px", borderRadius: 10, background: "linear-gradient(135deg, #FFD700, #FF9500)", border: "none", color: "#000", fontSize: 13, fontWeight: 800, cursor: "pointer" } }, "Prestige \u2714"))))),
         rankInfo && rankInfo.rank === "SS" && (React.createElement("div", { style: { padding: "0 24px", marginTop: 16 } },
             !prestigePending
                 ? React.createElement("div", { style: { background: "linear-gradient(135deg, #FFD70022, #FF950011)", borderRadius: 14, padding: "20px", border: "1.5px solid #FFD70044", textAlign: "center" } },
@@ -3282,6 +3300,10 @@ function AdminPanel({ profile, setProfile, adminVariantOverride, setAdminVariant
                     )
                 )
         ),
+        React.createElement('div', { style: { background: C.card, borderRadius: 14, padding: '16px', border: '1px solid #1e1e1e', marginBottom: 14 } },
+            React.createElement('div', { style: { fontSize: 10, color: '#FF6B35', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 10 } }, 'Cache'),
+            React.createElement('div', { style: { fontSize: 12, color: C.muted, marginBottom: 12 } }, 'Clears PWA/browser cache only. All data, XP, and settings are untouched.'),
+            React.createElement('button', { onClick: () => { if ('caches' in window) { caches.keys().then(names => { names.forEach(n => caches.delete(n)); location.reload(); }); } else { location.reload(); } }, style: { width: '100%', padding: '12px', borderRadius: 10, background: '#F87171', border: 'none', color: '#000', fontSize: 13, fontWeight: 700, cursor: 'pointer' } }, 'Clear Cache + Reload')),
         React.createElement('div', { style: { background: C.card, borderRadius: 14, padding: '16px', border: '1px solid #1e1e1e' } },
             React.createElement('div', { style: { fontSize: 10, color: '#FF6B35', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 10 } }, 'State'),
             row('Version', window.__v),
@@ -3384,6 +3406,10 @@ useEffect(() => { if (storageReady)
 save("workoutHistory", workoutHistory); }, [workoutHistory, storageReady]);
 useEffect(() => { if (storageReady)
 save("customSchedule", customSchedule); }, [customSchedule, storageReady]);
+useEffect(() => { if (storageReady) save("workoutStreak", workoutStreak); }, [workoutStreak, storageReady]);
+useEffect(() => { if (storageReady) save("lastWorkoutDate", lastWorkoutDate); }, [lastWorkoutDate, storageReady]);
+useEffect(() => { if (storageReady) save("weeklyGoalAwarded", weeklyGoalAwarded); }, [weeklyGoalAwarded, storageReady]);
+useEffect(() => { if (storageReady) save("prestigeLevel", prestigeLevel); }, [prestigeLevel, storageReady]);
 useEffect(() => { if (storageReady) save("workoutStreak", workoutStreak); }, [workoutStreak, storageReady]);
 useEffect(() => { if (storageReady) save("lastWorkoutDate", lastWorkoutDate); }, [lastWorkoutDate, storageReady]);
 useEffect(() => { if (storageReady) save("weeklyGoalAwarded", weeklyGoalAwarded); }, [weeklyGoalAwarded, storageReady]);
@@ -3576,6 +3602,7 @@ const endWorkout = () => {
                 const existing = updated[exName];
                 const isNewPR = !existing || best.weight > existing.weight || (best.weight === existing.weight && best.reps > existing.reps);
                 if (isNewPR && existing) prBeaten.push(exName);
+                if (isNewPR && existing) prBeaten.push(exName);
                 const sessionEntry = { weight: best.weight, reps: best.reps, date: today, allSets: sets };
                 updated[exName] = {
                     weight: isNewPR ? best.weight : existing.weight,
@@ -3591,6 +3618,22 @@ const endWorkout = () => {
     }
     setWorkoutPhase("stretch");
     setShowCooldownPrompt(false);
+    // -- Streak tracking --
+    const todayStr = new Date().toDateString();
+    const yesterdayStr = new Date(Date.now() - 86400000).toDateString();
+    const newStreak = (lastWorkoutDate === yesterdayStr || lastWorkoutDate === todayStr) ? workoutStreak + 1 : 1;
+    setWorkoutStreak(newStreak);
+    setLastWorkoutDate(todayStr);
+    if (newStreak === 3) awardXP(getXP("STREAK_3", intensity), "3-day streak!");
+    else if (newStreak === 7) awardXP(getXP("STREAK_7", intensity), "7-day streak!");
+    else if (newStreak === 30) awardXP(getXP("STREAK_30", intensity), "30-day streak!");
+    // -- Weekly goal check --
+    const _weekKey = getWeekKey();
+    if (_weekKey !== weeklyGoalAwarded) {
+        const _ws = new Date(); _ws.setDate(_ws.getDate() - ((_ws.getDay() + 6) % 7)); _ws.setHours(0,0,0,0);
+        const _wc = workoutHistory.filter(s => new Date(s.date) >= _ws).length + 1;
+        if (_wc >= daysPerWeek) { awardXP(getXP("WEEK_COMPLETE", intensity), "Weekly goal hit!"); setWeeklyGoalAwarded(_weekKey); }
+    }
     setWorkoutActive(false);
     setSelectedWorkout(null);
     setActiveTab("home");
@@ -4044,7 +4087,7 @@ return (React.createElement("div", { style: { height: "100dvh", background: TH.b
                     React.createElement("div", { style: { fontSize: 10, color: C.muted } },
                         weekStart.toLocaleDateString([], { month: "short", day: "numeric" }),
                         " \u2013 ",
-                        now.toLocaleDateString([], { month: "short", day: "numeric" }))),
+                        new Date(weekStart.getTime() + 6 * 86400000).toLocaleDateString([], { month: "short", day: "numeric" }))),
                 React.createElement("div", { style: { display: "flex", gap: 10, marginBottom: 10 } },
                     React.createElement(StatCard, { label: "Sets", value: totalSets, sub: `of ~${setTarget} target`, progress: setTarget > 0 ? totalSets / setTarget : 0, color: TH.accent, icon: React.createElement("svg", { width: "14", height: "14", viewBox: "0 0 24 24", fill: "none", stroke: TH.accent, strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" },
                             React.createElement("rect", { x: "4", y: "12", width: "16", height: "4", rx: "2" }),
