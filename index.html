@@ -1,4 +1,4 @@
-<!DOCTYPE html><!-- v20260428-016.6-->
+<!DOCTYPE html><!-- v20260428-016.6.1-->
 
 <html lang="en">
 <head>
@@ -1165,15 +1165,11 @@ function ExerciseCard({ ex, workoutColor, completedSets, toggleSet, intensity, s
                                 color: prData.isNew ? workoutColor : "#555",
                                 border: `1px solid ${prData.isNew ? workoutColor + "55" : C.btnBorder}`,
                                 fontWeight: 600 } }, prData.isNew ? "* NEW PR" : `PR ${prData.weight}lb x ${prData.reps}`))),
-                    React.createElement("div", { style: { fontSize: 11, color: C.muted, marginTop: 2, display: "flex", alignItems: "center", gap: 6, flexWrap: "wrap" } },
-                        React.createElement("span", null, ex.muscle),
-                        React.createElement("span", null, "\u00B7"),
-                        React.createElement("span", { style: { color: cfg === null || cfg === void 0 ? void 0 : cfg.color } },
-                            adjSets,
-                            " sets"),
-                        React.createElement("span", null, "\u00D7"),
-                        React.createElement("span", null, ex.reps),
-                        React.createElement("span", { style: { color: C.muted } }, cfg === null || cfg === void 0 ? void 0 : cfg.restLabel))),
+                    React.createElement("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 4, width: "100%" } },
+                        React.createElement("span", { style: { fontSize: 11, color: C.muted } }, ex.muscle),
+                        React.createElement("span", { style: { fontSize: 11, color: (cfg === null || cfg === void 0 ? void 0 : cfg.color) || C.muted, fontWeight: 500 } },
+                            adjSets, " sets x ", ex.reps),
+                        React.createElement("span", { style: { fontSize: 11, color: C.muted } }, (cfg === null || cfg === void 0 ? void 0 : cfg.restLabel) || ""))),
                 React.createElement("div", { style: { display: "flex", alignItems: "center", gap: 6, marginLeft: 10, flexShrink: 0 } },
                     React.createElement("div", { style: { display: "flex", gap: 4 } }, Array.from({ length: adjSets }).map((_, i) => (React.createElement("div", { key: i, style: { width: 8, height: 8, borderRadius: "50%",
                             background: completedSets[`${ex.name}-${i}`] ? workoutColor : (open && i === currentSet ? workoutColor + "66" : C.btnBorder),
@@ -1190,12 +1186,12 @@ function ExerciseCard({ ex, workoutColor, completedSets, toggleSet, intensity, s
                     guide && (React.createElement("button", { onClick: e => { e.stopPropagation(); setExpanded(v => !v); }, style: { background: expanded ? workoutColor + "22" : "none", border: `1px solid ${expanded ? workoutColor + "44" : C.btnBorder}`, borderRadius: 8, color: expanded ? workoutColor : "#444", fontSize: 11, cursor: "pointer", padding: "4px 10px", fontWeight: 500 } }, expanded ? "Hide" : "Form"))))),
         showSwap && swapData && React.createElement("div", { style: { margin: "0 14px 10px", background: C.deep, borderRadius: 10, padding: "12px 14px", border: `1px solid ${C.btnBorder}` } },
             swapData.equipment_note && React.createElement("div", { style: { fontSize: 11, color: C.muted, lineHeight: 1.5, marginBottom: swapData.alternatives && swapData.alternatives.length ? 10 : 0, paddingBottom: swapData.alternatives && swapData.alternatives.length ? 8 : 0, borderBottom: swapData.alternatives && swapData.alternatives.length ? `1px solid ${C.btnBorder}` : "none" } },
-                React.createElement("span", { style: { color: workoutColor, fontWeight: 600 } }, "\u2194 Equipment: "),
+                React.createElement("span", { style: { color: workoutColor, fontWeight: 600 } }, "Equipment note: "),
                 swapData.equipment_note),
             swapData.alternatives && swapData.alternatives.length > 0 && React.createElement("div", null,
-                React.createElement("div", { style: { fontSize: 10, color: C.muted, textTransform: "uppercase", letterSpacing: "0.08em", fontWeight: 600, marginBottom: 8 } }, "\u21C4 Swap with..."),
+                React.createElement("div", { style: { fontSize: 10, color: C.muted, textTransform: "uppercase", letterSpacing: "0.08em", fontWeight: 600, marginBottom: 8 } }, "Swap with..."),
                 swapData.alternatives.map(alt => React.createElement("button", { key: alt, onClick: e => { e.stopPropagation(); setSwappedEx({ name: alt }); setShowSwap(false); }, style: { display: "block", width: "100%", textAlign: "left", padding: "8px 10px", marginBottom: 4, borderRadius: 8, cursor: "pointer", fontSize: 12, fontWeight: 600, border: `1px solid ${swappedEx && swappedEx.name === alt ? workoutColor + "66" : C.btnBorder}`, background: swappedEx && swappedEx.name === alt ? workoutColor + "22" : C.btnBg, color: swappedEx && swappedEx.name === alt ? workoutColor : C.text } }, alt)),
-                swappedEx && React.createElement("button", { onClick: e => { e.stopPropagation(); setSwappedEx(null); setShowSwap(false); }, style: { fontSize: 10, color: "#F87171", background: "none", border: "none", cursor: "pointer", padding: "4px 0 0 0", display: "block" } }, "\u21BA Reset to original")),
+                swappedEx && React.createElement("button", { onClick: e => { e.stopPropagation(); setSwappedEx(null); setShowSwap(false); }, style: { fontSize: 10, color: "#F87171", background: "none", border: "none", cursor: "pointer", padding: "4px 0 0 0", display: "block" } }, "Reset to original")),
             React.createElement("button", { onClick: e => { e.stopPropagation(); setShowSwap(false); }, style: { fontSize: 10, color: C.muted, background: "none", border: "none", cursor: "pointer", padding: "6px 0 0 0", display: "block" } }, "Close")),
         (open && (editingSet !== null || !allDone)) && (React.createElement("div", { style: { margin: "0 14px 14px", background: C.deep, borderRadius: 10, padding: "12px 14px", border: `1px solid ${workoutColor}33` } },
             React.createElement("div", { style: { fontSize: 11, color: workoutColor, fontWeight: 700, marginBottom: 10 } },
@@ -1309,12 +1305,12 @@ function ExerciseCard({ ex, workoutColor, completedSets, toggleSet, intensity, s
         expanded && guide && React.createElement(FormGuideBody, { guide: guide, color: workoutColor }),
         swapData && expanded && React.createElement("div", { style: { margin: "0 14px 12px", background: C.deep, borderRadius: 10, padding: "12px 14px", border: `1px solid ${C.btnBorder}` } },
             swapData.equipment_note && React.createElement("div", { style: { fontSize: 11, color: C.muted, lineHeight: 1.5, paddingBottom: swapData.alternatives && swapData.alternatives.length ? 10 : 0, marginBottom: swapData.alternatives && swapData.alternatives.length ? 10 : 0, borderBottom: swapData.alternatives && swapData.alternatives.length ? `1px solid ${C.btnBorder}` : "none" } },
-                React.createElement("span", { style: { color: workoutColor, fontWeight: 600 } }, "\u2194 Equipment: "), swapData.equipment_note),
+                React.createElement("span", { style: { color: workoutColor, fontWeight: 600 } }, "Equipment note: "), swapData.equipment_note),
             swapData.alternatives && swapData.alternatives.length > 0 && React.createElement("div", null,
-                React.createElement("div", { style: { fontSize: 10, color: C.muted, textTransform: "uppercase", fontWeight: 600, marginBottom: 8 } }, "\u21C4 Swap with..."),
+                React.createElement("div", { style: { fontSize: 10, color: C.muted, textTransform: "uppercase", fontWeight: 600, marginBottom: 8 } }, "Swap with..."),
                 swapData.alternatives.map(alt => React.createElement("button", { key: alt, onClick: e => { e.stopPropagation(); setSwappedEx(swappedEx && swappedEx.name === alt ? null : { name: alt }); }, style: { display: "block", width: "100%", textAlign: "left", padding: "8px 10px", marginBottom: 4, borderRadius: 8, cursor: "pointer", fontSize: 12, fontWeight: 600, border: `1px solid ${swappedEx && swappedEx.name === alt ? workoutColor + "66" : C.btnBorder}`, background: swappedEx && swappedEx.name === alt ? workoutColor + "22" : C.btnBg, color: swappedEx && swappedEx.name === alt ? workoutColor : C.text } }, (swappedEx && swappedEx.name === alt ? "\u2713 " : "") + alt))),
             swappedEx && React.createElement("div", { style: { marginTop: 8, paddingTop: 8, borderTop: `1px solid ${C.btnBorder}` } },
-                React.createElement("button", { onClick: e => { e.stopPropagation(); setSwappedEx(null); }, style: { fontSize: 11, color: "#F87171", background: "none", border: "none", cursor: "pointer", padding: 0 } }, "\u21BA Reset to original")))));
+                React.createElement("button", { onClick: e => { e.stopPropagation(); setSwappedEx(null); }, style: { fontSize: 11, color: "#F87171", background: "none", border: "none", cursor: "pointer", padding: 0 } }, "Reset to original")))));
 }
 // -- LIBRARY CARD --------------------------------------------------------------
 function LibraryCard({ ex, checked, onToggle }) {
