@@ -3552,5 +3552,1055 @@
       "reps": "16 ea",
       "equipment": "Bodyweight"
     }
-  ]
+  ],
+  "EXERCISE_SWAPS": {
+    "Barbell Bench Press": {
+      "equipment_note": "No barbell? Use dumbbells or a machine for same movement",
+      "alternatives": [
+        "DB Bench Press",
+        "Chest Press Machine",
+        "Push-Ups"
+      ]
+    },
+    "Bench Press": {
+      "equipment_note": "No barbell? Use dumbbells or a machine",
+      "alternatives": [
+        "DB Bench Press",
+        "Chest Press Machine",
+        "Push-Ups"
+      ]
+    },
+    "Incline Barbell Press": {
+      "equipment_note": "No barbell? Adjust a dumbbell bench to 30-45 degrees",
+      "alternatives": [
+        "Incline Dumbbell Press",
+        "Incline DB Press",
+        "Incline Push-Ups"
+      ]
+    },
+    "Incline Dumbbell Press": {
+      "equipment_note": "No incline bench? Use a flat bench or Smith machine at incline angle",
+      "alternatives": [
+        "Incline Barbell Press",
+        "Chest Press Machine",
+        "Incline Push-Ups"
+      ]
+    },
+    "DB Bench Press": {
+      "equipment_note": "No bench? Use the floor for floor press",
+      "alternatives": [
+        "Barbell Bench Press",
+        "Chest Press Machine",
+        "Dumbbell Floor Press"
+      ]
+    },
+    "Dumbbell Floor Press": {
+      "equipment_note": "Floor press is a great bench substitute",
+      "alternatives": [
+        "DB Bench Press",
+        "Barbell Bench Press",
+        "Push-Ups"
+      ]
+    },
+    "Chest Press Machine": {
+      "equipment_note": "Machine preferred for high rep sets; free weight alternatives available",
+      "alternatives": [
+        "DB Bench Press",
+        "Barbell Bench Press",
+        "Push-Ups"
+      ]
+    },
+    "Cable Fly": {
+      "equipment_note": "No cable? Use dumbbells for fly or resistance bands",
+      "alternatives": [
+        "DB Bench Press",
+        "Pec Deck / Machine Fly",
+        "Push-Ups"
+      ]
+    },
+    "Cable Fly (Low to High)": {
+      "equipment_note": "No cable? Perform incline DB fly at same angle",
+      "alternatives": [
+        "Incline Dumbbell Press",
+        "Incline Push-Ups",
+        "Chest Press Machine"
+      ]
+    },
+    "Decline Barbell Press": {
+      "equipment_note": "No decline bench? Use flat bench with slight arch or decline push-ups",
+      "alternatives": [
+        "Barbell Bench Press",
+        "Decline Push-Ups",
+        "Dips"
+      ]
+    },
+    "Dips": {
+      "equipment_note": "No dip bars? Use parallel bars, two chairs, or a bench",
+      "alternatives": [
+        "Decline Push-Ups",
+        "Diamond Push-Ups",
+        "Weighted Dips"
+      ]
+    },
+    "Weighted Dips": {
+      "equipment_note": "No dip belt? Hold a dumbbell between feet or use a weight vest",
+      "alternatives": [
+        "Dips",
+        "Close-Grip Bench",
+        "Skull Crushers"
+      ]
+    },
+    "Push-Ups": {
+      "equipment_note": "Bodyweight \u2014 no equipment needed. Elevate feet to increase difficulty",
+      "alternatives": [
+        "Diamond Push-Ups",
+        "Wide Push-Ups",
+        "Decline Push-Ups"
+      ]
+    },
+    "Wide Push-Ups": {
+      "equipment_note": "Wider hand placement emphasises outer chest",
+      "alternatives": [
+        "Push-Ups",
+        "Incline Push-Ups",
+        "DB Bench Press"
+      ]
+    },
+    "Diamond Push-Ups": {
+      "equipment_note": "Narrow grip targets triceps; substitute with close-grip bench",
+      "alternatives": [
+        "Push-Ups",
+        "Close-Grip Bench",
+        "Tricep Pushdown"
+      ]
+    },
+    "Decline Push-Ups": {
+      "equipment_note": "Feet elevated \u2014 use a bench, box, or stairs",
+      "alternatives": [
+        "Push-Ups",
+        "Dips",
+        "Cable Fly"
+      ]
+    },
+    "Incline Push-Ups": {
+      "equipment_note": "Hands elevated \u2014 reduces load, good for high reps",
+      "alternatives": [
+        "Push-Ups",
+        "DB Bench Press",
+        "Chest Press Machine"
+      ]
+    },
+    "Pike Push-Ups": {
+      "equipment_note": "Targets shoulders from bodyweight position",
+      "alternatives": [
+        "Overhead Press",
+        "Handstand Hold",
+        "Machine Shoulder Press"
+      ]
+    },
+    "Hindu Push-Ups": {
+      "equipment_note": "Flowing movement \u2014 shoulder mobility and chest",
+      "alternatives": [
+        "Push-Ups",
+        "Pike Push-Ups",
+        "Overhead Press"
+      ]
+    },
+    "Plyometric Push-Ups": {
+      "equipment_note": "Explosive push-up \u2014 requires only floor space",
+      "alternatives": [
+        "Push-Ups",
+        "Clap Push-Ups",
+        "Medicine Ball Push-Up"
+      ]
+    },
+    "Pseudo Planche Push-Ups": {
+      "equipment_note": "Hands turned out, forward lean \u2014 advanced skill move",
+      "alternatives": [
+        "Wide Push-Ups",
+        "Archer Push-Ups",
+        "Push-Ups"
+      ]
+    },
+    "Archer Push-Ups": {
+      "equipment_note": "Unilateral push-up progression toward one-arm push-up",
+      "alternatives": [
+        "Push-Ups",
+        "Pseudo Planche Push-Ups",
+        "Typewriter Push-Ups"
+      ]
+    },
+    "Typewriter Push-Ups": {
+      "equipment_note": "Lateral movement at bottom of push-up",
+      "alternatives": [
+        "Archer Push-Ups",
+        "Wide Push-Ups",
+        "Push-Ups"
+      ]
+    },
+    "Shoulder Tap Push-Ups": {
+      "equipment_note": "Standard push-up with anti-rotation challenge",
+      "alternatives": [
+        "Push-Ups",
+        "Plank",
+        "Archer Push-Ups"
+      ]
+    },
+    "Isometric Push-Up Hold": {
+      "equipment_note": "Hold at bottom of push-up \u2014 time under tension",
+      "alternatives": [
+        "Push-Ups",
+        "Plank",
+        "Diamond Push-Ups"
+      ]
+    },
+    "T Push-Ups": {
+      "equipment_note": "Rotate to side plank at top of each rep",
+      "alternatives": [
+        "Push-Ups",
+        "Plank",
+        "Archer Push-Ups"
+      ]
+    },
+    "Ring Push-Ups": {
+      "equipment_note": "Gymnastic rings add instability. No rings? Use TRX or towels over a bar",
+      "alternatives": [
+        "Push-Ups",
+        "Archer Push-Ups",
+        "Wide Push-Ups"
+      ]
+    },
+    "Weighted Push-Ups": {
+      "equipment_note": "No weight vest? Have a partner place a plate on your back",
+      "alternatives": [
+        "Push-Ups",
+        "Dips",
+        "DB Bench Press"
+      ]
+    },
+    "Overhead Press": {
+      "equipment_note": "No barbell? Use dumbbells or a seated machine",
+      "alternatives": [
+        "DB Shoulder Press",
+        "Machine Shoulder Press",
+        "Seated DB Shoulder Press"
+      ]
+    },
+    "DB Shoulder Press": {
+      "equipment_note": "No bench? Press standing for more core demand",
+      "alternatives": [
+        "Overhead Press",
+        "Machine Shoulder Press",
+        "Arnold Press"
+      ]
+    },
+    "Seated DB Shoulder Press": {
+      "equipment_note": "Seated removes leg drive \u2014 stricter shoulder isolation",
+      "alternatives": [
+        "Overhead Press",
+        "Machine Shoulder Press",
+        "DB Shoulder Press"
+      ]
+    },
+    "Machine Shoulder Press": {
+      "equipment_note": "Machine is ideal for high-rep sets without fatigue spillover",
+      "alternatives": [
+        "Overhead Press",
+        "DB Shoulder Press",
+        "Seated DB Shoulder Press"
+      ]
+    },
+    "Push Press": {
+      "equipment_note": "Requires barbell or dumbbells; leg drive key",
+      "alternatives": [
+        "Overhead Press",
+        "DB Shoulder Press",
+        "Arnold Press"
+      ]
+    },
+    "Arnold Press": {
+      "equipment_note": "Rotation movement \u2014 can use dumbbells only",
+      "alternatives": [
+        "DB Shoulder Press",
+        "Overhead Press",
+        "Machine Shoulder Press"
+      ]
+    },
+    "Lateral Raises": {
+      "equipment_note": "No dumbbells? Use cables or resistance bands",
+      "alternatives": [
+        "Cable Lateral Raise",
+        "Machine Shoulder Press",
+        "DB Shoulder Press"
+      ]
+    },
+    "Cable Lateral Raise": {
+      "equipment_note": "Cable keeps constant tension; bands work too",
+      "alternatives": [
+        "Lateral Raises",
+        "Machine Shoulder Press",
+        "DB Shoulder Press"
+      ]
+    },
+    "Face Pulls": {
+      "equipment_note": "No cable? Use a resistance band anchored at face height",
+      "alternatives": [
+        "Band Face Pull",
+        "Rear Delt Fly",
+        "Reverse Curl"
+      ]
+    },
+    "Rear Delt Fly": {
+      "equipment_note": "No cables? Use light dumbbells bent over or pec deck in reverse",
+      "alternatives": [
+        "Face Pulls",
+        "Band Face Pull",
+        "Cable Lateral Raise"
+      ]
+    },
+    "Handstand Hold": {
+      "equipment_note": "No wall? Use a solid door frame or corner",
+      "alternatives": [
+        "Pike Push-Ups",
+        "Overhead Press",
+        "Single-Arm Pike Hold"
+      ]
+    },
+    "Deadlift": {
+      "equipment_note": "No barbell? Trap bar or dumbbell RDL are close alternatives",
+      "alternatives": [
+        "Trap Bar Deadlift",
+        "Romanian Deadlift",
+        "Sumo Deadlift"
+      ]
+    },
+    "Sumo Deadlift": {
+      "equipment_note": "Wide stance \u2014 same as conventional but different hip/glute feel",
+      "alternatives": [
+        "Deadlift",
+        "Trap Bar Deadlift",
+        "Romanian Deadlift"
+      ]
+    },
+    "Romanian Deadlift": {
+      "equipment_note": "No barbell? Use dumbbells or a cable at low pulley",
+      "alternatives": [
+        "Good Morning",
+        "Single-Leg RDL",
+        "Leg Curl"
+      ]
+    },
+    "Trap Bar Deadlift": {
+      "equipment_note": "No trap bar? Use conventional deadlift or dumbbell deadlift",
+      "alternatives": [
+        "Deadlift",
+        "Sumo Deadlift",
+        "Leg Press"
+      ]
+    },
+    "Good Morning": {
+      "equipment_note": "No barbell? Use a resistance band over the shoulders",
+      "alternatives": [
+        "Romanian Deadlift",
+        "Single-Leg RDL",
+        "Back Extension"
+      ]
+    },
+    "Barbell Row": {
+      "equipment_note": "No barbell? Use dumbbells or a cable row machine",
+      "alternatives": [
+        "Seated Cable Row",
+        "Single-Arm DB Row",
+        "T-Bar Row"
+      ]
+    },
+    "T-Bar Row": {
+      "equipment_note": "No T-bar? Put a barbell in a corner (landmine) or use a cable",
+      "alternatives": [
+        "Barbell Row",
+        "Seated Cable Row",
+        "Chest Supported Row"
+      ]
+    },
+    "Meadows Row": {
+      "equipment_note": "Landmine exercise \u2014 corner or sleeve anchor needed",
+      "alternatives": [
+        "Single-Arm DB Row",
+        "T-Bar Row",
+        "Seated Cable Row"
+      ]
+    },
+    "Chest Supported Row": {
+      "equipment_note": "Chest pad removes lower back involvement \u2014 great for volume",
+      "alternatives": [
+        "Seated Cable Row",
+        "Barbell Row",
+        "Single-Arm DB Row"
+      ]
+    },
+    "Seated Cable Row": {
+      "equipment_note": "No cable? Use resistance band around a post",
+      "alternatives": [
+        "Barbell Row",
+        "T-Bar Row",
+        "Single-Arm DB Row"
+      ]
+    },
+    "Lat Pulldown": {
+      "equipment_note": "No pulldown machine? Do pull-ups or band lat pulldown",
+      "alternatives": [
+        "Pull-Ups",
+        "Chin-Ups",
+        "Lat Pulldown (Band)"
+      ]
+    },
+    "Straight-Arm Pulldown": {
+      "equipment_note": "No cable? Use a resistance band overhead",
+      "alternatives": [
+        "Lat Pulldown",
+        "Cable Pullover",
+        "Pull-Ups"
+      ]
+    },
+    "Cable Pullover": {
+      "equipment_note": "No cable? Use a dumbbell pullover on a bench",
+      "alternatives": [
+        "Straight-Arm Pulldown",
+        "Lat Pulldown",
+        "Pull-Ups"
+      ]
+    },
+    "Pull-Ups": {
+      "equipment_note": "No pull-up bar? Use a Smith machine bar or door frame bar",
+      "alternatives": [
+        "Chin-Ups",
+        "Lat Pulldown",
+        "Inverted Row"
+      ]
+    },
+    "Chin-Ups": {
+      "equipment_note": "Supinated grip \u2014 easier than pull-ups for most",
+      "alternatives": [
+        "Pull-Ups",
+        "Lat Pulldown",
+        "Weighted Pull-Ups"
+      ]
+    },
+    "Wide-Grip Pull-Ups": {
+      "equipment_note": "Wide grip emphasises lat width",
+      "alternatives": [
+        "Pull-Ups",
+        "Lat Pulldown",
+        "Chin-Ups"
+      ]
+    },
+    "Neutral-Grip Pull-Ups": {
+      "equipment_note": "Parallel grip \u2014 easier on wrists and elbows",
+      "alternatives": [
+        "Pull-Ups",
+        "Chin-Ups",
+        "Inverted Row"
+      ]
+    },
+    "Weighted Pull-Ups": {
+      "equipment_note": "No belt? Hold a dumbbell between feet or use a weight vest",
+      "alternatives": [
+        "Pull-Ups",
+        "Lat Pulldown",
+        "Chin-Ups"
+      ]
+    },
+    "Inverted Row": {
+      "equipment_note": "Use any bar at waist height \u2014 Smith machine works well",
+      "alternatives": [
+        "Seated Cable Row",
+        "Barbell Row",
+        "Pull-Ups"
+      ]
+    },
+    "Australian Pull-Up": {
+      "equipment_note": "Same as inverted row \u2014 bar at waist or chest height",
+      "alternatives": [
+        "Inverted Row",
+        "Seated Cable Row",
+        "Pull-Ups"
+      ]
+    },
+    "Kipping Pull-Ups": {
+      "equipment_note": "Skill-based \u2014 requires solid pull-up foundation first",
+      "alternatives": [
+        "Pull-Ups",
+        "Explosive Pull-Ups",
+        "Lat Pulldown"
+      ]
+    },
+    "Explosive Pull-Ups": {
+      "equipment_note": "Explosive intent \u2014 same setup as regular pull-ups",
+      "alternatives": [
+        "Pull-Ups",
+        "Kipping Pull-Ups",
+        "Weighted Pull-Ups"
+      ]
+    },
+    "L-Sit Pull-Ups": {
+      "equipment_note": "Advanced \u2014 requires parallel bars or dip handles",
+      "alternatives": [
+        "Pull-Ups",
+        "Chin-Ups",
+        "Weighted Pull-Ups"
+      ]
+    },
+    "Commando Pull-Ups": {
+      "equipment_note": "Staggered grip on a single bar",
+      "alternatives": [
+        "Pull-Ups",
+        "Neutral-Grip Pull-Ups",
+        "Chin-Ups"
+      ]
+    },
+    "Archer Pull-Ups": {
+      "equipment_note": "One-arm progression \u2014 requires pull-up bar",
+      "alternatives": [
+        "Pull-Ups",
+        "Weighted Pull-Ups",
+        "L-Sit Pull-Ups"
+      ]
+    },
+    "Scapular Pull-Ups": {
+      "equipment_note": "Depress shoulder blades only \u2014 hanging from any pull-up bar",
+      "alternatives": [
+        "Pull-Ups",
+        "Back Extension",
+        "Superman Hold"
+      ]
+    },
+    "Back Extension": {
+      "equipment_note": "No GHD? Use a hyperextension bench or roman chair",
+      "alternatives": [
+        "Good Morning",
+        "Superman Hold",
+        "Romanian Deadlift"
+      ]
+    },
+    "Superman Hold": {
+      "equipment_note": "No equipment \u2014 floor exercise",
+      "alternatives": [
+        "Back Extension",
+        "Good Morning",
+        "Plank"
+      ]
+    },
+    "Rack Pull": {
+      "equipment_note": "No rack? Use blocks under the plates or do a deficit-to-knee RDL",
+      "alternatives": [
+        "Deadlift",
+        "Romanian Deadlift",
+        "Trap Bar Deadlift"
+      ]
+    },
+    "Towel Curls": {
+      "equipment_note": "Loop a towel over any pull-up bar",
+      "alternatives": [
+        "EZ Bar Curl",
+        "Band Bicep Curl",
+        "Chin-Ups"
+      ]
+    },
+    "Barbell Curl": {
+      "equipment_note": "No barbell? EZ bar reduces wrist strain; dumbbells work too",
+      "alternatives": [
+        "EZ Bar Curl",
+        "DB Curl",
+        "Cable Curl"
+      ]
+    },
+    "EZ Bar Curl": {
+      "equipment_note": "Reduces wrist supination \u2014 easier on joints than straight bar",
+      "alternatives": [
+        "Barbell Curl",
+        "DB Curl",
+        "Incline Dumbbell Curl"
+      ]
+    },
+    "Hammer Curls": {
+      "equipment_note": "Neutral grip \u2014 targets brachialis and brachioradialis",
+      "alternatives": [
+        "DB Curl",
+        "Barbell Curl",
+        "Rope Hammer Curl"
+      ]
+    },
+    "Incline Dumbbell Curl": {
+      "equipment_note": "Best stretch for bicep long head \u2014 incline bench needed",
+      "alternatives": [
+        "DB Curl",
+        "Barbell Curl",
+        "EZ Bar Curl"
+      ]
+    },
+    "Preacher Curl": {
+      "equipment_note": "No preacher bench? Use an incline bench or your knee as a pad",
+      "alternatives": [
+        "EZ Bar Curl",
+        "DB Curl",
+        "Concentration Curl"
+      ]
+    },
+    "Concentration Curl": {
+      "equipment_note": "Seated isolation \u2014 elbow braced on inner thigh",
+      "alternatives": [
+        "DB Curl",
+        "Preacher Curl",
+        "EZ Bar Curl"
+      ]
+    },
+    "Cable Curl": {
+      "equipment_note": "No cable? Use a resistance band anchored low",
+      "alternatives": [
+        "DB Curl",
+        "Barbell Curl",
+        "EZ Bar Curl"
+      ]
+    },
+    "Rope Hammer Curl": {
+      "equipment_note": "Rope attachment on cable machine; band works too",
+      "alternatives": [
+        "Hammer Curls",
+        "DB Curl",
+        "Cable Curl"
+      ]
+    },
+    "Reverse Curl": {
+      "equipment_note": "Overhand grip \u2014 same bar as barbell curl",
+      "alternatives": [
+        "Barbell Curl",
+        "EZ Bar Curl",
+        "Wrist Curls"
+      ]
+    },
+    "Tricep Pushdown": {
+      "equipment_note": "No cable? Use a resistance band anchored overhead",
+      "alternatives": [
+        "Overhead Tricep Ext",
+        "Skull Crushers",
+        "Diamond Push-Ups"
+      ]
+    },
+    "Tricep Pushdowns": {
+      "equipment_note": "No cable? Use a resistance band anchored overhead",
+      "alternatives": [
+        "Overhead Tricep Ext",
+        "Skull Crushers",
+        "Diamond Push-Ups"
+      ]
+    },
+    "Overhead Tricep Ext": {
+      "equipment_note": "No cable or dumbbell? Use a resistance band overhead",
+      "alternatives": [
+        "Tricep Pushdown",
+        "Skull Crushers",
+        "Diamond Push-Ups"
+      ]
+    },
+    "Skull Crushers": {
+      "equipment_note": "No EZ bar? Use dumbbells; cable overhead ext is similar",
+      "alternatives": [
+        "Overhead Tricep Ext",
+        "Tricep Pushdown",
+        "Close-Grip Bench"
+      ]
+    },
+    "Close-Grip Bench": {
+      "equipment_note": "No barbell? Use dumbbells with neutral grip",
+      "alternatives": [
+        "Skull Crushers",
+        "Tricep Pushdown",
+        "Weighted Dips"
+      ]
+    },
+    "Squat": {
+      "equipment_note": "No barbell? Use goblet squat, leg press, or hack squat",
+      "alternatives": [
+        "Leg Press",
+        "Goblet Squat",
+        "Hack Squat"
+      ]
+    },
+    "Barbell Squat": {
+      "equipment_note": "No barbell? Use goblet squat, leg press, or hack squat",
+      "alternatives": [
+        "Leg Press",
+        "Goblet Squat",
+        "Hack Squat"
+      ]
+    },
+    "Hack Squat": {
+      "equipment_note": "No hack squat machine? Use leg press with high foot placement",
+      "alternatives": [
+        "Leg Press",
+        "Squat",
+        "Goblet Squat"
+      ]
+    },
+    "Leg Press": {
+      "equipment_note": "No leg press? Use barbell squat or goblet squat",
+      "alternatives": [
+        "Squat",
+        "Goblet Squat",
+        "Bulgarian Split Squat"
+      ]
+    },
+    "Leg Extension": {
+      "equipment_note": "No machine? Use a resistance band around an anchor",
+      "alternatives": [
+        "Squat",
+        "Leg Press",
+        "Step-Ups"
+      ]
+    },
+    "Leg Curl": {
+      "equipment_note": "No machine? Use a Nordic hamstring curl or Swiss ball curl",
+      "alternatives": [
+        "Nordic Hamstring Curl",
+        "Romanian Deadlift",
+        "Good Morning"
+      ]
+    },
+    "Nordic Hamstring Curl": {
+      "equipment_note": "Anchor feet under any stable surface or partner",
+      "alternatives": [
+        "Leg Curl",
+        "Romanian Deadlift",
+        "Good Morning"
+      ]
+    },
+    "Hip Thrust": {
+      "equipment_note": "No bench? Use the floor for glute bridge; barbell needed for load",
+      "alternatives": [
+        "Glute Bridge",
+        "Hip Thrust (BW)",
+        "Romanian Deadlift"
+      ]
+    },
+    "Hip Thrust (BW)": {
+      "equipment_note": "Bodyweight version \u2014 elevate shoulders on any bench",
+      "alternatives": [
+        "Glute Bridge",
+        "Hip Thrust",
+        "Single-Leg Glute Bridge"
+      ]
+    },
+    "Glute Bridge": {
+      "equipment_note": "Floor version of hip thrust \u2014 no equipment needed",
+      "alternatives": [
+        "Hip Thrust",
+        "Hip Thrust (BW)",
+        "Single-Leg Glute Bridge"
+      ]
+    },
+    "Bulgarian Split Squat": {
+      "equipment_note": "Rear foot elevation \u2014 use any bench or step",
+      "alternatives": [
+        "Reverse Lunge",
+        "Leg Press",
+        "Step-Ups"
+      ]
+    },
+    "Walking Lunges": {
+      "equipment_note": "Open space needed \u2014 can use dumbbells or barbell",
+      "alternatives": [
+        "Reverse Lunge",
+        "Bulgarian Split Squat",
+        "Leg Press"
+      ]
+    },
+    "Reverse Lunge": {
+      "equipment_note": "Step back version \u2014 easier balance than walking lunges",
+      "alternatives": [
+        "Walking Lunges",
+        "Bulgarian Split Squat",
+        "Step-Ups"
+      ]
+    },
+    "Lateral Lunge": {
+      "equipment_note": "Step to the side \u2014 targets adductors and glutes",
+      "alternatives": [
+        "Reverse Lunge",
+        "Adductor Machine",
+        "Cossack Squat"
+      ]
+    },
+    "Curtsy Lunge": {
+      "equipment_note": "Cross behind lunge \u2014 glute-focused",
+      "alternatives": [
+        "Reverse Lunge",
+        "Bulgarian Split Squat",
+        "Hip Thrust (BW)"
+      ]
+    },
+    "Cossack Squat": {
+      "equipment_note": "Deep lateral squat \u2014 mobility and strength",
+      "alternatives": [
+        "Lateral Lunge",
+        "Reverse Lunge",
+        "Adductor Machine"
+      ]
+    },
+    "Goblet Squat": {
+      "equipment_note": "Hold one dumbbell or kettlebell at chest",
+      "alternatives": [
+        "Squat",
+        "Leg Press",
+        "Bulgarian Split Squat"
+      ]
+    },
+    "Box Jumps": {
+      "equipment_note": "Use a plyo box, stable bench, or sturdy step",
+      "alternatives": [
+        "Jump Squat",
+        "Broad Jump",
+        "Step-Ups"
+      ]
+    },
+    "Jump Squat": {
+      "equipment_note": "No equipment needed \u2014 add weight vest if too easy",
+      "alternatives": [
+        "Box Jumps",
+        "Broad Jump",
+        "Goblet Squat"
+      ]
+    },
+    "Broad Jump": {
+      "equipment_note": "Jump for distance \u2014 requires open floor space",
+      "alternatives": [
+        "Box Jumps",
+        "Jump Squat",
+        "Skater Jumps"
+      ]
+    },
+    "Skater Jumps": {
+      "equipment_note": "Lateral jump movement \u2014 no equipment",
+      "alternatives": [
+        "Broad Jump",
+        "Jump Squat",
+        "Lateral Lunge"
+      ]
+    },
+    "Step-Ups": {
+      "equipment_note": "Use a bench, box, or stairs",
+      "alternatives": [
+        "Bulgarian Split Squat",
+        "Reverse Lunge",
+        "Box Jumps"
+      ]
+    },
+    "Adductor Machine": {
+      "equipment_note": "No machine? Use lateral lunges or a resistance band around knees",
+      "alternatives": [
+        "Lateral Lunge",
+        "Cossack Squat",
+        "Sumo Deadlift"
+      ]
+    },
+    "Glute Kickback Machine": {
+      "equipment_note": "No machine? Use a cable or resistance band at ankle",
+      "alternatives": [
+        "Hip Thrust",
+        "Romanian Deadlift",
+        "Single-Leg Glute Bridge"
+      ]
+    },
+    "Seated Calf Raise": {
+      "equipment_note": "No machine? Sit on a bench with plates on your knees",
+      "alternatives": [
+        "Standing Calf Raise",
+        "Single-Leg Calf Raise",
+        "Calf Raises"
+      ]
+    },
+    "Standing Calf Raise": {
+      "equipment_note": "No machine? Use a step and hold dumbbells",
+      "alternatives": [
+        "Seated Calf Raise",
+        "Single-Leg Calf Raise",
+        "Calf Raises"
+      ]
+    },
+    "Calf Raises": {
+      "equipment_note": "Can be done anywhere on a step or the floor",
+      "alternatives": [
+        "Seated Calf Raise",
+        "Standing Calf Raise",
+        "Single-Leg Calf Raise"
+      ]
+    },
+    "Donkey Calf Raise": {
+      "equipment_note": "Bent-over position \u2014 use a step for range of motion",
+      "alternatives": [
+        "Standing Calf Raise",
+        "Seated Calf Raise",
+        "Single-Leg Calf Raise"
+      ]
+    },
+    "Single-Leg RDL": {
+      "equipment_note": "Balance challenge \u2014 use a TRX or wall for support if needed",
+      "alternatives": [
+        "Romanian Deadlift",
+        "Good Morning",
+        "Leg Curl"
+      ]
+    },
+    "Single-Leg Glute Bridge": {
+      "equipment_note": "One leg elevated \u2014 floor exercise",
+      "alternatives": [
+        "Glute Bridge",
+        "Hip Thrust (BW)",
+        "Hip Thrust"
+      ]
+    },
+    "Single-Leg Calf Raise": {
+      "equipment_note": "Use a step edge for full range of motion",
+      "alternatives": [
+        "Standing Calf Raise",
+        "Seated Calf Raise",
+        "Calf Raises"
+      ]
+    },
+    "Wall Sit": {
+      "equipment_note": "Any solid wall works",
+      "alternatives": [
+        "Squat",
+        "Leg Press",
+        "Goblet Squat"
+      ]
+    },
+    "Fire Hydrants": {
+      "equipment_note": "Floor exercise \u2014 no equipment needed",
+      "alternatives": [
+        "Hip Thrust (BW)",
+        "Glute Bridge",
+        "Glute Kickback Machine"
+      ]
+    },
+    "Plank": {
+      "equipment_note": "Floor exercise \u2014 no equipment needed",
+      "alternatives": [
+        "Side Plank",
+        "Hollow Body Hold",
+        "Ab Wheel Rollout"
+      ]
+    },
+    "Side Plank": {
+      "equipment_note": "Lateral stability \u2014 no equipment needed",
+      "alternatives": [
+        "Plank",
+        "Hollow Body Hold",
+        "Mountain Climbers"
+      ]
+    },
+    "Hollow Body Hold": {
+      "equipment_note": "Gymnastics core position \u2014 floor only",
+      "alternatives": [
+        "Plank",
+        "Ab Wheel Rollout",
+        "Side Plank"
+      ]
+    },
+    "Ab Wheel Rollout": {
+      "equipment_note": "No ab wheel? Use a barbell with plates on the floor",
+      "alternatives": [
+        "Plank",
+        "Hollow Body Hold",
+        "Hanging Leg Raise"
+      ]
+    },
+    "Mountain Climbers": {
+      "equipment_note": "Floor exercise \u2014 no equipment needed",
+      "alternatives": [
+        "Plank",
+        "Burpee",
+        "Jump Squat"
+      ]
+    },
+    "Burpee": {
+      "equipment_note": "No equipment \u2014 full body conditioning",
+      "alternatives": [
+        "Mountain Climbers",
+        "Jump Squat",
+        "Plyometric Push-Ups"
+      ]
+    },
+    "Power Clean": {
+      "equipment_note": "Olympic lifting \u2014 requires bumper plates or a platform",
+      "alternatives": [
+        "Trap Bar Deadlift",
+        "Barbell Row",
+        "KB Swing"
+      ]
+    },
+    "KB Swing": {
+      "equipment_note": "No kettlebell? Use a dumbbell held by one end",
+      "alternatives": [
+        "Hip Thrust",
+        "Romanian Deadlift",
+        "Goblet Squat"
+      ]
+    },
+    "KB Goblet Squat": {
+      "equipment_note": "No kettlebell? Use a single dumbbell held vertically",
+      "alternatives": [
+        "Goblet Squat",
+        "Squat",
+        "Leg Press"
+      ]
+    },
+    "KB Clean and Press": {
+      "equipment_note": "No kettlebell? Use a dumbbell clean and press",
+      "alternatives": [
+        "Push Press",
+        "DB Shoulder Press",
+        "Overhead Press"
+      ]
+    },
+    "Band Bicep Curl": {
+      "equipment_note": "Resistance band anchored under foot \u2014 can be done anywhere",
+      "alternatives": [
+        "DB Curl",
+        "EZ Bar Curl",
+        "Hammer Curls"
+      ]
+    },
+    "Bodyweight Squat": {
+      "equipment_note": "No equipment needed \u2014 add weight vest or hold dumbbells to progress",
+      "alternatives": [
+        "Goblet Squat",
+        "Leg Press",
+        "Bulgarian Split Squat"
+      ]
+    },
+    "Pistol Squat Assist": {
+      "equipment_note": "Hold TRX, ring, pole, or door frame for balance assistance",
+      "alternatives": [
+        "Bulgarian Split Squat",
+        "Single-Leg Press",
+        "Reverse Lunge"
+      ]
+    },
+    "Single-Arm DB Row": {
+      "equipment_note": "One dumbbell and a bench \u2014 brace with the free arm",
+      "alternatives": [
+        "Seated Cable Row",
+        "Barbell Row",
+        "Chest Supported Row"
+      ]
+    },
+    "Tricep Dips (Chair)": {
+      "equipment_note": "Any sturdy chair or bench \u2014 hands behind you",
+      "alternatives": [
+        "Dips",
+        "Tricep Pushdown",
+        "Diamond Push-Ups"
+      ]
+    }
+  }
 }
