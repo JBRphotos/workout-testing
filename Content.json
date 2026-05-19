@@ -2765,6 +2765,530 @@
         "Shoulder Stability"
       ],
       "tip": "Go slow -- this is a technique exercise, not a conditioning one. Speed comes after mastery"
+    },
+    "Barbell Bench Press": {
+      "cues": [
+        "Retract shoulder blades and squeeze together before unracking",
+        "Feet flat, slight arch in lower back, glutes on bench",
+        "Bar touches lower chest, elbows at 75 degree angle",
+        "Press in slight arc \u2014 bar ends up over eyes at lockout"
+      ],
+      "muscles": [
+        "Chest",
+        "Front Delts",
+        "Triceps"
+      ],
+      "tip": "Think 'push the bench away from the bar' \u2014 it cues the leg drive and full body tension"
+    },
+    "Barbell Curl": {
+      "cues": [
+        "Supinated grip shoulder-width, elbows pinned to sides",
+        "Curl through full range, squeeze hard at top",
+        "Lower under control \u2014 3 second descent",
+        "No swinging \u2014 initiate with bicep not momentum"
+      ],
+      "muscles": [
+        "Biceps",
+        "Brachialis"
+      ],
+      "tip": "Lean slightly forward at the bottom to increase the bicep stretch"
+    },
+    "Incline Barbell Press": {
+      "cues": [
+        "Set bench 30-45 degrees \u2014 lower incline hits more chest",
+        "Bar touches upper chest, elbows at 75 degree angle",
+        "Control the descent 2-3 seconds for full stretch",
+        "Press straight up, slight backward lean at the top"
+      ],
+      "muscles": [
+        "Upper Chest",
+        "Front Delts",
+        "Triceps"
+      ],
+      "tip": "30 degrees is optimal for upper chest \u2014 higher angles shift more load to shoulders"
+    },
+    "Chest Press Machine": {
+      "cues": [
+        "Adjust seat so handles align with lower chest",
+        "Retract shoulder blades before pressing \u2014 don't let them protract",
+        "Press to near full extension, pause 1 second",
+        "Slow 3-second return for max chest stimulus"
+      ],
+      "muscles": [
+        "Chest",
+        "Front Delts",
+        "Triceps"
+      ],
+      "tip": "Machine allows heavier load with less stability demand \u2014 great for high-rep pump sets"
+    },
+    "Machine Shoulder Press": {
+      "cues": [
+        "Adjust seat so handles are at ear height",
+        "Press straight up without shrugging shoulders",
+        "Control descent to full range each rep",
+        "Don't lock out fully \u2014 keep tension on delts"
+      ],
+      "muscles": [
+        "Front Delts",
+        "Side Delts",
+        "Triceps"
+      ],
+      "tip": "Removing stability demand lets you focus purely on shoulder strength \u2014 good for volume"
+    },
+    "Seated DB Shoulder Press": {
+      "cues": [
+        "Sit upright with back supported, DBs at ear height",
+        "Press straight up, bring DBs slightly together at top",
+        "Elbows at 75 degrees \u2014 not flared wide",
+        "Full range each rep, control descent"
+      ],
+      "muscles": [
+        "Front Delts",
+        "Side Delts",
+        "Triceps"
+      ],
+      "tip": "Seated version removes momentum \u2014 strictly harder on the delts than standing"
+    },
+    "Tricep Pushdown": {
+      "cues": [
+        "Cable at high pulley, rope or bar, elbows pinned to sides",
+        "Push to full extension, squeeze triceps hard at lockout",
+        "Slow 3-second return \u2014 upper arms stay stationary",
+        "Lean slightly forward for better leverage"
+      ],
+      "muscles": [
+        "Triceps",
+        "Lateral Head"
+      ],
+      "tip": "Keeping upper arms locked is the whole exercise \u2014 any elbow drift takes load off triceps"
+    },
+    "EZ Bar Curl": {
+      "cues": [
+        "Semi-supinated grip reduces wrist strain vs straight bar",
+        "Elbows stay pinned at sides throughout the movement",
+        "Curl to chin height, pause and squeeze at the top",
+        "3-second descent for maximum tension"
+      ],
+      "muscles": [
+        "Biceps",
+        "Brachialis"
+      ],
+      "tip": "EZ bar is easier on the wrists \u2014 use it when straight bar causes discomfort"
+    },
+    "Push Press": {
+      "cues": [
+        "Barbell at front rack, feet hip-width, slight knee bend",
+        "Dip knees 2-3 inches then drive legs explosively upward",
+        "Use leg drive to initiate the press, arms lock out overhead",
+        "Receive bar with soft elbows, reset stance for next rep"
+      ],
+      "muscles": [
+        "Shoulders",
+        "Triceps",
+        "Quads",
+        "Core"
+      ],
+      "tip": "The dip and drive comes from the legs \u2014 think of throwing the bar up, not pressing it"
+    },
+    "T-Bar Row": {
+      "cues": [
+        "Hinge at hips, neutral spine, chest against pad if available",
+        "Drive elbows back past torso, squeeze shoulder blades hard at top",
+        "Full stretch at the bottom \u2014 let shoulder blades spread",
+        "Don't round lower back to add range of motion"
+      ],
+      "muscles": [
+        "Lats",
+        "Mid Back",
+        "Rear Delts",
+        "Biceps"
+      ],
+      "tip": "Neutral grip handles hit mid-back harder; wider grip shifts more emphasis to lats"
+    },
+    "Good Morning": {
+      "cues": [
+        "Bar on upper traps, feet hip-width, soft bend at knees",
+        "Hinge at hips \u2014 push them back as you lower chest",
+        "Lower until hamstrings are fully loaded, maintain neutral spine",
+        "Drive hips forward to return, squeeze glutes at top"
+      ],
+      "muscles": [
+        "Hamstrings",
+        "Glutes",
+        "Lower Back"
+      ],
+      "tip": "Think 'push hips back' not 'lower chest down' \u2014 it is a hip hinge, not a bow"
+    },
+    "Hip Thrust (BW)": {
+      "cues": [
+        "Upper back on bench or floor, feet flat, knees bent to 90 degrees",
+        "Drive through heels to full hip extension",
+        "Squeeze glutes hard at top, pause 1-2 seconds",
+        "Don't hyperextend \u2014 chin stays tucked"
+      ],
+      "muscles": [
+        "Glutes",
+        "Hamstrings"
+      ],
+      "tip": "Tilting feet slightly outward increases glute activation at the top position"
+    },
+    "Goblet Squat": {
+      "cues": [
+        "Hold DB or KB at chest height, elbows pointing down",
+        "Feet shoulder-width, toes out 30 degrees",
+        "Squat deep between knees, keep chest tall throughout",
+        "Drive through heels, elbows push knees out at the bottom"
+      ],
+      "muscles": [
+        "Quads",
+        "Glutes",
+        "Core"
+      ],
+      "tip": "The counterweight lets you sit lower than bodyweight squat \u2014 use that extra depth"
+    },
+    "Standing Calf Raise": {
+      "cues": [
+        "Balls of feet on edge of step, heels fully lowered below step",
+        "Rise to full contraction, pause 1 second at the top",
+        "Slow 4-second descent \u2014 the stretch is where growth happens",
+        "Straight knee targets gastrocnemius; bent knee targets soleus"
+      ],
+      "muscles": [
+        "Calves",
+        "Gastrocnemius"
+      ],
+      "tip": "Full range is non-negotiable \u2014 half reps on calves produce very little growth"
+    },
+    "Single-Leg Calf Raise": {
+      "cues": [
+        "Stand on one foot on edge of step, hold wall for balance",
+        "Full range \u2014 heel well below step, rise to full extension",
+        "Slow 4-second descent on each rep",
+        "Balance challenge is secondary \u2014 focus on calf range and contraction"
+      ],
+      "muscles": [
+        "Calves",
+        "Soleus",
+        "Gastrocnemius"
+      ],
+      "tip": "The stretch at the bottom of each rep is the most important part \u2014 don't skip it"
+    },
+    "Weighted Pull-Ups": {
+      "cues": [
+        "Attach weight via dip belt, or hold DB between crossed feet",
+        "Dead hang start, pull until chin clears bar",
+        "Squeeze lats at top, full extension at bottom",
+        "Slow 3-second descent \u2014 eccentric builds thickness"
+      ],
+      "muscles": [
+        "Lats",
+        "Biceps",
+        "Mid Back"
+      ],
+      "tip": "Adding even 10-20lb changes the stimulus significantly \u2014 use a belt for best experience"
+    },
+    "Weighted Dips": {
+      "cues": [
+        "Use dip belt with plates, or dumbbell between crossed ankles",
+        "Lower until upper arms are parallel to floor or slightly below",
+        "Lean slightly forward for chest focus, upright for tricep focus",
+        "Drive up to near lockout, controlled descent"
+      ],
+      "muscles": [
+        "Triceps",
+        "Chest",
+        "Front Delts"
+      ],
+      "tip": "Forward lean shifts emphasis to lower chest; staying upright keeps it on triceps"
+    },
+    "Weighted Push-Ups": {
+      "cues": [
+        "Partner places plate on upper back, or use a weighted vest",
+        "Standard push-up form \u2014 straight body, elbows at 75 degrees",
+        "Full range \u2014 chest to floor, full extension at top",
+        "Reduce weight immediately if form breaks"
+      ],
+      "muscles": [
+        "Chest",
+        "Front Delts",
+        "Triceps"
+      ],
+      "tip": "A 45lb plate on your back is roughly equivalent to a 135lb bench press for most"
+    },
+    "Kipping Pull-Ups": {
+      "cues": [
+        "Generate hip drive by swinging in hollow then arch position",
+        "Use the momentum to assist chin over bar",
+        "Control the descent \u2014 don't just drop from the bar",
+        "Used for volume work, not maximum strength development"
+      ],
+      "muscles": [
+        "Lats",
+        "Shoulders",
+        "Core"
+      ],
+      "tip": "Kipping is a skill for volume \u2014 pair with strict pull-ups for complete development"
+    },
+    "Explosive Pull-Ups": {
+      "cues": [
+        "Dead hang start, pull as explosively as possible",
+        "Goal: hands momentarily leave the bar at the top",
+        "Catch bar on the way down, re-hang and reset",
+        "Full lockout between every rep"
+      ],
+      "muscles": [
+        "Lats",
+        "Biceps"
+      ],
+      "tip": "The explosive intent trains fast-twitch fibres differently from controlled pull-ups"
+    },
+    "Archer Pull-Ups": {
+      "cues": [
+        "Wide grip on bar, pull up toward one hand while extending the other",
+        "Alternate which side you pull toward each rep",
+        "Keep core tight \u2014 no hip swinging or kipping",
+        "Slower movement is harder \u2014 own the full range"
+      ],
+      "muscles": [
+        "Lats",
+        "Biceps"
+      ],
+      "tip": "One step below a one-arm pull-up \u2014 the extended arm still assists but far less"
+    },
+    "Hindu Push-Ups": {
+      "cues": [
+        "Start in downward dog, swoop forward and up through cobra",
+        "Reverse the motion back to downward dog for next rep",
+        "Continuous flowing movement \u2014 no pausing",
+        "Shoulder mobility and chest both benefit from this pattern"
+      ],
+      "muscles": [
+        "Chest",
+        "Shoulders",
+        "Spine Mobility"
+      ],
+      "tip": "Traditional in Indian wrestling \u2014 great for shoulder health alongside pressing work"
+    },
+    "Ring Push-Ups": {
+      "cues": [
+        "Rings at 6-12 inches off the floor, standard push-up grip",
+        "Keep rings parallel throughout \u2014 don't let them rotate",
+        "Full range \u2014 chest to ring level at bottom",
+        "The instability forces deep stabiliser engagement"
+      ],
+      "muscles": [
+        "Chest",
+        "Front Delts",
+        "Triceps",
+        "Core"
+      ],
+      "tip": "Harder than standard push-ups due to instability \u2014 start with higher ring position"
+    },
+    "Pistol Squat Assist": {
+      "cues": [
+        "Hold TRX, ring, or a solid pole for balance assistance",
+        "One leg extended forward, squat down on the standing leg",
+        "Keep heel flat, use minimal arm support \u2014 build toward less",
+        "Full depth \u2014 hips below knee level"
+      ],
+      "muscles": [
+        "Quads",
+        "Glutes",
+        "Balance"
+      ],
+      "tip": "Goal is to progressively reduce assistance until fully unassisted \u2014 track your progress"
+    },
+    "DB Bench Press": {
+      "cues": [
+        "Dumbbells at chest height, elbows at 75 degree angle",
+        "Press up and slightly together at the top",
+        "Lower under full control \u2014 extra stretch vs barbell",
+        "Neutral grip option reduces shoulder stress"
+      ],
+      "muscles": [
+        "Chest",
+        "Front Delts",
+        "Triceps"
+      ],
+      "tip": "Dumbbells allow greater range than barbell \u2014 use that extra stretch at the bottom"
+    },
+    "DB Curl": {
+      "cues": [
+        "Alternating or simultaneous, supinate wrist as you curl",
+        "Full extension at bottom, full squeeze at top",
+        "Keep upper arm vertical \u2014 don't swing the shoulder",
+        "Slow down the eccentric for maximum growth stimulus"
+      ],
+      "muscles": [
+        "Biceps",
+        "Brachialis"
+      ],
+      "tip": "Supinate (twist wrist outward) at the top to fully contract the bicep"
+    },
+    "DB Shoulder Press": {
+      "cues": [
+        "DBs at ear height, elbows at 90 degrees",
+        "Press straight up, bring DBs slightly together at top",
+        "Elbows at 75 degrees \u2014 not flared wide",
+        "Control descent, full range each rep"
+      ],
+      "muscles": [
+        "Front Delts",
+        "Side Delts",
+        "Triceps"
+      ],
+      "tip": "Standing version adds core demand; seated is stricter on the delts"
+    },
+    "Incline DB Press": {
+      "cues": [
+        "Bench at 30-45 degrees, DBs at chest level",
+        "Press up and slightly inward at the top",
+        "Full stretch at bottom \u2014 let shoulder blades spread",
+        "Control 2-3 second descent"
+      ],
+      "muscles": [
+        "Upper Chest",
+        "Front Delts",
+        "Triceps"
+      ],
+      "tip": "Lower incline (30 deg) hits more chest; higher (45 deg) shifts toward shoulders"
+    },
+    "Incline Push-Ups": {
+      "cues": [
+        "Hands on elevated surface, body in straight line",
+        "Lower chest to surface, elbows at 75 degrees",
+        "Full range, control the descent",
+        "Lower the surface height to increase difficulty"
+      ],
+      "muscles": [
+        "Chest",
+        "Front Delts",
+        "Triceps"
+      ],
+      "tip": "Lower surface = harder \u2014 floor is the hardest variation in this family"
+    },
+    "Band Face Pull": {
+      "cues": [
+        "Band anchored at face height, step back for tension",
+        "Pull to face with elbows high and out to the sides",
+        "External rotate at the end \u2014 thumbs back behind ears",
+        "Slow controlled return, maintain tension throughout"
+      ],
+      "muscles": [
+        "Rear Delts",
+        "External Rotators",
+        "Mid Traps"
+      ],
+      "tip": "High elbows and external rotation at the end are both essential \u2014 don't skip either"
+    },
+    "Cable Pullover": {
+      "cues": [
+        "Face cable, attachment at high pulley, arms extended overhead",
+        "Pull bar down in arc toward thighs with almost straight arms",
+        "Squeeze lats at bottom, slow return to full overhead stretch",
+        "Feel the lat stretch at the top \u2014 don't rush through it"
+      ],
+      "muscles": [
+        "Lats",
+        "Serratus"
+      ],
+      "tip": "One of the few exercises that isolates the lat without bicep assistance"
+    },
+    "Lat Pulldown (Band)": {
+      "cues": [
+        "Band anchored overhead, face the anchor point",
+        "Pull band down to chin level, drive elbows toward hips",
+        "Squeeze lats at bottom, slow return to full stretch",
+        "Lean back slightly for better lat activation"
+      ],
+      "muscles": [
+        "Lats",
+        "Biceps"
+      ],
+      "tip": "Imagine pushing elbows into your back pockets \u2014 that mental cue activates the lats"
+    },
+    "Clap Push-Ups": {
+      "cues": [
+        "Standard push-up position, explosive push off the floor",
+        "Clap hands before landing, land with soft elbows to absorb",
+        "Focus on explosive intent \u2014 even minimal air time counts",
+        "Tuck elbows on landing to protect the joints"
+      ],
+      "muscles": [
+        "Chest",
+        "Triceps",
+        "Front Delts"
+      ],
+      "tip": "The benefit is in the explosive concentric \u2014 even if you barely clear the ground"
+    },
+    "Rope Hammer Curl": {
+      "cues": [
+        "Cable at low pulley, rope attachment, neutral grip",
+        "Curl both hands up simultaneously, split rope at the top",
+        "Keep elbows pinned to sides throughout",
+        "Full extension at the bottom on every rep"
+      ],
+      "muscles": [
+        "Biceps",
+        "Brachialis",
+        "Forearms"
+      ],
+      "tip": "Splitting the rope at the top adds a squeeze that isolates the brachialis"
+    },
+    "Single-Arm Pike Hold": {
+      "cues": [
+        "In pike position, hips high, legs straight, one hand at a time",
+        "Hold position, feel the shoulder and core working",
+        "Builds toward single-arm handstand preparation",
+        "Keep free arm across body or tucked behind back"
+      ],
+      "muscles": [
+        "Shoulders",
+        "Core"
+      ],
+      "tip": "The balance challenge is significant \u2014 start with 5-10 second holds and build up"
+    },
+    "Single-Leg Press": {
+      "cues": [
+        "One foot centred on platform, other leg off or held up",
+        "Lower to 90-degree knee bend, push through heel",
+        "Keep lower back pressed into pad throughout the movement",
+        "Don't fully lock out the knee at the top"
+      ],
+      "muscles": [
+        "Quads",
+        "Glutes",
+        "Hamstrings"
+      ],
+      "tip": "Go significantly lighter than your bilateral leg press \u2014 imbalances will surprise you"
+    },
+    "Medicine Ball Push-Up": {
+      "cues": [
+        "One hand on medicine ball, one on floor \u2014 alternating or static",
+        "Standard push-up form, body stays level throughout",
+        "Roll ball to other hand between reps for alternating version",
+        "The unstable surface increases activation"
+      ],
+      "muscles": [
+        "Chest",
+        "Front Delts",
+        "Triceps",
+        "Core"
+      ],
+      "tip": "Start with the static version (one hand on ball) before attempting the rolling variation"
+    },
+    "Wrist Curls": {
+      "cues": [
+        "Forearms resting on bench or thighs, wrists hanging off the edge",
+        "Curl wrists upward through full range, squeeze at top",
+        "Slow 3-second descent \u2014 feel the forearm stretch",
+        "Use light weight \u2014 forearms respond to high reps and full range"
+      ],
+      "muscles": [
+        "Forearms",
+        "Wrist Flexors"
+      ],
+      "tip": "Reverse wrist curls (palms down) target the extensors \u2014 do both for balanced forearms"
     }
   },
   "LIBRARY": [
