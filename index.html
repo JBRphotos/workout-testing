@@ -1653,6 +1653,8 @@ function HunterProfile({ rankInfo, totalXP, setTotalXP, setXpEvents, profile, se
     const allRanks = [...(rankTheme.ranks || []), ...(rankTheme.prestige || [])].map((r, i) => Object.assign({}, r, { xpNeeded: XP_THRESHOLDS[i] || XP_THRESHOLDS[XP_THRESHOLDS.length-1] }));
     const [editingProfile, setEditingProfile] = useState(false);
     const [adminOpen, setAdminOpen] = useState(false);
+    const [showRankPop, setShowRankPop] = useState(false);
+    const [expandedSection, setExpandedSection] = useState(null);
     const [draft, setDraft] = useState(profile);
     const [showCheckin, setShowCheckin] = useState(false);
     const [checkinWeight, setCheckinWeight] = useState('');
